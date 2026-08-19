@@ -37,3 +37,13 @@ func printReport(report workflowReport) {
 		firstP50,
 	)
 }
+
+type workflowReport struct {
+	mode           transferMode
+	duration       time.Duration
+	successes      int
+	errors         int
+	bytes          int64
+	latencies      []time.Duration
+	firstResponses []time.Duration
+}
