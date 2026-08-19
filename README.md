@@ -11,14 +11,15 @@ go run . --config config.yaml
 ```
 
 The main process reads the YAML, starts the configured child server processes,
-creates and reuses one gRPC channel per child, verifies both workflows, and
-runs Unary followed by Streaming. Child startup and channel establishment are
-outside the measured interval.
+creates one resolver-backed gRPC channel for all children, verifies both
+workflows, and runs Unary followed by Streaming. A deterministic picker routes
+each request stream to its intended child. Child startup and channel
+establishment are outside the measured interval.
 
 Example output:
 
 ```text
-children=2 total_payload_bytes_per_child=4194304 stream_chunk_bytes=262144 concurrency=1
+children=2 logical_channels=1 total_payload_bytes_per_child=4194304 stream_chunk_bytes=262144 concurrency=1
 MODE        SUCCESS    ERROR        QPS        MiB/S          P50          P95          P99      FIRST_P50
 unary           100        0      ...          ...          ...          ...          ...              ...
 streaming       100        0      ...          ...          ...          ...          ...              ...

@@ -16,9 +16,12 @@ import (
 	"time"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/attributes"
 	"google.golang.org/grpc/backoff"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/keepalive"
+	"google.golang.org/grpc/resolver"
+	"google.golang.org/grpc/resolver/manual"
 )
 
 type childProcess struct {
@@ -76,68 +79,70 @@ func stopChildren(children []childProcess, timeout time.Duration) {
 	}
 }
 
-// creates the client side of the benchmark topology after startChildren() launches the server processes.
+// dialChildren creates one resolver-backed ClientConn for all child addresses.
+// The parent opens each RPC stream and the child picker routes it to the intended
+// child; child processes only accept the server-side stream.
 func dialChildren(ctx context.Context, cfg config) ([]*benchmarkClient, error) {
+	childResolver := manual.NewBuilderWithScheme(childResolverScheme)
+	addresses := make([]resolver.Address, cfg.Benchmark.ChildProcesses)
+	for i := range addresses {
+		addresses[i] = resolver.Address{
+			Addr:       net.JoinHostPort(cfg.Benchmark.Host, strconv.Itoa(cfg.Benchmark.BasePort+i)),
+			Attributes: attributes.New(childAddressIndexKey{}, i),
+		}
+	}
+	childResolver.InitialState(resolver.State{Addresses: addresses})
+	connection, err := dialChildrenChannel(ctx, cfg.GRPC.Client, cfg.Benchmark.StartupTimeoutMS, childResolver)
+	if err != nil {
+		return nil, err
+	}
+
 	clients := make([]*benchmarkClient, 0, cfg.Benchmark.ChildProcesses)
 	for i := 0; i < cfg.Benchmark.ChildProcesses; i++ {
-		address := net.JoinHostPort(cfg.Benchmark.Host, strconv.Itoa(cfg.Benchmark.BasePort+i))
-		connection, err := dialChild(ctx, address, cfg.GRPC.Client, cfg.Benchmark.StartupTimeoutMS)
-		if err != nil {
-			closeClients(clients)
-			return nil, fmt.Errorf("dial child %d at %s: %w", i, address, err)
-		}
 		clients = append(clients, &benchmarkClient{
 			connection: connection,
+			childIndex: i,
 			expected:   byte(i%251 + 1),
 		})
 	}
 	return clients, nil
 }
 
-func dialChild(parent context.Context, address string, cfg grpcClientConfig, startupTimeoutMS int) (*grpc.ClientConn, error) {
-	startupCtx, cancelStartup := context.WithTimeout(parent, time.Duration(startupTimeoutMS)*time.Millisecond)
-	defer cancelStartup()
-	for {
-		dialCtx, cancelDial := context.WithTimeout(startupCtx, time.Duration(cfg.DialTimeoutMS)*time.Millisecond)
-		connection, err := grpc.DialContext(
-			dialCtx,
-			address,
-			grpc.WithBlock(),
-			grpc.WithReturnConnectionError(),
-			grpc.WithTransportCredentials(insecure.NewCredentials()),
-			grpc.WithDefaultCallOptions(
-				grpc.MaxCallRecvMsgSize(cfg.MaxReceiveBytes),
-				grpc.MaxCallSendMsgSize(cfg.MaxSendBytes),
-			),
-			grpc.WithKeepaliveParams(keepalive.ClientParameters{
-				Time:                time.Duration(cfg.KeepaliveTimeMS) * time.Millisecond,
-				Timeout:             time.Duration(cfg.KeepaliveTimeoutMS) * time.Millisecond,
-				PermitWithoutStream: cfg.PermitWithoutStream,
-			}),
-			grpc.WithConnectParams(grpc.ConnectParams{
-				Backoff: backoff.Config{
-					BaseDelay:  time.Duration(cfg.BackoffBaseDelayMS) * time.Millisecond,
-					Multiplier: cfg.BackoffMultiplier,
-					Jitter:     cfg.BackoffJitter,
-					MaxDelay:   time.Duration(cfg.BackoffMaxDelayMS) * time.Millisecond,
-				},
-				MinConnectTimeout: time.Duration(cfg.DialTimeoutMS) * time.Millisecond,
-			}),
-		)
-		cancelDial()
-		if err == nil {
-			return connection, nil
-		}
-		if startupCtx.Err() != nil {
-			return nil, startupCtx.Err()
-		}
-		time.Sleep(50 * time.Millisecond)
-	}
+func dialChildrenChannel(parent context.Context, cfg grpcClientConfig, startupTimeoutMS int, childResolver *manual.Resolver) (*grpc.ClientConn, error) {
+	ctx, cancel := context.WithTimeout(parent, time.Duration(startupTimeoutMS)*time.Millisecond)
+	defer cancel()
+	return grpc.DialContext(
+		ctx,
+		childResolver.Scheme()+":///children",
+		grpc.WithBlock(),
+		grpc.WithReturnConnectionError(),
+		grpc.WithResolvers(childResolver),
+		grpc.WithDefaultServiceConfig(childServiceConfig),
+		grpc.WithTransportCredentials(insecure.NewCredentials()),
+		grpc.WithDefaultCallOptions(
+			grpc.MaxCallRecvMsgSize(cfg.MaxReceiveBytes),
+			grpc.MaxCallSendMsgSize(cfg.MaxSendBytes),
+		),
+		grpc.WithKeepaliveParams(keepalive.ClientParameters{
+			Time:                time.Duration(cfg.KeepaliveTimeMS) * time.Millisecond,
+			Timeout:             time.Duration(cfg.KeepaliveTimeoutMS) * time.Millisecond,
+			PermitWithoutStream: cfg.PermitWithoutStream,
+		}),
+		grpc.WithConnectParams(grpc.ConnectParams{
+			Backoff: backoff.Config{
+				BaseDelay:  time.Duration(cfg.BackoffBaseDelayMS) * time.Millisecond,
+				Multiplier: cfg.BackoffMultiplier,
+				Jitter:     cfg.BackoffJitter,
+				MaxDelay:   time.Duration(cfg.BackoffMaxDelayMS) * time.Millisecond,
+			},
+			MinConnectTimeout: time.Duration(cfg.DialTimeoutMS) * time.Millisecond,
+		}),
+	)
 }
 
 func closeClients(clients []*benchmarkClient) {
-	for _, client := range clients {
-		_ = client.connection.Close()
+	if len(clients) > 0 {
+		_ = clients[0].connection.Close()
 	}
 }
 
@@ -153,6 +158,9 @@ type transferResult struct {
 	firstResponse time.Duration
 }
 
+// transferAll starts one RPC per child for one fan-in operation. Streaming mode
+// creates one stream per child; all payload Chunks are messages within that
+// stream, not additional streams.
 func transferAll(ctx context.Context, clients []*benchmarkClient, mode transferMode, verify bool) (transferResult, error) {
 	started := time.Now()
 	results := make(chan struct {
@@ -343,7 +351,7 @@ func runBenchmark(ctx context.Context, configPath string, cfg config) error {
 		}
 	}
 
-	fmt.Printf("children=%d total_payload_bytes_per_child=%d stream_chunk_bytes=%d concurrency=%d\n",
+	fmt.Printf("children=%d logical_channels=1 total_payload_bytes_per_child=%d stream_chunk_bytes=%d concurrency=%d\n",
 		cfg.Benchmark.ChildProcesses,
 		cfg.Benchmark.TotalPayloadBytesPerChild,
 		cfg.Benchmark.StreamChunkBytes,

@@ -23,10 +23,12 @@ func verifyPayload(payload []byte, expected byte) error {
 
 type benchmarkClient struct {
 	connection *grpc.ClientConn
+	childIndex int
 	expected   byte
 }
 
 func (c *benchmarkClient) unary(ctx context.Context, verify bool, started time.Time) (transferResult, error) {
+	ctx = withChildIndex(ctx, c.childIndex)
 	response := &wrapperspb.BytesValue{}
 	if err := c.connection.Invoke(ctx, unaryMethod, &emptypb.Empty{}, response); err != nil {
 		return transferResult{}, err
@@ -46,6 +48,7 @@ var clientStreamingDescription = grpc.StreamDesc{
 }
 
 func (c *benchmarkClient) streaming(ctx context.Context, verify bool, started time.Time) (transferResult, error) {
+	ctx = withChildIndex(ctx, c.childIndex)
 	stream, err := c.connection.NewStream(ctx, &clientStreamingDescription, streamingMethod)
 	if err != nil {
 		return transferResult{}, err
