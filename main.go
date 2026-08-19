@@ -7,13 +7,11 @@ import (
 	"flag"
 	"fmt"
 	"io"
-	"math"
 	"net"
 	"os"
 	"os/exec"
 	"os/signal"
 	"path/filepath"
-	"sort"
 	"strconv"
 	"sync"
 	"syscall"
@@ -301,6 +299,7 @@ type childProcess struct {
 	done    chan error
 }
 
+// launches the benchmark’s simulated QN/SN workers as separate OS processes.
 func startChildren(configPath string, cfg config) ([]childProcess, error) {
 	executable, err := os.Executable()
 	if err != nil {
@@ -350,6 +349,7 @@ func stopChildren(children []childProcess, timeout time.Duration) {
 	}
 }
 
+// creates the client side of the benchmark topology after startChildren() launches the server processes.
 func dialChildren(ctx context.Context, cfg config) ([]*benchmarkClient, error) {
 	clients := make([]*benchmarkClient, 0, cfg.Benchmark.ChildProcesses)
 	for i := 0; i < cfg.Benchmark.ChildProcesses; i++ {
@@ -537,37 +537,6 @@ func runWorkflow(parent context.Context, cfg benchmarkConfig, clients []*benchma
 		return report, fmt.Errorf("%s completed with %d failed requests", mode, report.errors)
 	}
 	return report, nil
-}
-
-func percentile(values []time.Duration, fraction float64) time.Duration {
-	if len(values) == 0 {
-		return 0
-	}
-	sorted := append([]time.Duration(nil), values...)
-	sort.Slice(sorted, func(i, j int) bool { return sorted[i] < sorted[j] })
-	index := int(math.Ceil(fraction*float64(len(sorted)))) - 1
-	return sorted[max(0, min(index, len(sorted)-1))]
-}
-
-func printReport(report workflowReport) {
-	seconds := report.duration.Seconds()
-	qps := float64(report.successes) / seconds
-	throughputMiB := float64(report.bytes) / (1024 * 1024) / seconds
-	firstP50 := "-"
-	if len(report.firstResponses) > 0 {
-		firstP50 = percentile(report.firstResponses, 0.50).String()
-	}
-	fmt.Printf("%-10s %8d %8d %10.2f %12.2f %12s %12s %12s %14s\n",
-		report.mode,
-		report.successes,
-		report.errors,
-		qps,
-		throughputMiB,
-		percentile(report.latencies, 0.50),
-		percentile(report.latencies, 0.95),
-		percentile(report.latencies, 0.99),
-		firstP50,
-	)
 }
 
 func runChild(ctx context.Context, cfg config, childIndex int, address string) error {
