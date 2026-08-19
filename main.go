@@ -330,7 +330,7 @@ func runBenchmark(ctx context.Context, configPath string, cfg config) error {
 	}
 	defer closeClients(clients)
 
-	expectedBytes := cfg.Benchmark.ChildProcesses * cfg.Benchmark.TotalPayloadBytesPerChild
+	expectedTotalBytesAcrossChildren := cfg.Benchmark.ChildProcesses * cfg.Benchmark.TotalPayloadBytesPerChild
 	for _, mode := range []transferMode{unaryMode, streamingMode} {
 		requestCtx, cancel := context.WithTimeout(ctx, time.Duration(cfg.Benchmark.RequestTimeoutMS)*time.Millisecond)
 		result, err := transferAll(requestCtx, clients, mode, true)
@@ -338,12 +338,12 @@ func runBenchmark(ctx context.Context, configPath string, cfg config) error {
 		if err != nil {
 			return fmt.Errorf("verify %s: %w", mode, err)
 		}
-		if result.bytes != expectedBytes {
-			return fmt.Errorf("verify %s: received %d bytes, expected %d", mode, result.bytes, expectedBytes)
+		if result.bytes != expectedTotalBytesAcrossChildren {
+			return fmt.Errorf("verify %s: received %d total bytes across children, expected %d", mode, result.bytes, expectedTotalBytesAcrossChildren)
 		}
 	}
 
-	fmt.Printf("children=%d payload_per_child=%d stream_chunk=%d concurrency=%d\n",
+	fmt.Printf("children=%d total_payload_bytes_per_child=%d stream_chunk_bytes=%d concurrency=%d\n",
 		cfg.Benchmark.ChildProcesses,
 		cfg.Benchmark.TotalPayloadBytesPerChild,
 		cfg.Benchmark.StreamChunkBytes,

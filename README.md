@@ -18,7 +18,7 @@ outside the measured interval.
 Example output:
 
 ```text
-children=2 payload_per_child=4194304 stream_chunk=262144 concurrency=1
+children=2 total_payload_bytes_per_child=4194304 stream_chunk_bytes=262144 concurrency=1
 MODE        SUCCESS    ERROR        QPS        MiB/S          P50          P95          P99      FIRST_P50
 unary           100        0      ...          ...          ...          ...          ...              ...
 streaming       100        0      ...          ...          ...          ...          ...              ...
