@@ -48,11 +48,17 @@ type benchmarkConfig struct {
 	ChildProcesses            int    `yaml:"child_processes"`
 	Host                      string `yaml:"host"`
 	BasePort                  int    `yaml:"base_port"`
+	Workflow                  string `yaml:"workflow"`
 	TotalPayloadBytesPerChild int    `yaml:"total_payload_bytes_per_child"`
 	StreamChunkBytes          int    `yaml:"stream_chunk_bytes"`
+	PerUnitBytes              int    `yaml:"per_unit_bytes"`
+	GlobalTopK                int    `yaml:"global_topk"`
+	ResultDistribution        string `yaml:"result_distribution"`
 	Concurrency               int    `yaml:"concurrency"`
 	WarmupRequests            int    `yaml:"warmup_requests"`
 	MeasuredRequests          int    `yaml:"measured_requests"`
+	MinimumMeasurementMS      int    `yaml:"minimum_measurement_duration_ms"`
+	ModeOrder                 string `yaml:"mode_order"`
 	RequestTimeoutMS          int    `yaml:"request_timeout_ms"`
 	StartupTimeoutMS          int    `yaml:"startup_timeout_ms"`
 }
@@ -68,10 +74,20 @@ func loadConfig(path string) (config, error) {
 	if err := decoder.Decode(&cfg); err != nil {
 		return config{}, fmt.Errorf("decode config: %w", err)
 	}
+	cfg.applyDefaults()
 	if err := cfg.validate(); err != nil {
 		return config{}, err
 	}
 	return cfg, nil
+}
+
+func (c *config) applyDefaults() {
+	if c.Benchmark.Workflow == "" {
+		c.Benchmark.Workflow = fullTransferWorkflow
+	}
+	if c.Benchmark.Workflow == orderedTopKWorkflow && c.Benchmark.ResultDistribution == "" {
+		c.Benchmark.ResultDistribution = interleavedDistribution
+	}
 }
 
 func (c config) validate() error {
@@ -82,26 +98,27 @@ func (c config) validate() error {
 		return errors.New("internal_tls_enabled must remain false to match the current Milvus setting")
 	}
 	positive := map[string]int{
-		"grpc.client.max_send_bytes":              c.GRPC.Client.MaxSendBytes,
-		"grpc.client.max_receive_bytes":           c.GRPC.Client.MaxReceiveBytes,
-		"grpc.client.dial_timeout_ms":             c.GRPC.Client.DialTimeoutMS,
-		"grpc.client.keepalive_time_ms":           c.GRPC.Client.KeepaliveTimeMS,
-		"grpc.client.keepalive_timeout_ms":        c.GRPC.Client.KeepaliveTimeoutMS,
-		"grpc.client.backoff_base_delay_ms":       c.GRPC.Client.BackoffBaseDelayMS,
-		"grpc.client.backoff_max_delay_ms":        c.GRPC.Client.BackoffMaxDelayMS,
-		"grpc.server.max_send_bytes":              c.GRPC.Server.MaxSendBytes,
-		"grpc.server.max_receive_bytes":           c.GRPC.Server.MaxReceiveBytes,
-		"grpc.server.keepalive_time_ms":           c.GRPC.Server.KeepaliveTimeMS,
-		"grpc.server.keepalive_timeout_ms":        c.GRPC.Server.KeepaliveTimeoutMS,
-		"grpc.server.minimum_ping_interval_ms":    c.GRPC.Server.MinimumPingIntervalMS,
-		"grpc.server.graceful_stop_timeout_ms":    c.GRPC.Server.GracefulStopTimeoutMS,
-		"benchmark.child_processes":               c.Benchmark.ChildProcesses,
-		"benchmark.total_payload_bytes_per_child": c.Benchmark.TotalPayloadBytesPerChild,
-		"benchmark.stream_chunk_bytes":            c.Benchmark.StreamChunkBytes,
-		"benchmark.concurrency":                   c.Benchmark.Concurrency,
-		"benchmark.measured_requests":             c.Benchmark.MeasuredRequests,
-		"benchmark.request_timeout_ms":            c.Benchmark.RequestTimeoutMS,
-		"benchmark.startup_timeout_ms":            c.Benchmark.StartupTimeoutMS,
+		"grpc.client.max_send_bytes":                c.GRPC.Client.MaxSendBytes,
+		"grpc.client.max_receive_bytes":             c.GRPC.Client.MaxReceiveBytes,
+		"grpc.client.dial_timeout_ms":               c.GRPC.Client.DialTimeoutMS,
+		"grpc.client.keepalive_time_ms":             c.GRPC.Client.KeepaliveTimeMS,
+		"grpc.client.keepalive_timeout_ms":          c.GRPC.Client.KeepaliveTimeoutMS,
+		"grpc.client.backoff_base_delay_ms":         c.GRPC.Client.BackoffBaseDelayMS,
+		"grpc.client.backoff_max_delay_ms":          c.GRPC.Client.BackoffMaxDelayMS,
+		"grpc.server.max_send_bytes":                c.GRPC.Server.MaxSendBytes,
+		"grpc.server.max_receive_bytes":             c.GRPC.Server.MaxReceiveBytes,
+		"grpc.server.keepalive_time_ms":             c.GRPC.Server.KeepaliveTimeMS,
+		"grpc.server.keepalive_timeout_ms":          c.GRPC.Server.KeepaliveTimeoutMS,
+		"grpc.server.minimum_ping_interval_ms":      c.GRPC.Server.MinimumPingIntervalMS,
+		"grpc.server.graceful_stop_timeout_ms":      c.GRPC.Server.GracefulStopTimeoutMS,
+		"benchmark.child_processes":                 c.Benchmark.ChildProcesses,
+		"benchmark.total_payload_bytes_per_child":   c.Benchmark.TotalPayloadBytesPerChild,
+		"benchmark.stream_chunk_bytes":              c.Benchmark.StreamChunkBytes,
+		"benchmark.concurrency":                     c.Benchmark.Concurrency,
+		"benchmark.measured_requests":               c.Benchmark.MeasuredRequests,
+		"benchmark.minimum_measurement_duration_ms": c.Benchmark.MinimumMeasurementMS,
+		"benchmark.request_timeout_ms":              c.Benchmark.RequestTimeoutMS,
+		"benchmark.startup_timeout_ms":              c.Benchmark.StartupTimeoutMS,
 	}
 	for name, value := range positive {
 		if value <= 0 {
@@ -111,6 +128,12 @@ func (c config) validate() error {
 	if c.Benchmark.WarmupRequests < 0 {
 		return errors.New("benchmark.warmup_requests cannot be negative")
 	}
+	if c.Benchmark.ModeOrder != "unary_first" && c.Benchmark.ModeOrder != "streaming_first" {
+		return errors.New("benchmark.mode_order must be unary_first or streaming_first")
+	}
+	if c.Benchmark.Workflow != fullTransferWorkflow && c.Benchmark.Workflow != orderedTopKWorkflow {
+		return errors.New("benchmark.workflow must be full_transfer or ordered_topk")
+	}
 	if c.Benchmark.Host == "" {
 		return errors.New("benchmark.host is required")
 	}
@@ -119,6 +142,27 @@ func (c config) validate() error {
 	}
 	if c.GRPC.Client.BackoffMultiplier <= 0 || c.GRPC.Client.BackoffJitter < 0 {
 		return errors.New("gRPC backoff multiplier and jitter are invalid")
+	}
+	if c.Benchmark.Workflow == orderedTopKWorkflow {
+		if c.Benchmark.PerUnitBytes < orderedUnitHeaderBytes {
+			return fmt.Errorf("benchmark.per_unit_bytes must be at least %d", orderedUnitHeaderBytes)
+		}
+		if c.Benchmark.GlobalTopK <= 0 {
+			return errors.New("benchmark.global_topk must be positive")
+		}
+		if c.Benchmark.TotalPayloadBytesPerChild%c.Benchmark.PerUnitBytes != 0 {
+			return errors.New("benchmark.total_payload_bytes_per_child must be divisible by benchmark.per_unit_bytes")
+		}
+		if c.Benchmark.StreamChunkBytes%c.Benchmark.PerUnitBytes != 0 {
+			return errors.New("benchmark.stream_chunk_bytes must be divisible by benchmark.per_unit_bytes")
+		}
+		totalUnits := c.Benchmark.ChildProcesses * c.Benchmark.TotalPayloadBytesPerChild / c.Benchmark.PerUnitBytes
+		if c.Benchmark.GlobalTopK > totalUnits {
+			return fmt.Errorf("benchmark.global_topk is %d, exceeding %d total child Units", c.Benchmark.GlobalTopK, totalUnits)
+		}
+		if c.Benchmark.ResultDistribution != interleavedDistribution && c.Benchmark.ResultDistribution != dominantChildDistribution {
+			return errors.New("benchmark.result_distribution must be interleaved or dominant_child")
+		}
 	}
 
 	effectiveResponseLimit := min(c.GRPC.Client.MaxReceiveBytes, c.GRPC.Server.MaxSendBytes)

@@ -28,17 +28,30 @@ type benchmarkClient struct {
 }
 
 func (c *benchmarkClient) unary(ctx context.Context, verify bool, started time.Time) (transferResult, error) {
-	ctx = withChildIndex(ctx, c.childIndex)
-	response := &wrapperspb.BytesValue{}
-	if err := c.connection.Invoke(ctx, unaryMethod, &emptypb.Empty{}, response); err != nil {
+	payload, firstResponse, err := c.unaryPayload(ctx, started)
+	if err != nil {
 		return transferResult{}, err
 	}
 	if verify {
-		if err := verifyPayload(response.Value, c.expected); err != nil {
+		if err := verifyPayload(payload, c.expected); err != nil {
 			return transferResult{}, err
 		}
 	}
-	return transferResult{bytes: len(response.Value), firstResponse: time.Since(started)}, nil
+	return transferResult{
+		bytes:            len(payload),
+		protobufBytes:    protobufBytesValueSize(len(payload)),
+		responseMessages: 1,
+		firstResponse:    firstResponse,
+	}, nil
+}
+
+func (c *benchmarkClient) unaryPayload(ctx context.Context, started time.Time) ([]byte, time.Duration, error) {
+	ctx = withChildIndex(ctx, c.childIndex)
+	response := &wrapperspb.BytesValue{}
+	if err := c.connection.Invoke(ctx, unaryMethod, &emptypb.Empty{}, response); err != nil {
+		return nil, 0, err
+	}
+	return response.Value, time.Since(started), nil
 }
 
 var clientStreamingDescription = grpc.StreamDesc{
@@ -48,22 +61,14 @@ var clientStreamingDescription = grpc.StreamDesc{
 }
 
 func (c *benchmarkClient) streaming(ctx context.Context, verify bool, started time.Time) (transferResult, error) {
-	ctx = withChildIndex(ctx, c.childIndex)
-	stream, err := c.connection.NewStream(ctx, &clientStreamingDescription, streamingMethod)
+	stream, err := c.openStreaming(ctx)
 	if err != nil {
-		return transferResult{}, err
-	}
-	if err := stream.SendMsg(&emptypb.Empty{}); err != nil {
-		return transferResult{}, err
-	}
-	if err := stream.CloseSend(); err != nil {
 		return transferResult{}, err
 	}
 
 	result := transferResult{}
 	for {
-		response := &wrapperspb.BytesValue{}
-		err := stream.RecvMsg(response)
+		payload, err := receiveStreamingChunk(stream)
 		if errors.Is(err, io.EOF) {
 			return result, nil
 		}
@@ -74,10 +79,35 @@ func (c *benchmarkClient) streaming(ctx context.Context, verify bool, started ti
 			result.firstResponse = time.Since(started)
 		}
 		if verify {
-			if err := verifyPayload(response.Value, c.expected); err != nil {
+			if err := verifyPayload(payload, c.expected); err != nil {
 				return transferResult{}, err
 			}
 		}
-		result.bytes += len(response.Value)
+		result.bytes += len(payload)
+		result.protobufBytes += protobufBytesValueSize(len(payload))
+		result.responseMessages++
 	}
+}
+
+func (c *benchmarkClient) openStreaming(ctx context.Context) (grpc.ClientStream, error) {
+	ctx = withChildIndex(ctx, c.childIndex)
+	stream, err := c.connection.NewStream(ctx, &clientStreamingDescription, streamingMethod)
+	if err != nil {
+		return nil, err
+	}
+	if err := stream.SendMsg(&emptypb.Empty{}); err != nil {
+		return nil, err
+	}
+	if err := stream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return stream, nil
+}
+
+func receiveStreamingChunk(stream grpc.ClientStream) ([]byte, error) {
+	response := &wrapperspb.BytesValue{}
+	if err := stream.RecvMsg(response); err != nil {
+		return nil, err
+	}
+	return response.Value, nil
 }

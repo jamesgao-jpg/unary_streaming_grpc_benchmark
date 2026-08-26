@@ -25,10 +25,16 @@ benchmark:
   child_processes: 2
   host: 127.0.0.1
   base_port: 25000
+  workflow: ordered_topk
   total_payload_bytes_per_child: 4194304
   stream_chunk_bytes: 262144
+  per_unit_bytes: 256
+  global_topk: 4096
+  result_distribution: interleaved
   concurrency: 1
   warmup_requests: 10
   measured_requests: 100
+  minimum_measurement_duration_ms: 1000
+  mode_order: unary_first
   request_timeout_ms: 30000
   startup_timeout_ms: 5000

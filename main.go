@@ -154,8 +154,13 @@ const (
 )
 
 type transferResult struct {
-	bytes         int
-	firstResponse time.Duration
+	bytes            int
+	protobufBytes    int
+	responseMessages int
+	receivedUnits    int
+	emittedUnits     int
+	outputHash       uint64
+	firstResponse    time.Duration
 }
 
 // transferAll starts one RPC per child for one fan-in operation. Streaming mode
@@ -191,6 +196,10 @@ func transferAll(ctx context.Context, clients []*benchmarkClient, mode transferM
 			return transferResult{}, child.err
 		}
 		combined.bytes += child.result.bytes
+		combined.protobufBytes += child.result.protobufBytes
+		combined.responseMessages += child.result.responseMessages
+		combined.receivedUnits += child.result.receivedUnits
+		combined.emittedUnits += child.result.emittedUnits
 		if combined.firstResponse == 0 || child.result.firstResponse < combined.firstResponse {
 			combined.firstResponse = child.result.firstResponse
 		}
@@ -198,66 +207,87 @@ func transferAll(ctx context.Context, clients []*benchmarkClient, mode transferM
 	return combined, nil
 }
 
+func executeFanIn(ctx context.Context, cfg benchmarkConfig, clients []*benchmarkClient, mode transferMode, verify bool) (transferResult, error) {
+	if cfg.Workflow == orderedTopKWorkflow {
+		if mode == unaryMode {
+			return orderedTopKUnary(ctx, cfg, clients, verify)
+		}
+		return orderedTopKStreaming(ctx, cfg, clients)
+	}
+	return transferAll(ctx, clients, mode, verify)
+}
+
 func runWorkflow(parent context.Context, cfg benchmarkConfig, clients []*benchmarkClient, mode transferMode) (workflowReport, error) {
 	for i := 0; i < cfg.WarmupRequests; i++ {
 		ctx, cancel := context.WithTimeout(parent, time.Duration(cfg.RequestTimeoutMS)*time.Millisecond)
-		_, err := transferAll(ctx, clients, mode, false)
+		_, err := executeFanIn(ctx, cfg, clients, mode, false)
 		cancel()
 		if err != nil {
 			return workflowReport{}, fmt.Errorf("%s warm-up request %d: %w", mode, i, err)
 		}
 	}
 
-	report := workflowReport{
-		mode:           mode,
-		latencies:      make([]time.Duration, cfg.MeasuredRequests),
-		firstResponses: make([]time.Duration, cfg.MeasuredRequests),
+	type measuredResult struct {
+		result  transferResult
+		latency time.Duration
+		err     error
 	}
-	errorsByRequest := make([]error, cfg.MeasuredRequests)
-	bytesByRequest := make([]int, cfg.MeasuredRequests)
-	jobs := make(chan int)
+
+	report := workflowReport{mode: mode}
+	jobs := make(chan struct{})
+	results := make(chan measuredResult, cfg.Concurrency)
 	var workers sync.WaitGroup
 	for i := 0; i < cfg.Concurrency; i++ {
 		workers.Add(1)
 		go func() {
 			defer workers.Done()
-			for requestIndex := range jobs {
+			for range jobs {
 				ctx, cancel := context.WithTimeout(parent, time.Duration(cfg.RequestTimeoutMS)*time.Millisecond)
 				started := time.Now()
-				result, err := transferAll(ctx, clients, mode, false)
-				report.latencies[requestIndex] = time.Since(started)
+				result, err := executeFanIn(ctx, cfg, clients, mode, false)
 				cancel()
-				errorsByRequest[requestIndex] = err
-				bytesByRequest[requestIndex] = result.bytes
-				report.firstResponses[requestIndex] = result.firstResponse
+				results <- measuredResult{
+					result:  result,
+					latency: time.Since(started),
+					err:     err,
+				}
 			}
 		}()
 	}
 
 	started := time.Now()
-	for requestIndex := 0; requestIndex < cfg.MeasuredRequests; requestIndex++ {
-		jobs <- requestIndex
+	minimumDuration := time.Duration(cfg.MinimumMeasurementMS) * time.Millisecond
+	submitted := 0
+	for i := 0; i < cfg.Concurrency; i++ {
+		jobs <- struct{}{}
+		submitted++
+	}
+
+	for completed := 0; completed < submitted; completed++ {
+		result := <-results
+		if result.err != nil {
+			report.errors++
+		} else {
+			report.successes++
+			report.bytes += int64(result.result.bytes)
+			report.protobufBytes += int64(result.result.protobufBytes)
+			report.responseMessages += int64(result.result.responseMessages)
+			report.receivedUnits += int64(result.result.receivedUnits)
+			report.emittedUnits += int64(result.result.emittedUnits)
+			report.latencies = append(report.latencies, result.latency)
+			if result.result.firstResponse > 0 {
+				report.firstResponses = append(report.firstResponses, result.result.firstResponse)
+			}
+		}
+		if completed+1 < cfg.MeasuredRequests || time.Since(started) < minimumDuration {
+			jobs <- struct{}{}
+			submitted++
+		}
 	}
 	close(jobs)
 	workers.Wait()
 	report.duration = time.Since(started)
 
-	validLatencies := report.latencies[:0]
-	validFirstResponses := report.firstResponses[:0]
-	for i, err := range errorsByRequest {
-		if err != nil {
-			report.errors++
-			continue
-		}
-		report.successes++
-		report.bytes += int64(bytesByRequest[i])
-		validLatencies = append(validLatencies, report.latencies[i])
-		if report.firstResponses[i] > 0 {
-			validFirstResponses = append(validFirstResponses, report.firstResponses[i])
-		}
-	}
-	report.latencies = validLatencies
-	report.firstResponses = validFirstResponses
 	if report.errors > 0 {
 		return report, fmt.Errorf("%s completed with %d failed requests", mode, report.errors)
 	}
@@ -272,6 +302,9 @@ func runChild(ctx context.Context, cfg config, childIndex int, address string) e
 	defer listener.Close()
 
 	payload := bytes.Repeat([]byte{byte(childIndex%251 + 1)}, cfg.Benchmark.TotalPayloadBytesPerChild)
+	if cfg.Benchmark.Workflow == orderedTopKWorkflow {
+		payload = generateOrderedPayload(cfg.Benchmark, childIndex)
+	}
 	serverCfg := cfg.GRPC.Server
 	server := grpc.NewServer(
 		grpc.MaxRecvMsgSize(serverCfg.MaxReceiveBytes),
@@ -339,29 +372,59 @@ func runBenchmark(ctx context.Context, configPath string, cfg config) error {
 	defer closeClients(clients)
 
 	expectedTotalBytesAcrossChildren := cfg.Benchmark.ChildProcesses * cfg.Benchmark.TotalPayloadBytesPerChild
+	verification := make(map[transferMode]transferResult, 2)
 	for _, mode := range []transferMode{unaryMode, streamingMode} {
 		requestCtx, cancel := context.WithTimeout(ctx, time.Duration(cfg.Benchmark.RequestTimeoutMS)*time.Millisecond)
-		result, err := transferAll(requestCtx, clients, mode, true)
+		result, err := executeFanIn(requestCtx, cfg.Benchmark, clients, mode, true)
 		cancel()
 		if err != nil {
 			return fmt.Errorf("verify %s: %w", mode, err)
 		}
-		if result.bytes != expectedTotalBytesAcrossChildren {
+		if cfg.Benchmark.Workflow == fullTransferWorkflow && result.bytes != expectedTotalBytesAcrossChildren {
 			return fmt.Errorf("verify %s: received %d total bytes across children, expected %d", mode, result.bytes, expectedTotalBytesAcrossChildren)
 		}
+		if cfg.Benchmark.Workflow == orderedTopKWorkflow {
+			if result.emittedUnits != cfg.Benchmark.GlobalTopK {
+				return fmt.Errorf("verify %s: emitted %d Units, expected %d", mode, result.emittedUnits, cfg.Benchmark.GlobalTopK)
+			}
+			if mode == unaryMode && result.bytes != expectedTotalBytesAcrossChildren {
+				return fmt.Errorf("verify unary: received %d total bytes across children, expected %d", result.bytes, expectedTotalBytesAcrossChildren)
+			}
+			if result.bytes > expectedTotalBytesAcrossChildren {
+				return fmt.Errorf("verify %s: received %d bytes, exceeding %d potential bytes", mode, result.bytes, expectedTotalBytesAcrossChildren)
+			}
+			verification[mode] = result
+		}
+	}
+	if cfg.Benchmark.Workflow == orderedTopKWorkflow && verification[unaryMode].outputHash != verification[streamingMode].outputHash {
+		return fmt.Errorf("verify ordered topK: unary hash %x does not match streaming hash %x", verification[unaryMode].outputHash, verification[streamingMode].outputHash)
 	}
 
-	fmt.Printf("children=%d logical_channels=1 total_payload_bytes_per_child=%d stream_chunk_bytes=%d concurrency=%d\n",
+	fmt.Printf("workflow=%s children=%d logical_channels=1 total_payload_bytes_per_child=%d stream_chunk_bytes=%d concurrency=%d mode_order=%s",
+		cfg.Benchmark.Workflow,
 		cfg.Benchmark.ChildProcesses,
 		cfg.Benchmark.TotalPayloadBytesPerChild,
 		cfg.Benchmark.StreamChunkBytes,
 		cfg.Benchmark.Concurrency,
+		cfg.Benchmark.ModeOrder,
 	)
+	if cfg.Benchmark.Workflow == orderedTopKWorkflow {
+		fmt.Printf(" per_unit_bytes=%d global_topk=%d result_distribution=%s",
+			cfg.Benchmark.PerUnitBytes,
+			cfg.Benchmark.GlobalTopK,
+			cfg.Benchmark.ResultDistribution,
+		)
+	}
+	fmt.Println()
 	fmt.Printf("%-10s %8s %8s %10s %12s %12s %12s %12s %14s\n",
 		"MODE", "SUCCESS", "ERROR", "QPS", "MiB/S", "P50", "P95", "P99", "FIRST_P50")
-	for _, mode := range []transferMode{unaryMode, streamingMode} {
+	modes := []transferMode{unaryMode, streamingMode}
+	if cfg.Benchmark.ModeOrder == "streaming_first" {
+		modes[0], modes[1] = modes[1], modes[0]
+	}
+	for _, mode := range modes {
 		report, runErr := runWorkflow(ctx, cfg.Benchmark, clients, mode)
-		printReport(report)
+		printReport(report, expectedTotalBytesAcrossChildren)
 		if runErr != nil {
 			return runErr
 		}
