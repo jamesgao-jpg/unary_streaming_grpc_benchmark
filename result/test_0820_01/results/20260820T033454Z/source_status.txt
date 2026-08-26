@@ -1,0 +1,6 @@
+## master...origin/master
+ M README.md
+ M config.yaml
+ M configs.go
+ M main.go
+?? result/
