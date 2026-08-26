@@ -8,7 +8,10 @@ import (
 	"time"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/emptypb"
+	"google.golang.org/protobuf/types/known/structpb"
 	"google.golang.org/protobuf/types/known/wrapperspb"
 )
 
@@ -110,4 +113,72 @@ func receiveStreamingChunk(stream grpc.ClientStream) ([]byte, error) {
 		return nil, err
 	}
 	return response.Value, nil
+}
+
+func (c *benchmarkClient) getSendCounters(ctx context.Context) (sendCounterSnapshot, error) {
+	response := &structpb.Struct{}
+	if err := c.connection.Invoke(withChildIndex(ctx, c.childIndex), getStatsMethod, &emptypb.Empty{}, response); err != nil {
+		return sendCounterSnapshot{}, err
+	}
+	return sendCounterSnapshotFromProtobuf(response)
+}
+
+func (c *benchmarkClient) resetSendCounters(ctx context.Context) error {
+	return c.connection.Invoke(
+		withChildIndex(ctx, c.childIndex),
+		resetStatsMethod,
+		&emptypb.Empty{},
+		&emptypb.Empty{},
+	)
+}
+
+func waitForChildSendCounters(parent context.Context, timeoutMS int, client *benchmarkClient) (sendCounterSnapshot, error) {
+	ctx, cancel := context.WithTimeout(parent, time.Duration(timeoutMS)*time.Millisecond)
+	defer cancel()
+	for {
+		counters, err := client.getSendCounters(ctx)
+		if err != nil {
+			return sendCounterSnapshot{}, err
+		}
+		if counters.activeRPCs == 0 {
+			return counters, nil
+		}
+		select {
+		case <-ctx.Done():
+			return sendCounterSnapshot{}, ctx.Err()
+		case <-time.After(time.Millisecond):
+		}
+	}
+}
+
+func resetChildSendCounters(parent context.Context, timeoutMS int, clients []*benchmarkClient) error {
+	for _, client := range clients {
+		for {
+			ctx, cancel := context.WithTimeout(parent, time.Duration(timeoutMS)*time.Millisecond)
+			_, err := waitForChildSendCounters(ctx, timeoutMS, client)
+			if err == nil {
+				err = client.resetSendCounters(ctx)
+			}
+			cancel()
+			if err == nil {
+				break
+			}
+			if status.Code(err) != codes.FailedPrecondition {
+				return fmt.Errorf("child %d: %w", client.childIndex, err)
+			}
+		}
+	}
+	return nil
+}
+
+func collectChildSendCounters(parent context.Context, timeoutMS int, clients []*benchmarkClient) ([]sendCounterSnapshot, error) {
+	counters := make([]sendCounterSnapshot, len(clients))
+	for _, client := range clients {
+		childCounters, err := waitForChildSendCounters(parent, timeoutMS, client)
+		if err != nil {
+			return nil, fmt.Errorf("child %d: %w", client.childIndex, err)
+		}
+		counters[client.childIndex] = childCounters
+	}
+	return counters, nil
 }

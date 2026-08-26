@@ -147,11 +147,13 @@ func ranksBefore(candidate, selected orderedUnit) bool {
 	return candidate.rank < selected.rank || candidate.rank == selected.rank && candidate.id < selected.id
 }
 
-func addReceivedMessage(result *transferResult, payload []byte, unitBytes int) {
+func addReceivedMessage(result *transferResult, childIndex int, payload []byte, unitBytes int) {
 	result.bytes += len(payload)
 	result.protobufBytes += protobufBytesValueSize(len(payload))
 	result.responseMessages++
 	result.receivedUnits += len(payload) / unitBytes
+	result.perChild[childIndex].messages++
+	result.perChild[childIndex].bytes += len(payload)
 }
 
 func orderedTopKUnary(ctx context.Context, cfg benchmarkConfig, clients []*benchmarkClient, verify bool) (transferResult, error) {
@@ -172,7 +174,7 @@ func orderedTopKUnary(ctx context.Context, cfg benchmarkConfig, clients []*bench
 	}
 
 	buffers := make([]childChunkBuffer, len(clients))
-	result := transferResult{}
+	result := transferResult{perChild: make([]childReceiveCounters, len(clients))}
 	for range clients {
 		child := <-results
 		if child.err != nil {
@@ -187,7 +189,7 @@ func orderedTopKUnary(ctx context.Context, cfg benchmarkConfig, clients []*bench
 		if err := buffers[child.index].accept(child.payload); err != nil {
 			return transferResult{}, err
 		}
-		addReceivedMessage(&result, child.payload, cfg.PerUnitBytes)
+		addReceivedMessage(&result, child.index, child.payload, cfg.PerUnitBytes)
 		if result.firstResponse == 0 || child.firstResponse < result.firstResponse {
 			result.firstResponse = child.firstResponse
 		}
@@ -235,7 +237,7 @@ func orderedTopKStreaming(ctx context.Context, cfg benchmarkConfig, clients []*b
 
 	streams := make([]grpc.ClientStream, len(clients))
 	buffers := make([]childChunkBuffer, len(clients))
-	result := transferResult{}
+	result := transferResult{perChild: make([]childReceiveCounters, len(clients))}
 	for range clients {
 		child := <-results
 		if child.err != nil {
@@ -246,7 +248,7 @@ func orderedTopKStreaming(ctx context.Context, cfg benchmarkConfig, clients []*b
 		if err := buffers[child.index].accept(child.chunk); err != nil {
 			return transferResult{}, err
 		}
-		addReceivedMessage(&result, child.chunk, cfg.PerUnitBytes)
+		addReceivedMessage(&result, child.index, child.chunk, cfg.PerUnitBytes)
 		if result.firstResponse == 0 || child.firstResponse < result.firstResponse {
 			result.firstResponse = child.firstResponse
 		}
@@ -263,7 +265,7 @@ func orderedTopKStreaming(ctx context.Context, cfg benchmarkConfig, clients []*b
 		if err := buffers[childIndex].accept(chunk); err != nil {
 			return fmt.Errorf("child stream %d returned an invalid Chunk: %w", childIndex, err)
 		}
-		addReceivedMessage(&result, chunk, cfg.PerUnitBytes)
+		addReceivedMessage(&result, childIndex, chunk, cfg.PerUnitBytes)
 		return nil
 	}
 	emitted, hash, err := reduceOrderedTopK(buffers, cfg.GlobalTopK, refill)

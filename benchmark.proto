@@ -3,6 +3,7 @@ syntax = "proto3";
 package benchmark;
 
 import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
 import "google/protobuf/wrappers.proto";
 
 // The Go implementation registers this service directly because it only uses
@@ -11,4 +12,6 @@ service BenchmarkService {
   rpc Unary(google.protobuf.Empty) returns (google.protobuf.BytesValue);
   rpc Streaming(stream google.protobuf.Empty)
       returns (stream google.protobuf.BytesValue);
+  rpc ResetStats(google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc GetStats(google.protobuf.Empty) returns (google.protobuf.Struct);
 }

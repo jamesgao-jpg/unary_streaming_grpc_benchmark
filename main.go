@@ -161,6 +161,12 @@ type transferResult struct {
 	emittedUnits     int
 	outputHash       uint64
 	firstResponse    time.Duration
+	perChild         []childReceiveCounters
+}
+
+type childReceiveCounters struct {
+	messages int
+	bytes    int
 }
 
 // transferAll starts one RPC per child for one fan-in operation. Streaming mode
@@ -169,8 +175,9 @@ type transferResult struct {
 func transferAll(ctx context.Context, clients []*benchmarkClient, mode transferMode, verify bool) (transferResult, error) {
 	started := time.Now()
 	results := make(chan struct {
-		result transferResult
-		err    error
+		childIndex int
+		result     transferResult
+		err        error
 	}, len(clients))
 	for _, client := range clients {
 		client := client
@@ -183,13 +190,14 @@ func transferAll(ctx context.Context, clients []*benchmarkClient, mode transferM
 				result, err = client.streaming(ctx, verify, started)
 			}
 			results <- struct {
-				result transferResult
-				err    error
-			}{result: result, err: err}
+				childIndex int
+				result     transferResult
+				err        error
+			}{childIndex: client.childIndex, result: result, err: err}
 		}()
 	}
 
-	combined := transferResult{}
+	combined := transferResult{perChild: make([]childReceiveCounters, len(clients))}
 	for range clients {
 		child := <-results
 		if child.err != nil {
@@ -200,6 +208,8 @@ func transferAll(ctx context.Context, clients []*benchmarkClient, mode transferM
 		combined.responseMessages += child.result.responseMessages
 		combined.receivedUnits += child.result.receivedUnits
 		combined.emittedUnits += child.result.emittedUnits
+		combined.perChild[child.childIndex].messages += child.result.responseMessages
+		combined.perChild[child.childIndex].bytes += child.result.bytes
 		if combined.firstResponse == 0 || child.result.firstResponse < combined.firstResponse {
 			combined.firstResponse = child.result.firstResponse
 		}
@@ -226,6 +236,9 @@ func runWorkflow(parent context.Context, cfg benchmarkConfig, clients []*benchma
 			return workflowReport{}, fmt.Errorf("%s warm-up request %d: %w", mode, i, err)
 		}
 	}
+	if err := resetChildSendCounters(parent, cfg.RequestTimeoutMS, clients); err != nil {
+		return workflowReport{}, fmt.Errorf("reset %s child send counters: %w", mode, err)
+	}
 
 	type measuredResult struct {
 		result  transferResult
@@ -233,7 +246,10 @@ func runWorkflow(parent context.Context, cfg benchmarkConfig, clients []*benchma
 		err     error
 	}
 
-	report := workflowReport{mode: mode}
+	report := workflowReport{
+		mode:     mode,
+		perChild: make([]childWorkflowCounters, len(clients)),
+	}
 	jobs := make(chan struct{})
 	results := make(chan measuredResult, cfg.Concurrency)
 	var workers sync.WaitGroup
@@ -274,6 +290,10 @@ func runWorkflow(parent context.Context, cfg benchmarkConfig, clients []*benchma
 			report.responseMessages += int64(result.result.responseMessages)
 			report.receivedUnits += int64(result.result.receivedUnits)
 			report.emittedUnits += int64(result.result.emittedUnits)
+			for childIndex, counters := range result.result.perChild {
+				report.perChild[childIndex].receivedMessages += int64(counters.messages)
+				report.perChild[childIndex].receivedBytes += int64(counters.bytes)
+			}
 			report.latencies = append(report.latencies, result.latency)
 			if result.result.firstResponse > 0 {
 				report.firstResponses = append(report.firstResponses, result.result.firstResponse)
@@ -287,6 +307,13 @@ func runWorkflow(parent context.Context, cfg benchmarkConfig, clients []*benchma
 	close(jobs)
 	workers.Wait()
 	report.duration = time.Since(started)
+	sendCounters, err := collectChildSendCounters(parent, cfg.RequestTimeoutMS, clients)
+	if err != nil {
+		return report, fmt.Errorf("collect %s child send counters: %w", mode, err)
+	}
+	for childIndex, counters := range sendCounters {
+		report.perChild[childIndex].send = counters
+	}
 
 	if report.errors > 0 {
 		return report, fmt.Errorf("%s completed with %d failed requests", mode, report.errors)
@@ -306,9 +333,11 @@ func runChild(ctx context.Context, cfg config, childIndex int, address string) e
 		payload = generateOrderedPayload(cfg.Benchmark, childIndex)
 	}
 	serverCfg := cfg.GRPC.Server
+	tracker := &sendCounterTracker{}
 	server := grpc.NewServer(
 		grpc.MaxRecvMsgSize(serverCfg.MaxReceiveBytes),
 		grpc.MaxSendMsgSize(serverCfg.MaxSendBytes),
+		grpc.StatsHandler(benchmarkStatsHandler{tracker: tracker}),
 		grpc.KeepaliveEnforcementPolicy(keepalive.EnforcementPolicy{
 			MinTime:             time.Duration(serverCfg.MinimumPingIntervalMS) * time.Millisecond,
 			PermitWithoutStream: serverCfg.PermitWithoutStream,
@@ -321,6 +350,7 @@ func runChild(ctx context.Context, cfg config, childIndex int, address string) e
 	server.RegisterService(&serviceDescription, &transferService{
 		payload:    payload,
 		chunkBytes: cfg.Benchmark.StreamChunkBytes,
+		tracker:    tracker,
 	})
 
 	serveError := make(chan error, 1)

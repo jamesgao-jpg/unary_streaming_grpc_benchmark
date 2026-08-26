@@ -52,6 +52,25 @@ func printReport(report workflowReport, potentialBytesPerOperation int) {
 		float64(report.receivedUnits-report.emittedUnits)/float64(report.successes),
 		savedPercent,
 	)
+	for childIndex, counters := range report.perChild {
+		fmt.Printf("child_transfer mode=%s child=%d operations=%d received_messages=%d received_bytes=%d send_attempted_messages=%d send_attempted_bytes=%d send_completed_messages=%d send_completed_bytes=%d\n",
+			report.mode,
+			childIndex,
+			report.successes,
+			counters.receivedMessages,
+			counters.receivedBytes,
+			counters.send.attemptedMessages,
+			counters.send.attemptedBytes,
+			counters.send.completedMessages,
+			counters.send.completedBytes,
+		)
+	}
+}
+
+type childWorkflowCounters struct {
+	receivedMessages int64
+	receivedBytes    int64
+	send             sendCounterSnapshot
 }
 
 type workflowReport struct {
@@ -66,4 +85,5 @@ type workflowReport struct {
 	emittedUnits     int64
 	latencies        []time.Duration
 	firstResponses   []time.Duration
+	perChild         []childWorkflowCounters
 }
