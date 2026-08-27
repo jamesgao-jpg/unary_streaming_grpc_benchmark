@@ -1,7 +1,9 @@
+// This file verifies ordered payload generation, Chunk refill, and reduction equivalence.
 package main
 
 import "testing"
 
+// TestGenerateOrderedPayload verifies each child's deterministic Unit encoding.
 func TestGenerateOrderedPayload(t *testing.T) {
 	cfg := orderedTestConfig(interleavedDistribution, 13)
 	for childIndex := 0; childIndex < cfg.ChildProcesses; childIndex++ {
@@ -12,7 +14,9 @@ func TestGenerateOrderedPayload(t *testing.T) {
 	}
 }
 
+// TestChunkedOrderedTopKMatchesCompleteResults compares Chunk refills with full-result reduction.
 func TestChunkedOrderedTopKMatchesCompleteResults(t *testing.T) {
+	// Define distributions that require different child Buffer refill patterns.
 	tests := []struct {
 		name          string
 		distribution  string
@@ -24,6 +28,7 @@ func TestChunkedOrderedTopKMatchesCompleteResults(t *testing.T) {
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
+			// Reduce fully materialized child payloads to establish the expected result.
 			cfg := orderedTestConfig(test.distribution, test.topK)
 			payloads := make([][]byte, cfg.ChildProcesses)
 			completeBuffers := make([]childChunkBuffer, cfg.ChildProcesses)
@@ -39,6 +44,7 @@ func TestChunkedOrderedTopKMatchesCompleteResults(t *testing.T) {
 				t.Fatal(err)
 			}
 
+			// Feed the same payloads through fixed-size Chunks and on-demand refills.
 			chunkBuffers := make([]childChunkBuffer, cfg.ChildProcesses)
 			nextOffsets := make([]int, cfg.ChildProcesses)
 			receivedBytes := 0
@@ -65,6 +71,7 @@ func TestChunkedOrderedTopKMatchesCompleteResults(t *testing.T) {
 				t.Fatal(err)
 			}
 
+			// Require identical output and the expected amount of received Chunk data.
 			if completeCount != chunkedCount || completeHash != chunkedHash {
 				t.Fatalf("complete=(%d,%x), chunked=(%d,%x)", completeCount, completeHash, chunkedCount, chunkedHash)
 			}
@@ -75,6 +82,7 @@ func TestChunkedOrderedTopKMatchesCompleteResults(t *testing.T) {
 	}
 }
 
+// TestChildChunkBufferRejectsMisalignedChunk verifies Unit alignment enforcement.
 func TestChildChunkBufferRejectsMisalignedChunk(t *testing.T) {
 	buffer := childChunkBuffer{unitBytes: 16}
 	if err := buffer.accept(make([]byte, 17)); err == nil {
@@ -82,6 +90,7 @@ func TestChildChunkBufferRejectsMisalignedChunk(t *testing.T) {
 	}
 }
 
+// orderedTestConfig returns a compact deterministic configuration for reduction tests.
 func orderedTestConfig(distribution string, topK int) benchmarkConfig {
 	return benchmarkConfig{
 		ChildProcesses:            4,

@@ -1,3 +1,4 @@
+// This file orchestrates child processes, gRPC connections, benchmark workflows, and shutdown.
 package main
 
 import (
@@ -24,12 +25,13 @@ import (
 	"google.golang.org/grpc/resolver/manual"
 )
 
+// childProcess tracks one simulated QN/SN process and its completion signal.
 type childProcess struct {
 	command *exec.Cmd
 	done    chan error
 }
 
-// launches the benchmark’s simulated QN/SN workers as separate OS processes.
+// startChildren launches the simulated QN/SN workers as separate OS processes.
 func startChildren(configPath string, cfg config) ([]childProcess, error) {
 	executable, err := os.Executable()
 	if err != nil {
@@ -57,7 +59,7 @@ func startChildren(configPath string, cfg config) ([]childProcess, error) {
 	return children, nil
 }
 
-// close children opened above
+// stopChildren requests graceful child shutdown and kills processes that exceed the deadline.
 func stopChildren(children []childProcess, timeout time.Duration) {
 	for _, child := range children {
 		if child.command.Process != nil {
@@ -80,11 +82,11 @@ func stopChildren(children []childProcess, timeout time.Duration) {
 	}
 }
 
-// dialChildren creates one resolver-backed ClientConn for all child addresses.
-// The parent opens each RPC stream and the child picker routes it to the intended
-// child; child processes only accept the server-side stream.
+// dialChildren creates child-specific clients over one resolver-backed ClientConn.
 func dialChildren(ctx context.Context, cfg config) ([]*benchmarkClient, error) {
 	childResolver := manual.NewBuilderWithScheme(childResolverScheme)
+	transport := newConnectionTracker()
+	grpcReceives := newGRPCReceiveTracker(cfg.Benchmark.ChildProcesses)
 	addresses := make([]resolver.Address, cfg.Benchmark.ChildProcesses)
 	for i := range addresses {
 		addresses[i] = resolver.Address{
@@ -93,7 +95,7 @@ func dialChildren(ctx context.Context, cfg config) ([]*benchmarkClient, error) {
 		}
 	}
 	childResolver.InitialState(resolver.State{Addresses: addresses})
-	connection, err := dialChildrenChannel(ctx, cfg.GRPC.Client, cfg.Benchmark.StartupTimeoutMS, childResolver)
+	connection, err := dialChildrenChannel(ctx, cfg.GRPC.Client, cfg.Benchmark.StartupTimeoutMS, childResolver, transport, grpcReceives)
 	if err != nil {
 		return nil, err
 	}
@@ -101,21 +103,19 @@ func dialChildren(ctx context.Context, cfg config) ([]*benchmarkClient, error) {
 	clients := make([]*benchmarkClient, 0, cfg.Benchmark.ChildProcesses)
 	for i := 0; i < cfg.Benchmark.ChildProcesses; i++ {
 		clients = append(clients, &benchmarkClient{
-			connection: connection,
-			childIndex: i,
-			expected:   byte(i%251 + 1),
+			connection:   connection,
+			childIndex:   i,
+			expected:     byte(i%251 + 1),
+			address:      addresses[i].Addr,
+			transport:    transport,
+			grpcReceives: grpcReceives,
 		})
 	}
 	return clients, nil
 }
 
-// this function creates one SINGLE grpc.Conn (one logic channel) object, the passed childResolver
-// which is initialized with all children addresses we know, is pass to grpc.WithResolver(),
-// and grpc will then internally handleload balancing to assign subConn to each child process address
-
-// It's designed this way to mirror actual Milvus grpc handling, which creates one logical channel
-// per node role (QueryNode, StreamingNode etc).
-func dialChildrenChannel(parent context.Context, cfg grpcClientConfig, startupTimeoutMS int, childResolver *manual.Resolver) (*grpc.ClientConn, error) {
+// dialChildrenChannel creates one logical gRPC channel whose SubConns reach all children.
+func dialChildrenChannel(parent context.Context, cfg grpcClientConfig, startupTimeoutMS int, childResolver *manual.Resolver, transport *connectionTracker, grpcReceives *grpcReceiveTracker) (*grpc.ClientConn, error) {
 	ctx, cancel := context.WithTimeout(parent, time.Duration(startupTimeoutMS)*time.Millisecond)
 	defer cancel()
 	return grpc.DialContext(
@@ -126,6 +126,15 @@ func dialChildrenChannel(parent context.Context, cfg grpcClientConfig, startupTi
 		grpc.WithResolvers(childResolver),
 		grpc.WithDefaultServiceConfig(childServiceConfig),
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
+		grpc.WithStatsHandler(parentStatsHandler{receives: grpcReceives}),
+		grpc.WithContextDialer(func(ctx context.Context, address string) (net.Conn, error) {
+			connection, err := (&net.Dialer{}).DialContext(ctx, "tcp", address)
+			if err != nil {
+				return nil, err
+			}
+			// Use the resolver address as the key; RemoteAddr may normalize localhost or IPv6.
+			return transport.trackAs(address, connection), nil
+		}),
 		grpc.WithDefaultCallOptions(
 			grpc.MaxCallRecvMsgSize(cfg.MaxReceiveBytes),
 			grpc.MaxCallSendMsgSize(cfg.MaxSendBytes),
@@ -147,12 +156,14 @@ func dialChildrenChannel(parent context.Context, cfg grpcClientConfig, startupTi
 	)
 }
 
+// closeClients closes the shared ClientConn held by all benchmark clients.
 func closeClients(clients []*benchmarkClient) {
 	if len(clients) > 0 {
 		_ = clients[0].connection.Close()
 	}
 }
 
+// transferMode identifies the unary or streaming transport under measurement.
 type transferMode string
 
 const (
@@ -160,6 +171,7 @@ const (
 	streamingMode transferMode = "streaming"
 )
 
+// transferResult contains one fan-in operation's payload, timing, and correctness data.
 type transferResult struct {
 	bytes            int
 	protobufBytes    int
@@ -171,14 +183,13 @@ type transferResult struct {
 	perChild         []childReceiveCounters
 }
 
+// childReceiveCounters records application-level messages and bytes received from one child.
 type childReceiveCounters struct {
 	messages int
 	bytes    int
 }
 
-// transferAll starts one RPC per child for one fan-in operation. Streaming mode
-// creates one stream per child; all payload Chunks are messages within that
-// stream, not additional streams.
+// transferAll receives each child's complete payload without ordered reduction.
 func transferAll(ctx context.Context, clients []*benchmarkClient, mode transferMode, verify bool) (transferResult, error) {
 	started := time.Now()
 	results := make(chan struct {
@@ -224,6 +235,7 @@ func transferAll(ctx context.Context, clients []*benchmarkClient, mode transferM
 	return combined, nil
 }
 
+// executeFanIn dispatches one operation to the configured workflow and transport mode.
 func executeFanIn(ctx context.Context, cfg benchmarkConfig, clients []*benchmarkClient, mode transferMode, verify bool) (transferResult, error) {
 	if cfg.Workflow == orderedTopKWorkflow {
 		if mode == unaryMode {
@@ -234,7 +246,9 @@ func executeFanIn(ctx context.Context, cfg benchmarkConfig, clients []*benchmark
 	return transferAll(ctx, clients, mode, verify)
 }
 
+// runWorkflow warms up and measures one transport mode across concurrent fan-in operations.
 func runWorkflow(parent context.Context, cfg benchmarkConfig, clients []*benchmarkClient, mode transferMode) (workflowReport, error) {
+	// Warm connections, then establish clean application and transport counter baselines.
 	for i := 0; i < cfg.WarmupRequests; i++ {
 		ctx, cancel := context.WithTimeout(parent, time.Duration(cfg.RequestTimeoutMS)*time.Millisecond)
 		_, err := executeFanIn(ctx, cfg, clients, mode, false)
@@ -246,7 +260,13 @@ func runWorkflow(parent context.Context, cfg benchmarkConfig, clients []*benchma
 	if err := resetChildSendCounters(parent, cfg.RequestTimeoutMS, clients); err != nil {
 		return workflowReport{}, fmt.Errorf("reset %s child send counters: %w", mode, err)
 	}
+	clients[0].grpcReceives.reset()
+	parentTransportStart := make([]transportCounterSnapshot, len(clients))
+	for childIndex, client := range clients {
+		parentTransportStart[childIndex] = client.transport.snapshot(client.address)
+	}
 
+	// Run a fixed worker pool so both modes use the same concurrency model.
 	type measuredResult struct {
 		result  transferResult
 		latency time.Duration
@@ -278,6 +298,7 @@ func runWorkflow(parent context.Context, cfg benchmarkConfig, clients []*benchma
 		}()
 	}
 
+	// Submit requests until both the request-count and duration requirements are met.
 	started := time.Now()
 	minimumDuration := time.Duration(cfg.MinimumMeasurementMS) * time.Millisecond
 	submitted := 0
@@ -314,10 +335,20 @@ func runWorkflow(parent context.Context, cfg benchmarkConfig, clients []*benchma
 	close(jobs)
 	workers.Wait()
 	report.duration = time.Since(started)
+
+	// Capture parent counters before GetStats adds reporting control traffic.
+	grpcReceives := clients[0].grpcReceives.snapshot()
+	for childIndex, client := range clients {
+		report.perChild[childIndex].grpcReceive = grpcReceives[childIndex]
+		report.perChild[childIndex].parentTransport = client.transport.snapshot(client.address).since(parentTransportStart[childIndex])
+	}
 	sendCounters, err := collectChildSendCounters(parent, cfg.RequestTimeoutMS, clients)
 	if err != nil {
 		return report, fmt.Errorf("collect %s child send counters: %w", mode, err)
 	}
+	// Child transport deltas include the small ResetStats response and GetStats
+	// request because those control messages share the measured connection. The
+	// application send counters still contain benchmark responses only.
 	for childIndex, counters := range sendCounters {
 		report.perChild[childIndex].send = counters
 	}
@@ -328,7 +359,9 @@ func runWorkflow(parent context.Context, cfg benchmarkConfig, clients []*benchma
 	return report, nil
 }
 
+// runChild serves one simulated QN/SN process until cancellation and then shuts it down.
 func runChild(ctx context.Context, cfg config, childIndex int, address string) error {
+	// Build this child's deterministic payload and instrumented gRPC server.
 	listener, err := net.Listen("tcp", address)
 	if err != nil {
 		return err
@@ -340,7 +373,8 @@ func runChild(ctx context.Context, cfg config, childIndex int, address string) e
 		payload = generateOrderedPayload(cfg.Benchmark, childIndex)
 	}
 	serverCfg := cfg.GRPC.Server
-	tracker := &sendCounterTracker{}
+	transport := newConnectionTracker()
+	tracker := &sendCounterTracker{transport: transport}
 	server := grpc.NewServer(
 		grpc.MaxRecvMsgSize(serverCfg.MaxReceiveBytes),
 		grpc.MaxSendMsgSize(serverCfg.MaxSendBytes),
@@ -360,14 +394,16 @@ func runChild(ctx context.Context, cfg config, childIndex int, address string) e
 		tracker:    tracker,
 	})
 
+	// Serve requests until the server fails or the parent cancels the process.
 	serveError := make(chan error, 1)
-	go func() { serveError <- server.Serve(listener) }()
+	go func() { serveError <- server.Serve(trackedListener{Listener: listener, tracker: transport}) }()
 	select {
 	case err := <-serveError:
 		return err
 	case <-ctx.Done():
 	}
 
+	// Prefer graceful shutdown, with a bounded forced-stop fallback.
 	stopped := make(chan struct{})
 	go func() {
 		server.GracefulStop()
@@ -381,17 +417,9 @@ func runChild(ctx context.Context, cfg config, childIndex int, address string) e
 	return nil
 }
 
-// steps:
-//
-//  1. start a bunch of children of same processes with known tcp addresses
-//
-//  2. for each started child, runChild is called which starts server with known service
-//     descriptions (and methods) to listen to clients to corresponding addresses
-//
-//  3. calls dialChildren which creates grpc connection and wrap them into benchmarkClient
-//
-// 4. requests are sent through clients which triggers server method and return correspondingly
+// runBenchmark builds the process topology, verifies both modes, and executes measurements.
 func runBenchmark(ctx context.Context, configPath string, cfg config) error {
+	// Launch the configured child processes and connect one logical parent channel.
 	absoluteConfigPath, err := filepath.Abs(configPath)
 	if err != nil {
 		return err
@@ -408,6 +436,7 @@ func runBenchmark(ctx context.Context, configPath string, cfg config) error {
 	}
 	defer closeClients(clients)
 
+	// Run one correctness operation per mode before collecting performance results.
 	expectedTotalBytesAcrossChildren := cfg.Benchmark.ChildProcesses * cfg.Benchmark.TotalPayloadBytesPerChild
 	verification := make(map[transferMode]transferResult, 2)
 	for _, mode := range []transferMode{unaryMode, streamingMode} {
@@ -437,6 +466,7 @@ func runBenchmark(ctx context.Context, configPath string, cfg config) error {
 		return fmt.Errorf("verify ordered topK: unary hash %x does not match streaming hash %x", verification[unaryMode].outputHash, verification[streamingMode].outputHash)
 	}
 
+	// Print the workload identity, then measure modes in the configured order.
 	fmt.Printf("workflow=%s children=%d logical_channels=1 total_payload_bytes_per_child=%d stream_chunk_bytes=%d concurrency=%d mode_order=%s",
 		cfg.Benchmark.Workflow,
 		cfg.Benchmark.ChildProcesses,
@@ -461,7 +491,7 @@ func runBenchmark(ctx context.Context, configPath string, cfg config) error {
 	}
 	for _, mode := range modes {
 		report, runErr := runWorkflow(ctx, cfg.Benchmark, clients, mode)
-		printReport(report, expectedTotalBytesAcrossChildren)
+		printReport(report, cfg.Benchmark, expectedTotalBytesAcrossChildren)
 		if runErr != nil {
 			return runErr
 		}
@@ -469,6 +499,7 @@ func runBenchmark(ctx context.Context, configPath string, cfg config) error {
 	return nil
 }
 
+// main loads configuration and selects parent benchmark or child-server mode.
 func main() {
 	configPath := flag.String("config", "config.yaml", "path to benchmark YAML")
 	child := flag.Bool("child", false, "run as a child gRPC server")

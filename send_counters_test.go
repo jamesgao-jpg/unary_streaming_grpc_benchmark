@@ -1,3 +1,4 @@
+// This file verifies child counter encoding, reset safety, and gRPC lifecycle accounting.
 package main
 
 import (
@@ -9,6 +10,7 @@ import (
 	"google.golang.org/protobuf/types/known/wrapperspb"
 )
 
+// TestSendCounterSnapshotProtobufRoundTrip verifies lossless in-band counter encoding.
 func TestSendCounterSnapshotProtobufRoundTrip(t *testing.T) {
 	expected := sendCounterSnapshot{
 		attemptedMessages: 11,
@@ -16,6 +18,15 @@ func TestSendCounterSnapshotProtobufRoundTrip(t *testing.T) {
 		completedMessages: 33,
 		completedBytes:    44,
 		activeRPCs:        55,
+		transport: transportCounterSnapshot{
+			connectionReadBytes:  66,
+			connectionWriteBytes: 77,
+			tcpBytesReceived:     88,
+			tcpBytesSent:         99,
+			tcpBytesAcked:        111,
+			tcpNotSentBytes:      122,
+			tcpInfoAvailable:     true,
+		},
 	}
 	actual, err := sendCounterSnapshotFromProtobuf(expected.protobuf())
 	if err != nil {
@@ -26,6 +37,7 @@ func TestSendCounterSnapshotProtobufRoundTrip(t *testing.T) {
 	}
 }
 
+// TestSendCounterResetRequiresIdleTracker prevents measurement-window overlap.
 func TestSendCounterResetRequiresIdleTracker(t *testing.T) {
 	tracker := &sendCounterTracker{}
 	tracker.recordAttempt(100)
@@ -42,6 +54,7 @@ func TestSendCounterResetRequiresIdleTracker(t *testing.T) {
 	}
 }
 
+// TestBenchmarkStatsHandlerTracksUnaryLifecycle verifies active and completed unary counters.
 func TestBenchmarkStatsHandlerTracksUnaryLifecycle(t *testing.T) {
 	tracker := &sendCounterTracker{}
 	handler := benchmarkStatsHandler{tracker: tracker}

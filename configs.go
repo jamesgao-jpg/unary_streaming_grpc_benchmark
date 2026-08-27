@@ -1,3 +1,4 @@
+// This file defines the YAML configuration model and validates benchmark inputs.
 package main
 
 import (
@@ -9,11 +10,13 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+// config contains all transport and workload settings loaded from YAML.
 type config struct {
 	GRPC      grpcConfig      `yaml:"grpc"`
 	Benchmark benchmarkConfig `yaml:"benchmark"`
 }
 
+// grpcConfig groups the client and server settings shared by both RPC modes.
 type grpcConfig struct {
 	CompressionEnabled bool             `yaml:"compression_enabled"`
 	InternalTLSEnabled bool             `yaml:"internal_tls_enabled"`
@@ -21,6 +24,7 @@ type grpcConfig struct {
 	Server             grpcServerConfig `yaml:"server"`
 }
 
+// grpcClientConfig defines the parent-side gRPC connection behavior.
 type grpcClientConfig struct {
 	MaxSendBytes        int     `yaml:"max_send_bytes"`
 	MaxReceiveBytes     int     `yaml:"max_receive_bytes"`
@@ -34,6 +38,7 @@ type grpcClientConfig struct {
 	BackoffMaxDelayMS   int     `yaml:"backoff_max_delay_ms"`
 }
 
+// grpcServerConfig defines the child-side gRPC server behavior.
 type grpcServerConfig struct {
 	MaxSendBytes          int  `yaml:"max_send_bytes"`
 	MaxReceiveBytes       int  `yaml:"max_receive_bytes"`
@@ -44,6 +49,7 @@ type grpcServerConfig struct {
 	GracefulStopTimeoutMS int  `yaml:"graceful_stop_timeout_ms"`
 }
 
+// benchmarkConfig defines the process topology, payload, and measurement workload.
 type benchmarkConfig struct {
 	ChildProcesses            int    `yaml:"child_processes"`
 	Host                      string `yaml:"host"`
@@ -63,6 +69,7 @@ type benchmarkConfig struct {
 	StartupTimeoutMS          int    `yaml:"startup_timeout_ms"`
 }
 
+// loadConfig decodes a strict YAML file, applies defaults, and validates it.
 func loadConfig(path string) (config, error) {
 	contents, err := os.ReadFile(path)
 	if err != nil {
@@ -81,6 +88,7 @@ func loadConfig(path string) (config, error) {
 	return cfg, nil
 }
 
+// applyDefaults fills optional workflow settings with their canonical defaults.
 func (c *config) applyDefaults() {
 	if c.Benchmark.Workflow == "" {
 		c.Benchmark.Workflow = fullTransferWorkflow
@@ -90,7 +98,9 @@ func (c *config) applyDefaults() {
 	}
 }
 
+// validate rejects settings that would invalidate transport or workload comparisons.
 func (c config) validate() error {
+	// Preserve the Milvus transport assumptions and reject non-positive limits.
 	if c.GRPC.CompressionEnabled {
 		return errors.New("compression_enabled must remain false to match the current Milvus setting")
 	}
@@ -125,6 +135,8 @@ func (c config) validate() error {
 			return fmt.Errorf("%s must be positive", name)
 		}
 	}
+
+	// Validate topology and mode-independent benchmark behavior.
 	if c.Benchmark.WarmupRequests < 0 {
 		return errors.New("benchmark.warmup_requests cannot be negative")
 	}
@@ -143,6 +155,8 @@ func (c config) validate() error {
 	if c.GRPC.Client.BackoffMultiplier <= 0 || c.GRPC.Client.BackoffJitter < 0 {
 		return errors.New("gRPC backoff multiplier and jitter are invalid")
 	}
+
+	// Validate ordered topK Units, Chunks, and result-distribution constraints.
 	if c.Benchmark.Workflow == orderedTopKWorkflow {
 		if c.Benchmark.PerUnitBytes < orderedUnitHeaderBytes {
 			return fmt.Errorf("benchmark.per_unit_bytes must be at least %d", orderedUnitHeaderBytes)
@@ -165,6 +179,7 @@ func (c config) validate() error {
 		}
 	}
 
+	// Ensure both unary responses and individual streaming Chunks fit gRPC limits.
 	effectiveResponseLimit := min(c.GRPC.Client.MaxReceiveBytes, c.GRPC.Server.MaxSendBytes)
 	unaryMessageBytes := protobufBytesValueSize(c.Benchmark.TotalPayloadBytesPerChild)
 	streamMessageBytes := protobufBytesValueSize(min(c.Benchmark.TotalPayloadBytesPerChild, c.Benchmark.StreamChunkBytes))
@@ -177,6 +192,7 @@ func (c config) validate() error {
 	return nil
 }
 
+// protobufBytesValueSize returns the serialized size of a BytesValue payload.
 func protobufBytesValueSize(payloadBytes int) int {
 	value := payloadBytes
 	lengthBytes := 1

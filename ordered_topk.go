@@ -1,3 +1,4 @@
+// This file defines ordered Units, child Chunk Buffers, and unary or streaming topK reduction.
 package main
 
 import (
@@ -21,11 +22,13 @@ const (
 	orderedHashPrime          = uint64(1099511628211)
 )
 
+// orderedUnit is the smallest ranked result consumed by one reduction step.
 type orderedUnit struct {
 	rank uint64
 	id   uint64
 }
 
+// generateOrderedPayload creates one deterministic, sorted child result payload.
 func generateOrderedPayload(cfg benchmarkConfig, childIndex int) []byte {
 	unitsPerChild := cfg.TotalPayloadBytesPerChild / cfg.PerUnitBytes
 	payload := make([]byte, cfg.TotalPayloadBytesPerChild)
@@ -41,6 +44,7 @@ func generateOrderedPayload(cfg benchmarkConfig, childIndex int) []byte {
 	return payload
 }
 
+// expectedOrderedUnit returns the rank and ID assigned to one child-local Unit.
 func expectedOrderedUnit(cfg benchmarkConfig, childIndex, localIndex int) orderedUnit {
 	unitsPerChild := cfg.TotalPayloadBytesPerChild / cfg.PerUnitBytes
 	rank := uint64(childIndex*unitsPerChild + localIndex)
@@ -53,6 +57,7 @@ func expectedOrderedUnit(cfg benchmarkConfig, childIndex, localIndex int) ordere
 	}
 }
 
+// verifyOrderedPayload checks every encoded Unit against its configured rank distribution.
 func verifyOrderedPayload(payload []byte, cfg benchmarkConfig, childIndex int) error {
 	if len(payload) != cfg.TotalPayloadBytesPerChild {
 		return fmt.Errorf("child %d returned %d bytes, expected %d", childIndex, len(payload), cfg.TotalPayloadBytesPerChild)
@@ -68,6 +73,7 @@ func verifyOrderedPayload(payload []byte, cfg benchmarkConfig, childIndex int) e
 	return nil
 }
 
+// decodeOrderedUnit reads one rank and ID from an encoded Unit.
 func decodeOrderedUnit(data []byte) orderedUnit {
 	return orderedUnit{
 		rank: binary.LittleEndian.Uint64(data),
@@ -75,12 +81,14 @@ func decodeOrderedUnit(data []byte) orderedUnit {
 	}
 }
 
+// childChunkBuffer retains one child's current Chunk and next unread Unit.
 type childChunkBuffer struct {
 	chunk     []byte
 	offset    int
 	unitBytes int
 }
 
+// accept installs a non-empty, Unit-aligned Chunk into an empty Buffer.
 func (b *childChunkBuffer) accept(chunk []byte) error {
 	if b.hasUnit() {
 		return errors.New("child Chunk Buffer still contains Units")
@@ -93,14 +101,17 @@ func (b *childChunkBuffer) accept(chunk []byte) error {
 	return nil
 }
 
+// hasUnit reports whether the Buffer has an unread Unit.
 func (b *childChunkBuffer) hasUnit() bool {
 	return b.offset < len(b.chunk)
 }
 
+// head returns the next Unit without consuming it.
 func (b *childChunkBuffer) head() orderedUnit {
 	return decodeOrderedUnit(b.chunk[b.offset:])
 }
 
+// pop consumes and returns the next Unit, releasing an exhausted Chunk.
 func (b *childChunkBuffer) pop() orderedUnit {
 	unit := b.head()
 	b.offset += b.unitBytes
@@ -111,6 +122,7 @@ func (b *childChunkBuffer) pop() orderedUnit {
 	return unit
 }
 
+// reduceOrderedTopK performs a k-way merge and refills only the selected empty Buffer.
 func reduceOrderedTopK(buffers []childChunkBuffer, topK int, refill func(int) error) (int, uint64, error) {
 	emitted := 0
 	hash := orderedHashOffset
@@ -143,10 +155,12 @@ func reduceOrderedTopK(buffers []childChunkBuffer, topK int, refill func(int) er
 	return emitted, hash, nil
 }
 
+// ranksBefore applies the deterministic rank-then-ID ordering.
 func ranksBefore(candidate, selected orderedUnit) bool {
 	return candidate.rank < selected.rank || candidate.rank == selected.rank && candidate.id < selected.id
 }
 
+// addReceivedMessage records one parent-visible child message in a transfer result.
 func addReceivedMessage(result *transferResult, childIndex int, payload []byte, unitBytes int) {
 	result.bytes += len(payload)
 	result.protobufBytes += protobufBytesValueSize(len(payload))
@@ -156,6 +170,7 @@ func addReceivedMessage(result *transferResult, childIndex int, payload []byte, 
 	result.perChild[childIndex].bytes += len(payload)
 }
 
+// orderedTopKUnary materializes all child results before performing ordered topK reduction.
 func orderedTopKUnary(ctx context.Context, cfg benchmarkConfig, clients []*benchmarkClient, verify bool) (transferResult, error) {
 	started := time.Now()
 	type childResult struct {
@@ -204,7 +219,9 @@ func orderedTopKUnary(ctx context.Context, cfg benchmarkConfig, clients []*bench
 	return result, nil
 }
 
+// orderedTopKStreaming receives initial Chunks and refills only Buffers exhausted by reduction.
 func orderedTopKStreaming(ctx context.Context, cfg benchmarkConfig, clients []*benchmarkClient) (transferResult, error) {
+	// Open every child stream concurrently and receive the first Chunk required for comparison.
 	streamContext, cancel := context.WithCancel(ctx)
 	defer cancel()
 	started := time.Now()
@@ -235,6 +252,7 @@ func orderedTopKStreaming(ctx context.Context, cfg benchmarkConfig, clients []*b
 		}()
 	}
 
+	// Install one initial Chunk per child so every current head participates in ordering.
 	streams := make([]grpc.ClientStream, len(clients))
 	buffers := make([]childChunkBuffer, len(clients))
 	result := transferResult{perChild: make([]childReceiveCounters, len(clients))}
@@ -254,6 +272,7 @@ func orderedTopKStreaming(ctx context.Context, cfg benchmarkConfig, clients []*b
 		}
 	}
 
+	// Refill only the winning child's exhausted Buffer until topK has been emitted.
 	refill := func(childIndex int) error {
 		chunk, err := receiveStreamingChunk(streams[childIndex])
 		if errors.Is(err, io.EOF) {

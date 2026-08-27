@@ -1,3 +1,4 @@
+// This file defines the benchmark gRPC service and its unary, streaming, and counter RPCs.
 package main
 
 import (
@@ -18,6 +19,7 @@ const (
 	getStatsMethod   = "/benchmark.BenchmarkService/GetStats"
 )
 
+// benchmarkServiceServer lists the RPC methods implemented by each child process.
 type benchmarkServiceServer interface {
 	Unary(context.Context, *emptypb.Empty) (*wrapperspb.BytesValue, error)
 	Streaming(grpc.ServerStream) error
@@ -25,17 +27,20 @@ type benchmarkServiceServer interface {
 	GetStats(context.Context, *emptypb.Empty) (*structpb.Struct, error)
 }
 
+// transferService serves one child's fixed payload and measurement counters.
 type transferService struct {
 	payload    []byte
 	chunkBytes int
 	tracker    *sendCounterTracker
 }
 
+// Unary returns the child's complete payload in one response message.
 func (s *transferService) Unary(context.Context, *emptypb.Empty) (*wrapperspb.BytesValue, error) {
 	s.tracker.recordAttempt(len(s.payload))
 	return wrapperspb.Bytes(s.payload), nil
 }
 
+// Streaming sends the child's payload as sequential fixed-size Chunks.
 func (s *transferService) Streaming(stream grpc.ServerStream) error {
 	if err := stream.RecvMsg(&emptypb.Empty{}); err != nil {
 		return err
@@ -51,6 +56,7 @@ func (s *transferService) Streaming(stream grpc.ServerStream) error {
 	return nil
 }
 
+// ResetStats starts a new child measurement window when no benchmark RPC is active.
 func (s *transferService) ResetStats(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
 	if !s.tracker.reset() {
 		return nil, status.Error(codes.FailedPrecondition, "benchmark RPCs are still active")
@@ -58,10 +64,12 @@ func (s *transferService) ResetStats(context.Context, *emptypb.Empty) (*emptypb.
 	return &emptypb.Empty{}, nil
 }
 
+// GetStats returns the child's application and transport counters.
 func (s *transferService) GetStats(context.Context, *emptypb.Empty) (*structpb.Struct, error) {
 	return s.tracker.snapshot().protobuf(), nil
 }
 
+// unaryHandler adapts the manually described unary RPC to transferService.
 func unaryHandler(srv any, ctx context.Context, decode func(any) error, interceptor grpc.UnaryServerInterceptor) (any, error) {
 	request := &emptypb.Empty{}
 	if err := decode(request); err != nil {
@@ -77,10 +85,12 @@ func unaryHandler(srv any, ctx context.Context, decode func(any) error, intercep
 	return interceptor(ctx, request, info, handler)
 }
 
+// streamingHandler adapts the manually described streaming RPC to transferService.
 func streamingHandler(srv any, stream grpc.ServerStream) error {
 	return srv.(benchmarkServiceServer).Streaming(stream)
 }
 
+// resetStatsHandler adapts the counter-reset RPC to transferService.
 func resetStatsHandler(srv any, ctx context.Context, decode func(any) error, interceptor grpc.UnaryServerInterceptor) (any, error) {
 	request := &emptypb.Empty{}
 	if err := decode(request); err != nil {
@@ -96,6 +106,7 @@ func resetStatsHandler(srv any, ctx context.Context, decode func(any) error, int
 	return interceptor(ctx, request, info, handler)
 }
 
+// getStatsHandler adapts the counter-snapshot RPC to transferService.
 func getStatsHandler(srv any, ctx context.Context, decode func(any) error, interceptor grpc.UnaryServerInterceptor) (any, error) {
 	request := &emptypb.Empty{}
 	if err := decode(request); err != nil {
@@ -111,6 +122,7 @@ func getStatsHandler(srv any, ctx context.Context, decode func(any) error, inter
 	return interceptor(ctx, request, info, handler)
 }
 
+// serviceDescription registers the benchmark service without generated protobuf code.
 var serviceDescription = grpc.ServiceDesc{
 	ServiceName: "benchmark.BenchmarkService",
 	HandlerType: (*benchmarkServiceServer)(nil),
