@@ -1,10 +1,6 @@
 # Equal-TopK Unary Versus Streaming Benchmark
 
-Status: Completed
-
-Completed run: `20260827T074104Z` on source commit `bf87f64`. All 32 matrix
-executions passed, including the race-test and required correctness and
-transport-metric checks.
+Status: Proposed
 
 ## Objective
 
