@@ -1,0 +1,40 @@
+grpc:
+  compression_enabled: false
+  internal_tls_enabled: false
+  client:
+    max_send_bytes: 268435456
+    max_receive_bytes: 67108864
+    dial_timeout_ms: 200
+    keepalive_time_ms: 10000
+    keepalive_timeout_ms: 20000
+    permit_without_stream: true
+    backoff_base_delay_ms: 100
+    backoff_multiplier: 1.6
+    backoff_jitter: 0.2
+    backoff_max_delay_ms: 3000
+  server:
+    max_send_bytes: 536870912
+    max_receive_bytes: 268435456
+    keepalive_time_ms: 60000
+    keepalive_timeout_ms: 10000
+    minimum_ping_interval_ms: 5000
+    permit_without_stream: true
+    graceful_stop_timeout_ms: 3000
+
+benchmark:
+  child_processes: 8
+  host: 127.0.0.1
+  base_port: 25000
+  workflow: ordered_topk
+  total_payload_bytes_per_child: 16777216
+  stream_chunk_bytes: 262144
+  per_unit_bytes: 256
+  global_topk: 4096
+  result_distribution: interleaved
+  concurrency: 1
+  warmup_requests: 3
+  measured_requests: 10
+  minimum_measurement_duration_ms: 1000
+  mode_order: streaming_first
+  request_timeout_ms: 120000
+  startup_timeout_ms: 5000

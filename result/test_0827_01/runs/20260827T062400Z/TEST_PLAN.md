@@ -1,9 +1,6 @@
 # gRPC Streaming Run-Ahead Threshold Test
 
-Status: Completed
-
-Completed run: `20260827T062400Z` on source commit `29a7703`. All 24 matrix
-executions passed, including the race-test and required transport-metric checks.
+Status: Proposed
 
 ## Objective
 
