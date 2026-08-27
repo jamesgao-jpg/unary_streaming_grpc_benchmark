@@ -23,3 +23,13 @@
   for repeated runs.
 - Clearly mark a test as proposed, running, completed, or failed in
   `TEST_PLAN.md`. Do not report proposed or partial results as completed.
+
+# Code Documentation
+
+- Every source file must begin with a succinct comment describing the main
+  purpose of the types and functions defined in that file.
+- Every named type and function must have a succinct purpose comment directly
+  above its declaration.
+- Every function exceeding 50 lines must contain procedural comment blocks
+  that divide its implementation into logical phases. Explain the purpose and
+  flow of each phase without restating obvious individual statements.
