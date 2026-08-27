@@ -9,6 +9,10 @@ import (
 	"google.golang.org/grpc/status"
 )
 
+// the child picker is never directly invoked by our own code, grpc uses the
+// registered custom loadbalancer we defined below
+// when calling c.connection.Invoke() and c.connection.NewStream().
+
 const (
 	childResolverScheme = "benchmark-children"
 	childBalancerName   = "benchmark-child-picker"

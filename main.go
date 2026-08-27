@@ -57,6 +57,7 @@ func startChildren(configPath string, cfg config) ([]childProcess, error) {
 	return children, nil
 }
 
+// close children opened above
 func stopChildren(children []childProcess, timeout time.Duration) {
 	for _, child := range children {
 		if child.command.Process != nil {
@@ -108,6 +109,12 @@ func dialChildren(ctx context.Context, cfg config) ([]*benchmarkClient, error) {
 	return clients, nil
 }
 
+// this function creates one SINGLE grpc.Conn (one logic channel) object, the passed childResolver
+// which is initialized with all children addresses we know, is pass to grpc.WithResolver(),
+// and grpc will then internally handleload balancing to assign subConn to each child process address
+
+// It's designed this way to mirror actual Milvus grpc handling, which creates one logical channel
+// per node role (QueryNode, StreamingNode etc).
 func dialChildrenChannel(parent context.Context, cfg grpcClientConfig, startupTimeoutMS int, childResolver *manual.Resolver) (*grpc.ClientConn, error) {
 	ctx, cancel := context.WithTimeout(parent, time.Duration(startupTimeoutMS)*time.Millisecond)
 	defer cancel()
