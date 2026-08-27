@@ -20,7 +20,7 @@ establishment are outside the measured interval.
 Example output:
 
 ```text
-workflow=ordered_topk children=2 logical_channels=1 total_payload_bytes_per_child=4194304 stream_chunk_bytes=262144 concurrency=1 mode_order=unary_first per_unit_bytes=256 global_topk=4096 result_distribution=interleaved
+workflow=ordered_topk children=2 logical_channels=1 total_payload_bytes_per_child=4194304 stream_chunk_bytes=262144 concurrency=1 mode_order=unary_first static_window_bytes=0 per_unit_bytes=256 global_topk=4096 result_distribution=interleaved
 MODE        SUCCESS    ERROR        QPS        MiB/S          P50          P95          P99      FIRST_P50
 unary           100        0      ...          ...          ...          ...          ...              ...
 transfer mode=unary potential_bytes_per_operation=... received_bytes_per_operation=... saved_percent=...
@@ -78,6 +78,10 @@ The complete Unary protobuf response and every individual Streaming protobuf
 response must fit within the smaller of `grpc.server.max_send_bytes` and
 `grpc.client.max_receive_bytes`. Invalid configurations are rejected before
 any child process starts.
+
+`grpc.client.static_window_bytes: 0` keeps gRPC-Go's default dynamic flow
+control. A value of at least 65,536 applies the same static receive window to
+each parent-side stream and connection and disables dynamic window sizing.
 
 The defaults were verified against the sibling Milvus checkout at these source
 locations:

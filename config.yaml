@@ -4,6 +4,7 @@ grpc:
   client:
     max_send_bytes: 268435456
     max_receive_bytes: 67108864
+    static_window_bytes: 0
     dial_timeout_ms: 200
     keepalive_time_ms: 10000
     keepalive_timeout_ms: 20000

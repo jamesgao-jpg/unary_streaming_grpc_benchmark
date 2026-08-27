@@ -118,9 +118,7 @@ func dialChildren(ctx context.Context, cfg config) ([]*benchmarkClient, error) {
 func dialChildrenChannel(parent context.Context, cfg grpcClientConfig, startupTimeoutMS int, childResolver *manual.Resolver, transport *connectionTracker, grpcReceives *grpcReceiveTracker) (*grpc.ClientConn, error) {
 	ctx, cancel := context.WithTimeout(parent, time.Duration(startupTimeoutMS)*time.Millisecond)
 	defer cancel()
-	return grpc.DialContext(
-		ctx,
-		childResolver.Scheme()+":///children",
+	dialOptions := []grpc.DialOption{
 		grpc.WithBlock(),
 		grpc.WithReturnConnectionError(),
 		grpc.WithResolvers(childResolver),
@@ -153,7 +151,14 @@ func dialChildrenChannel(parent context.Context, cfg grpcClientConfig, startupTi
 			},
 			MinConnectTimeout: time.Duration(cfg.DialTimeoutMS) * time.Millisecond,
 		}),
-	)
+	}
+	if cfg.StaticWindowBytes > 0 {
+		dialOptions = append(dialOptions,
+			grpc.WithStaticStreamWindowSize(cfg.StaticWindowBytes),
+			grpc.WithStaticConnWindowSize(cfg.StaticWindowBytes),
+		)
+	}
+	return grpc.DialContext(ctx, childResolver.Scheme()+":///children", dialOptions...)
 }
 
 // closeClients closes the shared ClientConn held by all benchmark clients.
@@ -467,13 +472,14 @@ func runBenchmark(ctx context.Context, configPath string, cfg config) error {
 	}
 
 	// Print the workload identity, then measure modes in the configured order.
-	fmt.Printf("workflow=%s children=%d logical_channels=1 total_payload_bytes_per_child=%d stream_chunk_bytes=%d concurrency=%d mode_order=%s",
+	fmt.Printf("workflow=%s children=%d logical_channels=1 total_payload_bytes_per_child=%d stream_chunk_bytes=%d concurrency=%d mode_order=%s static_window_bytes=%d",
 		cfg.Benchmark.Workflow,
 		cfg.Benchmark.ChildProcesses,
 		cfg.Benchmark.TotalPayloadBytesPerChild,
 		cfg.Benchmark.StreamChunkBytes,
 		cfg.Benchmark.Concurrency,
 		cfg.Benchmark.ModeOrder,
+		cfg.GRPC.Client.StaticWindowBytes,
 	)
 	if cfg.Benchmark.Workflow == orderedTopKWorkflow {
 		fmt.Printf(" per_unit_bytes=%d global_topk=%d result_distribution=%s",

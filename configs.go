@@ -28,6 +28,7 @@ type grpcConfig struct {
 type grpcClientConfig struct {
 	MaxSendBytes        int     `yaml:"max_send_bytes"`
 	MaxReceiveBytes     int     `yaml:"max_receive_bytes"`
+	StaticWindowBytes   int32   `yaml:"static_window_bytes"`
 	DialTimeoutMS       int     `yaml:"dial_timeout_ms"`
 	KeepaliveTimeMS     int     `yaml:"keepalive_time_ms"`
 	KeepaliveTimeoutMS  int     `yaml:"keepalive_timeout_ms"`
@@ -154,6 +155,10 @@ func (c config) validate() error {
 	}
 	if c.GRPC.Client.BackoffMultiplier <= 0 || c.GRPC.Client.BackoffJitter < 0 {
 		return errors.New("gRPC backoff multiplier and jitter are invalid")
+	}
+	if c.GRPC.Client.StaticWindowBytes < 0 ||
+		(c.GRPC.Client.StaticWindowBytes > 0 && c.GRPC.Client.StaticWindowBytes < 65536) {
+		return errors.New("grpc.client.static_window_bytes must be 0 or at least 65536")
 	}
 
 	// Validate ordered topK Units, Chunks, and result-distribution constraints.
