@@ -1,0 +1,71 @@
+go version go1.26.4 linux/arm64
+Linux ip-10-15-9-42 6.8.0-1063-aws #66~22.04.1-Ubuntu SMP Fri Aug  7 17:19:42 UTC 2026 aarch64 aarch64 aarch64 GNU/Linux
+real-time non-blocking time  (microseconds, -R) unlimited
+core file size              (blocks, -c) 0
+data seg size               (kbytes, -d) unlimited
+scheduling priority                 (-e) 0
+file size                   (blocks, -f) unlimited
+pending signals                     (-i) 505990
+max locked memory           (kbytes, -l) 16193244
+max memory size             (kbytes, -m) unlimited
+open files                          (-n) 1048576
+pipe size                (512 bytes, -p) 8
+POSIX message queues         (bytes, -q) 819200
+real-time priority                  (-r) 0
+stack size                  (kbytes, -s) 8192
+cpu time                   (seconds, -t) unlimited
+max user processes                  (-u) 505990
+virtual memory              (kbytes, -v) unlimited
+file locks                          (-x) unlimited
+MemTotal:       129545956 kB
+MemFree:        128379604 kB
+MemAvailable:   128068120 kB
+Buffers:           51488 kB
+Cached:           609612 kB
+SwapCached:            0 kB
+Active:           563376 kB
+Inactive:         207700 kB
+Active(anon):     118716 kB
+Inactive(anon):        0 kB
+Active(file):     444660 kB
+Inactive(file):   207700 kB
+Unevictable:       26368 kB
+Mlocked:           26368 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Zswap:                 0 kB
+Zswapped:              0 kB
+Dirty:               896 kB
+Writeback:             0 kB
+AnonPages:        136420 kB
+Mapped:           183996 kB
+Shmem:              1268 kB
+KReclaimable:      36152 kB
+Slab:             132700 kB
+SReclaimable:      36152 kB
+SUnreclaim:        96548 kB
+KernelStack:        6832 kB
+ShadowCallStack:    1772 kB
+PageTables:         3836 kB
+SecPageTables:         0 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:    64772976 kB
+Committed_AS:    1390832 kB
+VmallocTotal:   133141626880 kB
+VmallocUsed:       19504 kB
+VmallocChunk:          0 kB
+Percpu:             7488 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+FileHugePages:         0 kB
+FilePmdMapped:         0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
