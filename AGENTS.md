@@ -1,5 +1,8 @@
 # Benchmark Test Artifacts
 
+- Milvus end-to-end experiments use `milvus_result/test_<MMDD>_<NN>/` instead
+  of `result/`. Each must contain `TEST_PLAN.md`, executable `run_test.sh`, and
+  a subsequent `report.md`.
 - For every proposed benchmark test, create a dedicated directory under
   `result/` named `test_<MMDD>_<NN>` using the local date and a zero-padded
   sequence number for that date. For example: `result/test_0820_01/`.

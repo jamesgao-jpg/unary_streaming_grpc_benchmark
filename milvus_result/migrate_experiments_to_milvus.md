@@ -48,6 +48,10 @@ The executed setups below are historical records, not Milvus test candidates.
 
 Run only ordered-topK cases with requested topK at most 16,384. Keep production gRPC windows; exclude `full_transfer`, static-window, and oversized-child controls. Historical executions above remain unchanged.
 
+Use Cohere 10M at 768 dimensions in one vchannel. Prepare one fixed sealed-segment layout for the complete QN fan-in matrix rather than changing segment size between fan-in cases. Target 256 sealed segments for QN counts 1/2/4/8/16/32; calculate `dataCoord.segment.maxSize` from 10M rows, the collection schema's estimated bytes per row, and the configured seal proportion. Set seal-proportion jitter to zero and disable automatic compaction during the experiment.
+
+After loading at each QN count, record segment ID, node ID, and row count, plus the observed `GetQueryPlan.WorkNodes`. Run the case only when all target QNs own sealed rows, observed WorkNodes equals the target fan-in, row imbalance is no greater than one largest segment, and the placement is unchanged across three consecutive observations.
+
 | Case | Fixed setup | Vary | Benchmark basis |
 | --- | --- | --- | --- |
 | Baseline | 8 effective children, topK 16,384, Chunk 1,024 Units, concurrency 1, interleaved ranks | Unary versus Streaming | `0827_02` P4 MiB, rebased baseline for later sweeps |
