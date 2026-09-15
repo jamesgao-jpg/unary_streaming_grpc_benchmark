@@ -360,7 +360,8 @@ preflight() {
     fi
 
     log "Building Milvus on .42"
-    server "cd '$SERVER_REPO' && make milvus" | tee "$RUN_DIR/remote-build.log"
+    server "export PATH=/home/ubuntu/.local/go1.26.5/bin:\$PATH GOPATH=/home/ubuntu/go; \
+        cd '$SERVER_REPO' && make milvus" | tee "$RUN_DIR/remote-build.log"
     server "test -x '$SERVER_REPO/bin/milvus'"
     client "test -x '$CLIENT_REPO/.venv/bin/python'"
 }
