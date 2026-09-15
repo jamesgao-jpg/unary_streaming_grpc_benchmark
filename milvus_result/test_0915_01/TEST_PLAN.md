@@ -40,7 +40,7 @@ gRPC window behavior, Chunk-size effects, concurrency, or rank distribution.
 
 The run record must capture the actual Milvus and VectorDBBench commits, branch
 names, Git status, host resources, and executed commands. Draft-time reference
-commits are Milvus `3ddff3aad8d0cb43d0f61a4fbd401e0b2867ba72` and
+commits are Milvus `eede3bdb4c5e396edc35c985c89677307a2d60ca` and
 VectorDBBench `75628b4581d4778d348c68c7c170f17044354af8`.
 
 ## Milvus Topology

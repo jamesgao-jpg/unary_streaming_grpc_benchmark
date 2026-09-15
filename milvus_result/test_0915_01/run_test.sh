@@ -3,6 +3,7 @@
 set -Eeuo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+TEST_REPO="$(cd "$SCRIPT_DIR/../.." && pwd)"
 WORKSPACE_ROOT="$(cd "$SCRIPT_DIR/../../.." && pwd)"
 MILVUS_LOCAL_REPO="${MILVUS_LOCAL_REPO:-$WORKSPACE_ROOT/milvus-qv}"
 
@@ -322,6 +323,8 @@ preflight() {
         || fail "segment.maxSize calculation returned $calculated_max_size, expected $SEGMENT_MAX_SIZE_MIB"
 
     git -C "$MILVUS_LOCAL_REPO" status --short --branch >"$RUN_DIR/local-milvus-status.txt"
+    git -C "$TEST_REPO" rev-parse HEAD >"$RUN_DIR/test-plan-commit.txt"
+    git -C "$TEST_REPO" status --short --branch >"$RUN_DIR/test-plan-status.txt"
     local local_head remote_head
     local_head=$(git -C "$MILVUS_LOCAL_REPO" rev-parse HEAD)
     remote_head=$(server "git -C '$SERVER_REPO' rev-parse HEAD")
