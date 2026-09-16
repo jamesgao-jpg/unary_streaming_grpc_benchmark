@@ -140,7 +140,9 @@ start_role() {
     local metrics_port=$3
     local rpc_port=${4:-0}
     local log_level=${5:-info}
-    local search_streaming=${6:-}
+    # SSH flattens its command arguments, so an empty positional argument would
+    # disappear before the remote shell and shift the remaining role settings.
+    local search_streaming=${6:-unused}
 
     log "Starting $name"
     server_bash \
