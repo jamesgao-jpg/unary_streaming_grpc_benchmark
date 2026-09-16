@@ -898,15 +898,6 @@ run_correctness_gate() {
     compare_correctness "$case_dir"
 }
 
-mode_order() {
-    local repetition=$1
-    if ((repetition % 2 == 1)); then
-        printf '%s\n' batch streaming
-    else
-        printf '%s\n' streaming batch
-    fi
-}
-
 run_interval() {
     local case_name=$1
     local repetition=$2
@@ -952,6 +943,7 @@ run_topology() {
     local case_dir="$RUN_DIR/$case_name"
     local remote_case_dir="$CLIENT_RUN_DIR/$case_name"
     local repetition mode
+    local -a modes
 
     log "Preparing $case_name"
     mkdir -p "$case_dir"
@@ -965,10 +957,15 @@ run_topology() {
     run_correctness_gate "$case_name" "$case_dir" "$remote_case_dir"
 
     for ((repetition = 1; repetition <= REPETITIONS; repetition++)); do
-        while IFS= read -r mode; do
+        if ((repetition % 2 == 1)); then
+            modes=(batch streaming)
+        else
+            modes=(streaming batch)
+        fi
+        for mode in "${modes[@]}"; do
             log "Running $case_name repetition $repetition mode $mode"
             run_interval "$case_name" "$repetition" "$mode"
-        done < <(mode_order "$repetition")
+        done
     done
 
     mkdir -p "$case_dir/server-logs"
