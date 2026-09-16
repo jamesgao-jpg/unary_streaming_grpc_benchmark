@@ -50,9 +50,6 @@ SSH_OPTIONS=(-i "$SSH_KEY" -o BatchMode=yes -o ConnectTimeout=15 -o ServerAliveI
 INFRA_STARTED=false
 ACTIVE_SAMPLER=""
 
-mkdir -p "$RUN_DIR"
-exec > >(tee -a "$RUN_DIR/run.log") 2>&1
-
 log() {
     printf '[test_0915_02] %s\n' "$*"
 }
@@ -304,9 +301,13 @@ cleanup() {
     exit "$status"
 }
 
-trap cleanup EXIT
-trap 'exit 130' INT
-trap 'exit 143' TERM
+initialize_runner() {
+    mkdir -p "$RUN_DIR"
+    exec > >(tee -a "$RUN_DIR/run.log") 2>&1
+    trap cleanup EXIT
+    trap 'exit 130' INT
+    trap 'exit 143' TERM
+}
 
 preflight() {
     local command
@@ -1055,6 +1056,7 @@ PY
 }
 
 main() {
+    initialize_runner
     log "Run ID: $RUN_ID"
     preflight
     write_server_configuration
@@ -1086,4 +1088,6 @@ main() {
     log "All Batch-versus-Streaming fan-in intervals passed"
 }
 
-main "$@"
+if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+    main "$@"
+fi
