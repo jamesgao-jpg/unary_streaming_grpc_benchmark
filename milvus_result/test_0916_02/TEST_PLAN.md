@@ -51,7 +51,7 @@ logical payload. It does not measure early-stop transfer savings.
 | Milvus checkout | `/home/ubuntu/milvus-qv` |
 | Client checkout | `/home/ubuntu/reducestream_perf` |
 | Milvus branch | `codex/qv-reducestream-e2e-benchmark-20260915` |
-| Required Milvus commit | `c1c665e83d321bc5b8e99d13c1302405c885dd7d` |
+| Required Milvus commit | `9d3dd3019283df4cfe77a180e4433666f7faaa98` |
 | Milvus build target | `make build-go` |
 | Server binary | `/home/ubuntu/milvus-qv/bin/milvus` |
 
