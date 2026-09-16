@@ -1015,7 +1015,7 @@ query_vector_hashes = {
 if len(query_vector_hashes) != 1:
     raise SystemExit("measured intervals did not use one fixed query-vector set")
 
-for case_dir in sorted(run_dir.glob("FANIN-N*")):
+for case_dir in sorted(path for path in run_dir.glob("FANIN-N*") if path.is_dir()):
     digests = {"batch": {}, "streaming": {}}
     for path in sorted(case_dir.glob("rep*/*/benchmark.json")):
         data = json.load(open(path, encoding="utf-8"))
@@ -1037,7 +1037,7 @@ with open(run_dir / "manifest.tsv", "w", encoding="utf-8", newline="") as output
     writer.writerows(rows)
 
 summary = []
-for case in sorted({row["case"] for row in rows}, key=lambda value: int(value.split("N")[1])):
+for case in sorted({row["case"] for row in rows}, key=lambda value: int(value.rsplit("N", 1)[1])):
     values = {mode: [row for row in rows if row["case"] == case and row["mode"] == mode]
               for mode in ("batch", "streaming")}
     batch_qps = statistics.median(row["qps"] for row in values["batch"])
