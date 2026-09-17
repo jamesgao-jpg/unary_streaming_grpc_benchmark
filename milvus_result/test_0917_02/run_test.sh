@@ -375,7 +375,7 @@ copy_runtime() {
 qualify_worknodes() {
     local case_dir=$1 remote_case_dir=$2 count=$3
 
-    start_proxy streaming debug
+    start_proxy streaming 1024 debug
     run_client_action "$(basename "$case_dir")-worknodes" \
         "verify --host 10.15.9.42 --port '$MILVUS_PORT' \
         --collection '$COLLECTION_NAME' --mode streaming --limit '$QUERY_LIMIT' \
