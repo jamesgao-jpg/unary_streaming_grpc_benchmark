@@ -264,11 +264,12 @@ def benchmark(args):
     latencies = []
     errors = 0
     first_hash = None
+    logical_bytes = 0
     lock = threading.Lock()
     started = time.monotonic()
 
     def client_loop():
-        nonlocal errors, first_hash
+        nonlocal errors, first_hash, logical_bytes
         for _ in range(args.warmup_operations):
             query_once(collection, args)
         while True:
