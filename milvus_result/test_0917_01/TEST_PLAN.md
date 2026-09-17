@@ -9,10 +9,14 @@ Tracking issue:
 
 ## Objective
 
-Sweep effective QueryNode fan-in per vchannel through N1, N2, N4, N8, and N16
-for the bounded Plain Query vector-payload workload that `test_0916_02`
-established as its N1 baseline, and compare Batch and Streaming execution at
-every fan-in level.
+Sweep effective QueryNode fan-in per vchannel in descending order through N32,
+N16, N8, N4, N2, and N1 for the bounded Plain Query vector-payload workload
+that `test_0916_02` established as its N1 baseline, and compare Batch and
+Streaming execution at every fan-in level.
+
+Cases run from most QueryNodes to fewest: the highest fan-in case executes
+first so that any unexpected fan-in behavior surfaces immediately and the run
+stops to investigate that direction instead of discovering it last.
 
 The experiment asks whether the promised Streaming Reduce memory property
 appears as fan-in grows:
@@ -44,11 +48,12 @@ their local 8,192-row result:
 
 | Case | QueryNodes | Nominal QN-to-Proxy child payload (logical) |
 | --- | ---: | ---: |
-| N1 | 1 | 25,231,360 bytes |
-| N2 | 2 | 50,462,720 bytes |
-| N4 | 4 | 100,925,440 bytes |
-| N8 | 8 | 201,850,880 bytes |
+| N32 | 32 | 807,403,520 bytes |
 | N16 | 16 | 403,701,760 bytes |
+| N8 | 8 | 201,850,880 bytes |
+| N4 | 4 | 100,925,440 bytes |
+| N2 | 2 | 50,462,720 bytes |
+| N1 | 1 | 25,231,360 bytes |
 
 Batch transfers and materializes the complete child results before Proxy
 reduction. Streaming transfers the same logical rows in 1,024-Unit Chunks and
@@ -57,8 +62,8 @@ child count rather than complete-result bytes times child count if the
 incremental reduction and early-stop behavior work as designed.
 
 This experiment measures the scaling relationship; it does not assume the
-promised behavior is present. The N1 case is retained as the in-run transport
-baseline.
+promised behavior is present. The N1 case, which runs last, is retained as the
+in-run transport baseline.
 
 ## Environment
 
@@ -107,14 +112,16 @@ replacement collection.
 | MixCoord | 1 |
 | DataNode, including index service | 1 |
 | StreamingNode | 1 |
-| QueryNode | 1, 2, 4, 8, or 16 depending on the case |
+| QueryNode | 32, 16, 8, 4, 2, or 1 depending on the case |
 
-Cases: `FANIN-N1`, `FANIN-N2`, `FANIN-N4`, `FANIN-N8`, `FANIN-N16`.
+Cases run in descending order: `FANIN-N32`, `FANIN-N16`, `FANIN-N8`,
+`FANIN-N4`, `FANIN-N2`, `FANIN-N1`.
 
-Between cases, the runner releases the collection, stops all QueryNodes, starts
-the next case's QueryNode count, and reloads the collection. The 63 sealed
-segments redistribute over the new QueryNode set; placement and WorkNode
-identity must be re-qualified for every case before any measurement.
+The runner starts the first case's QueryNode count directly. Between cases, the
+runner releases the collection, stops all QueryNodes, starts the next case's
+QueryNode count, and reloads the collection. The 63 sealed segments
+redistribute over the new QueryNode set; placement and WorkNode identity must
+be re-qualified for every case before any measurement.
 
 ### Qualification Gate per Case
 
@@ -147,7 +154,7 @@ Do not measure a case whose placement does not qualify.
 | Warm-up operations per interval | 5 |
 | Minimum timed operations per interval | 30 |
 | Minimum timed duration per interval | 60 seconds |
-| Repetitions per mode per case | 4 |
+| Repetitions per mode per case | 2 |
 
 Each operation issues one bounded ordinary Query and consumes the complete SDK
 response. The PyMilvus connection remains open throughout one interval and is
@@ -170,11 +177,9 @@ Use balanced mode order per case:
 | --- | --- |
 | 1 | Batch, Streaming |
 | 2 | Streaming, Batch |
-| 3 | Batch, Streaming |
-| 4 | Streaming, Batch |
 
-The complete matrix contains 5 cases * 8 timed intervals = 40 timed intervals,
-plus 10 CPU-profile intervals (one per mode per case) excluded from QPS and
+The complete matrix contains 6 cases * 4 timed intervals = 24 timed intervals,
+plus 12 CPU-profile intervals (one per mode per case) excluded from QPS and
 latency aggregation.
 
 ## Correctness Gate per Case
@@ -201,13 +206,14 @@ Do not run performance intervals for a case if any correctness assertion fails.
 2. Verify no unrelated resource-intensive process or container is running.
 3. Build Milvus once on `.42` and verify the binary exists.
 4. Start the existing dependency services and fixed Milvus roles on `.42`.
-5. Start one QueryNode and inspect the reusable collection.
-6. For each case in N1, N2, N4, N8, N16:
-   a. Release the collection, stop QueryNodes, start the case's QueryNode
-      count, and reload (N1 is loaded without a preceding release).
+5. Start the first case's QueryNode count (32) and inspect the reusable
+   collection.
+6. For each case in N32, N16, N8, N4, N2, N1:
+   a. Start the case's QueryNode count (first case) or release the collection,
+      stop QueryNodes, start the case's QueryNode count, and reload.
    b. Qualify placement and WorkNode identity.
    c. Execute the correctness gate and preserve both complete result hashes.
-   d. Execute four balanced-order repetitions.
+   d. Execute two balanced-order repetitions.
    e. Before each interval, restart Proxy with the selected mode and wait for
       health from `.233`.
    f. Run five excluded warm-up operations.
@@ -220,6 +226,10 @@ Do not run performance intervals for a case if any correctness assertion fails.
    l. Preserve configurations, client output, process samples, profiles, logs,
       placement, and exit status.
 7. Stop experiment processes without deleting the reusable collection data.
+
+If the first high-fan-in case produces unexpected results (correctness,
+placement, or performance), stop the run and investigate that direction before
+continuing the sweep.
 
 ## Metrics
 
@@ -283,11 +293,11 @@ rather than full-result bytes times child count.
 
 ## Exit Criteria
 
-- All 40 timed intervals complete without request errors.
+- All 24 timed intervals complete without request errors.
 - Every operation returns exactly 8,192 rows.
 - Batch and Streaming ordered ID/vector hashes match within every case.
-- Result hashes are identical across all five fan-in cases.
-- All four balanced repetitions are present for both modes in every case.
+- Result hashes are identical across all six fan-in cases.
+- Both balanced repetitions are present for both modes in every case.
 - Placement and WorkNode evidence qualifies every measured case.
 - Median QPS, p95 latency, peak Proxy RSS, and their Streaming/Batch ratios are
   reported per case.
@@ -299,7 +309,7 @@ rather than full-result bytes times child count.
 ```text
 runs/<run-id>/
   collection.json
-  FANIN-N1/
+  FANIN-N32/
     load.json
     placement-{1,2,3}.json
     placement-summary.json
@@ -310,12 +320,10 @@ runs/<run-id>/
     correctness/comparison.json
     rep1/{batch,streaming}/...
     rep2/{streaming,batch}/...
-    rep3/{batch,streaming}/...
-    rep4/{streaming,batch}/...
     profiles/{batch,streaming}/...
     server-logs/
     status.txt
-  FANIN-N2/ ... FANIN-N16/ (same layout)
+  FANIN-N16/ ... FANIN-N1/ (same layout)
   manifest.tsv
   summary.json
   report-input.json
@@ -326,7 +334,7 @@ created only after the preserved evidence has been analyzed.
 
 ## Out of Scope
 
-- QueryNode fan-in greater than 16;
+- QueryNode fan-in greater than 32;
 - client concurrency greater than one;
 - Query iterator behavior;
 - unlimited Query;

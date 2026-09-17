@@ -27,8 +27,9 @@ CHUNK_SIZE=1024
 WARMUP_OPERATIONS=5
 MIN_OPERATIONS=30
 MIN_DURATION_SECONDS=60
-REPETITIONS=4
-TOPOLOGIES=(1 2 4 8 16)
+REPETITIONS=2
+# Descending fan-in so unexpected high-fan-in behavior surfaces first.
+TOPOLOGIES=(32 16 8 4 2 1)
 COLLECTION_LOADED=false
 PROXY_METRICS_PORT=$((METRICS_BASE + 4))
 
@@ -581,8 +582,8 @@ for case_dir in case_dirs:
             "median_proxy_cpu_percent": statistics.median(value[0] for value in by_time.values()),
             "path": str(path.relative_to(run)),
         })
-if len(rows) != 40:
-    raise SystemExit(f"found {len(rows)} timed intervals, expected 40")
+if len(rows) != 24:
+    raise SystemExit(f"found {len(rows)} timed intervals, expected 24")
 
 with open(run / "manifest.tsv", "w", encoding="utf-8", newline="") as output:
     writer = csv.DictWriter(output, fieldnames=rows[0].keys(), delimiter="\t")
@@ -638,7 +639,6 @@ main() {
     install_client_driver
     start_infrastructure
     start_base_roles
-    start_querynodes 1
     start_proxy batch info
 
     run_client_action inspect \
@@ -653,8 +653,8 @@ main() {
                 "release --host 10.15.9.42 --port '$MILVUS_PORT' \
                 --collection '$COLLECTION_NAME' --output '$CLIENT_RUN_DIR/release.json'"
             stop_querynodes
-            start_querynodes "$count"
         fi
+        start_querynodes "$count"
         first=false
         run_topology "$count"
     done
