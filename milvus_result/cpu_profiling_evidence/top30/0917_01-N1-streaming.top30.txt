@@ -1,0 +1,39 @@
+File: milvus
+Build ID: ab33ced09ece335eaf903ef7cf0c319016afd529
+Type: cpu
+Time: 2026-09-17 13:27:21 CST
+Duration: 30s, Total samples = 3.64s (12.13%)
+Showing nodes accounting for 3.13s, 85.99% of 3.64s total
+Dropped 130 nodes (cum <= 0.02s)
+Showing top 30 nodes out of 232
+      flat  flat%   sum%        cum   cum%
+     0.65s 17.86% 17.86%      0.65s 17.86%  runtime.memmove
+     0.60s 16.48% 34.34%      0.60s 16.48%  internal/runtime/syscall/linux.Syscall6
+     0.38s 10.44% 44.78%      0.65s 17.86%  google.golang.org/protobuf/internal/impl.consumeFloatSlice
+     0.35s  9.62% 54.40%      0.35s  9.62%  runtime.memclrNoHeapPointers
+     0.20s  5.49% 59.89%      0.20s  5.49%  google.golang.org/protobuf/encoding/protowire.ConsumeFixed32 (inline)
+     0.16s  4.40% 64.29%      0.27s  7.42%  google.golang.org/protobuf/internal/impl.appendFloatPackedSlice
+     0.10s  2.75% 67.03%      0.11s  3.02%  runtime.tryDeferToSpanScan
+     0.09s  2.47% 69.51%      0.09s  2.47%  google.golang.org/protobuf/encoding/protowire.AppendFixed32 (inline)
+     0.08s  2.20% 71.70%      0.08s  2.20%  runtime.futex
+     0.05s  1.37% 73.08%      0.34s  9.34%  github.com/milvus-io/milvus/pkg/v3/util/typeutil.AppendFieldData
+     0.04s  1.10% 74.18%      0.04s  1.10%  runtime.madvise
+     0.04s  1.10% 75.27%      0.15s  4.12%  runtime.scanObject
+     0.04s  1.10% 76.37%      0.12s  3.30%  runtime.scanObjectsSmall
+     0.04s  1.10% 77.47%      0.04s  1.10%  runtime.usleep
+     0.03s  0.82% 78.30%      0.04s  1.10%  google.golang.org/protobuf/internal/impl.consumeInt64Slice
+     0.03s  0.82% 79.12%      0.03s  0.82%  runtime.procyieldAsm
+     0.03s  0.82% 79.95%      0.05s  1.37%  runtime.typePointers.next
+     0.02s  0.55% 80.49%      0.02s  0.55%  github.com/milvus-io/milvus/internal/util/queryutil.(*orderedChildBuffer).hasUnit (inline)
+     0.02s  0.55% 81.04%      0.03s  0.82%  github.com/milvus-io/milvus/internal/util/queryutil.buildMergedIDs
+     0.02s  0.55% 81.59%      0.02s  0.55%  math.Float32bits (inline)
+     0.02s  0.55% 82.14%      0.02s  0.55%  runtime.findfunc
+     0.02s  0.55% 82.69%      0.02s  0.55%  runtime.getGCMask (inline)
+     0.02s  0.55% 83.24%      0.29s  7.97%  runtime.mallocgc
+     0.02s  0.55% 83.79%      0.05s  1.37%  runtime.mallocgcSmallScanNoHeader
+     0.02s  0.55% 84.34%      0.05s  1.37%  runtime.scanblock
+     0.02s  0.55% 84.89%      0.02s  0.55%  runtime.step
+     0.01s  0.27% 85.16%      0.51s 14.01%  github.com/milvus-io/milvus/internal/util/queryutil.(*OrderedReduceStream).Recv
+     0.01s  0.27% 85.44%      0.09s  2.47%  github.com/milvus-io/milvus/internal/util/queryutil.(*OrderedReduceStream).getReadyBuffers
+     0.01s  0.27% 85.71%      0.33s  9.07%  github.com/milvus-io/milvus/internal/util/queryutil.buildMergedVectorField
+     0.01s  0.27% 85.99%      0.29s  7.97%  google.golang.org/grpc/internal/transport/readyreader.(*bufReadyReader).Read

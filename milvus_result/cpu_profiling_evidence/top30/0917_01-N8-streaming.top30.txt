@@ -1,0 +1,39 @@
+File: milvus
+Build ID: ab33ced09ece335eaf903ef7cf0c319016afd529
+Type: cpu
+Time: 2026-09-17 12:34:56 CST
+Duration: 30s, Total samples = 5.52s (18.40%)
+Showing nodes accounting for 4.59s, 83.15% of 5.52s total
+Dropped 270 nodes (cum <= 0.03s)
+Showing top 30 nodes out of 210
+      flat  flat%   sum%        cum   cum%
+     1.01s 18.30% 18.30%      1.01s 18.30%  runtime.memmove
+        1s 18.12% 36.41%         1s 18.12%  internal/runtime/syscall/linux.Syscall6
+     0.61s 11.05% 47.46%      0.61s 11.05%  runtime.memclrNoHeapPointers
+     0.55s  9.96% 57.43%      0.91s 16.49%  google.golang.org/protobuf/internal/impl.consumeFloatSlice
+     0.30s  5.43% 62.86%      0.30s  5.43%  google.golang.org/protobuf/encoding/protowire.ConsumeFixed32 (inline)
+     0.16s  2.90% 65.76%      0.31s  5.62%  google.golang.org/protobuf/internal/impl.appendFloatPackedSlice
+     0.10s  1.81% 67.57%      0.10s  1.81%  google.golang.org/protobuf/encoding/protowire.AppendFixed32 (inline)
+     0.09s  1.63% 69.20%      0.12s  2.17%  runtime.tryDeferToSpanScan
+     0.07s  1.27% 70.47%      0.07s  1.27%  runtime.futex
+     0.06s  1.09% 71.56%      0.06s  1.09%  github.com/milvus-io/milvus/pkg/v3/util/typeutil.GetSizeOfIDs
+     0.05s  0.91% 72.46%      0.05s  0.91%  math.Float32bits (inline)
+     0.05s  0.91% 73.37%      0.05s  0.91%  runtime.nextFreeFast (inline)
+     0.04s  0.72% 74.09%      0.04s  0.72%  internal/sync.(*Mutex).Unlock
+     0.04s  0.72% 74.82%      0.05s  0.91%  runtime.lock2
+     0.04s  0.72% 75.54%      0.13s  2.36%  runtime.scanObject
+     0.04s  0.72% 76.27%      0.10s  1.81%  runtime.stealWork
+     0.04s  0.72% 76.99%      0.04s  0.72%  runtime.step
+     0.03s  0.54% 77.54%      0.23s  4.17%  github.com/milvus-io/milvus/pkg/v3/util/typeutil.AppendFieldData
+     0.03s  0.54% 78.08%      0.03s  0.54%  internal/runtime/atomic.(*Uint32).Add (inline)
+     0.03s  0.54% 78.62%      0.03s  0.54%  internal/sync.(*Mutex).Lock
+     0.03s  0.54% 79.17%      0.03s  0.54%  runtime.(*fixalloc).alloc
+     0.03s  0.54% 79.71%      0.06s  1.09%  runtime.(*unwinder).resolveInternal
+     0.03s  0.54% 80.25%      0.05s  0.91%  runtime.runqgrab
+     0.03s  0.54% 80.80%      0.09s  1.63%  runtime.scanObjectsSmall
+     0.03s  0.54% 81.34%      0.04s  0.72%  runtime.typePointers.next
+     0.02s  0.36% 81.70%      0.10s  1.81%  github.com/milvus-io/milvus/pkg/v3/util/typeutil.GetPK
+     0.02s  0.36% 82.07%      0.04s  0.72%  runtime.(*mheap).initSpan
+     0.02s  0.36% 82.43%      0.03s  0.54%  runtime.(*stkframe).getStackMap
+     0.02s  0.36% 82.79%      0.59s 10.69%  runtime.mallocgc
+     0.02s  0.36% 83.15%      0.03s  0.54%  runtime.unlock2

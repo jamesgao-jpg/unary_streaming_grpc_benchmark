@@ -1,0 +1,39 @@
+File: milvus
+Build ID: ab33ced09ece335eaf903ef7cf0c319016afd529
+Type: cpu
+Time: 2026-09-17 11:41:41 CST
+Duration: 30s, Total samples = 10.06s (33.53%)
+Showing nodes accounting for 8.35s, 83.00% of 10.06s total
+Dropped 413 nodes (cum <= 0.05s)
+Showing top 30 nodes out of 178
+      flat  flat%   sum%        cum   cum%
+     2.81s 27.93% 27.93%      2.81s 27.93%  internal/runtime/syscall/linux.Syscall6
+     1.22s 12.13% 40.06%      2.15s 21.37%  google.golang.org/protobuf/internal/impl.consumeFloatSlice
+     1.01s 10.04% 50.10%      1.01s 10.04%  runtime.memmove
+     0.92s  9.15% 59.24%      0.92s  9.15%  runtime.memclrNoHeapPointers
+     0.73s  7.26% 66.50%      0.73s  7.26%  google.golang.org/protobuf/encoding/protowire.ConsumeFixed32 (inline)
+     0.16s  1.59% 68.09%      0.18s  1.79%  github.com/milvus-io/milvus/pkg/v3/util/typeutil.GetSizeOfIDs
+     0.14s  1.39% 69.48%      0.25s  2.49%  google.golang.org/protobuf/internal/impl.appendFloatPackedSlice
+     0.10s  0.99% 70.48%      0.43s  4.27%  github.com/milvus-io/milvus/pkg/v3/util/typeutil.GetPK
+     0.10s  0.99% 71.47%      0.10s  0.99%  google.golang.org/protobuf/encoding/protowire.AppendFixed32 (inline)
+     0.09s  0.89% 72.37%      0.09s  0.89%  internal/runtime/atomic.(*Uint64).Add (inline)
+     0.08s   0.8% 73.16%      0.08s   0.8%  internal/sync.(*Mutex).Unlock
+     0.08s   0.8% 73.96%      0.08s   0.8%  runtime.nextFreeFast (inline)
+     0.07s   0.7% 74.65%      0.07s   0.7%  runtime.futex
+     0.07s   0.7% 75.35%      0.15s  1.49%  runtime.mallocgcTiny
+     0.07s   0.7% 76.04%      0.09s  0.89%  runtime.tryDeferToSpanScan
+     0.07s   0.7% 76.74%      0.09s  0.89%  runtime.typePointers.next
+     0.06s   0.6% 77.34%      0.08s   0.8%  google.golang.org/protobuf/internal/impl.consumeInt64Slice
+     0.06s   0.6% 77.93%      0.06s   0.6%  runtime.madvise
+     0.06s   0.6% 78.53%      0.06s   0.6%  sync.(*poolDequeue).popTail
+     0.05s   0.5% 79.03%      0.08s   0.8%  runtime.(*spanSet).push
+     0.05s   0.5% 79.52%      0.08s   0.8%  runtime.(*unwinder).resolveInternal
+     0.05s   0.5% 80.02%      0.21s  2.09%  runtime.convT64
+     0.05s   0.5% 80.52%      0.11s  1.09%  runtime.selectgo
+     0.04s   0.4% 80.91%      0.13s  1.29%  github.com/milvus-io/milvus/internal/util/queryutil.(*OrderedReduceStream).getReadyBuffers
+     0.04s   0.4% 81.31%      0.46s  4.57%  github.com/milvus-io/milvus/internal/util/queryutil.retrieveUnit.pk (inline)
+     0.04s   0.4% 81.71%      0.08s   0.8%  runtime.lock2
+     0.04s   0.4% 82.11%      0.15s  1.49%  runtime.sweepone
+     0.03s   0.3% 82.41%      0.92s  9.15%  github.com/milvus-io/milvus/internal/util/queryutil.(*OrderedReduceStream).Recv
+     0.03s   0.3% 82.70%      0.16s  1.59%  github.com/milvus-io/milvus/pkg/v3/util/typeutil.AppendFieldData
+     0.03s   0.3% 83.00%      0.17s  1.69%  runtime.scanObject

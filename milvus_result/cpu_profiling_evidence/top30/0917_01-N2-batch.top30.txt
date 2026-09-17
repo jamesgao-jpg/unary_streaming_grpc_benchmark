@@ -1,0 +1,39 @@
+File: milvus
+Build ID: ab33ced09ece335eaf903ef7cf0c319016afd529
+Type: cpu
+Time: 2026-09-17 13:10:24 CST
+Duration: 30s, Total samples = 4.66s (15.53%)
+Showing nodes accounting for 3.99s, 85.62% of 4.66s total
+Dropped 236 nodes (cum <= 0.02s)
+Showing top 30 nodes out of 180
+      flat  flat%   sum%        cum   cum%
+     0.81s 17.38% 17.38%      0.81s 17.38%  runtime.memmove
+     0.79s 16.95% 34.33%      0.79s 16.95%  internal/runtime/syscall/linux.Syscall6
+     0.77s 16.52% 50.86%      1.26s 27.04%  google.golang.org/protobuf/internal/impl.consumeFloatSlice
+     0.44s  9.44% 60.30%      0.45s  9.66%  google.golang.org/protobuf/encoding/protowire.ConsumeFixed32 (inline)
+     0.31s  6.65% 66.95%      0.31s  6.65%  runtime.memclrNoHeapPointers
+     0.15s  3.22% 70.17%      0.25s  5.36%  google.golang.org/protobuf/internal/impl.appendFloatPackedSlice
+     0.10s  2.15% 72.32%      0.10s  2.15%  google.golang.org/protobuf/encoding/protowire.AppendFixed32 (inline)
+     0.05s  1.07% 73.39%      0.16s  3.43%  google.golang.org/grpc/internal/mem.(*sizedBufferPool).Get
+     0.05s  1.07% 74.46%      0.05s  1.07%  internal/sync.(*Mutex).Lock (inline)
+     0.05s  1.07% 75.54%      0.05s  1.07%  runtime.futex
+     0.05s  1.07% 76.61%      0.05s  1.07%  runtime.madvise
+     0.05s  1.07% 77.68%      0.07s  1.50%  runtime.tryDeferToSpanScan
+     0.04s  0.86% 78.54%      0.04s  0.86%  sync/atomic.(*Uint64).CompareAndSwap (inline)
+     0.03s  0.64% 79.18%      0.07s  1.50%  github.com/milvus-io/milvus/pkg/v3/util/typeutil.SelectMinPK[go.shape.*uint8]
+     0.03s  0.64% 79.83%      0.05s  1.07%  runtime.mapaccess2
+     0.03s  0.64% 80.47%      0.03s  0.64%  runtime.nanotime
+     0.03s  0.64% 81.12%      0.03s  0.64%  sync/atomic.(*Int32).Add (inline)
+     0.02s  0.43% 81.55%      0.39s  8.37%  github.com/milvus-io/milvus/internal/util/queryutil.buildMergedVectorField
+     0.02s  0.43% 81.97%      0.07s  1.50%  github.com/milvus-io/milvus/pkg/v3/util/typeutil.GetPK
+     0.02s  0.43% 82.40%      0.46s  9.87%  google.golang.org/grpc/internal/transport/readyreader.(*nonBlockingReader).ReadOnReady
+     0.02s  0.43% 82.83%      0.08s  1.72%  google.golang.org/grpc/mem.NewBuffer
+     0.02s  0.43% 83.26%      0.16s  3.43%  runtime.mallocgc
+     0.02s  0.43% 83.69%      0.09s  1.93%  runtime.scanObjectsSmall
+     0.02s  0.43% 84.12%      0.05s  1.07%  runtime.stealWork
+     0.02s  0.43% 84.55%      0.03s  0.64%  runtime.unlock2
+     0.01s  0.21% 84.76%      0.58s 12.45%  github.com/milvus-io/milvus/internal/util/queryutil.(*ReduceByPKOperator).mergeByPK
+     0.01s  0.21% 84.98%      1.80s 38.63%  google.golang.org/grpc.recv
+     0.01s  0.21% 85.19%      0.09s  1.93%  google.golang.org/grpc/internal/transport.(*ClientStream).Read
+     0.01s  0.21% 85.41%      0.88s 18.88%  google.golang.org/grpc/internal/transport.(*framer).readDataFrame
+     0.01s  0.21% 85.62%      0.27s  5.79%  google.golang.org/protobuf/internal/impl.(*MessageInfo).marshalAppendPointer

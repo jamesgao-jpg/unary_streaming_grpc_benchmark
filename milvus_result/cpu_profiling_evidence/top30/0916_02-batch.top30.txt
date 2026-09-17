@@ -1,0 +1,39 @@
+File: milvus
+Build ID: c822a938fc349c9b8fc1b121ccc046ad46865ade
+Type: cpu
+Time: 2026-09-16 21:22:06 CST
+Duration: 30s, Total samples = 2.50s ( 8.33%)
+Showing nodes accounting for 2.24s, 89.60% of 2.50s total
+Dropped 189 nodes (cum <= 0.01s)
+Showing top 30 nodes out of 192
+      flat  flat%   sum%        cum   cum%
+     0.61s 24.40% 24.40%      0.61s 24.40%  internal/runtime/syscall/linux.Syscall6
+     0.50s 20.00% 44.40%      0.74s 29.60%  google.golang.org/protobuf/internal/impl.consumeFloatSlice
+     0.26s 10.40% 54.80%      0.26s 10.40%  runtime.memmove
+     0.23s  9.20% 64.00%      0.23s  9.20%  google.golang.org/protobuf/encoding/protowire.ConsumeFixed32 (inline)
+     0.12s  4.80% 68.80%      0.12s  4.80%  runtime.futex
+     0.11s  4.40% 73.20%      0.19s  7.60%  google.golang.org/protobuf/internal/impl.appendFloatPackedSlice
+     0.11s  4.40% 77.60%      0.11s  4.40%  runtime.memclrNoHeapPointers
+     0.04s  1.60% 79.20%      0.04s  1.60%  google.golang.org/protobuf/encoding/protowire.AppendFixed32 (inline)
+     0.04s  1.60% 80.80%      0.04s  1.60%  math.Float32bits (inline)
+     0.04s  1.60% 82.40%      0.04s  1.60%  runtime.stealWork
+     0.02s   0.8% 83.20%      0.41s 16.40%  google.golang.org/grpc/internal/transport.(*framer).readDataFrame
+     0.02s   0.8% 84.00%      0.02s   0.8%  google.golang.org/grpc/mem.NewBuffer
+     0.02s   0.8% 84.80%      0.06s  2.40%  runtime.mallocgcSmallScanNoHeader
+     0.02s   0.8% 85.60%      0.02s   0.8%  runtime.unlock2
+     0.01s   0.4% 86.00%      0.06s  2.40%  google.golang.org/grpc/internal/mem.(*sizedBufferPool).Get
+     0.01s   0.4% 86.40%      0.04s  1.60%  google.golang.org/grpc/internal/transport.(*Stream).read
+     0.01s   0.4% 86.80%      0.07s  2.80%  google.golang.org/grpc/internal/transport.(*recvBuffer).put
+     0.01s   0.4% 87.20%      0.02s   0.8%  google.golang.org/protobuf/internal/impl.consumeInt64Slice
+     0.01s   0.4% 87.60%      0.33s 13.20%  internal/poll.(*FD).Write
+     0.01s   0.4% 88.00%      0.02s   0.8%  runtime.scanObject
+     0.01s   0.4% 88.40%      0.03s  1.20%  runtime.scanObjectsSmall
+     0.01s   0.4% 88.80%      0.03s  1.20%  runtime.selectgo
+     0.01s   0.4% 89.20%      0.02s   0.8%  runtime.selunlock
+     0.01s   0.4% 89.60%      0.02s   0.8%  time.now
+         0     0% 89.60%      0.26s 10.40%  bufio.(*Writer).Write
+         0     0% 89.60%      0.02s   0.8%  github.com/milvus-io/milvus/internal/distributed/proxy.(*Server).startInternalGrpc.ChainUnaryServer.func9
+         0     0% 89.60%      0.02s   0.8%  github.com/milvus-io/milvus/internal/distributed/proxy.(*Server).startInternalGrpc.ChainUnaryServer.func9.1.1
+         0     0% 89.60%      0.03s  1.20%  github.com/milvus-io/milvus/internal/proxy.(*queryTask).PreExecute
+         0     0% 89.60%      0.02s   0.8%  github.com/milvus-io/milvus/internal/proxy.(*queryTask).createPlanArgs
+         0     0% 89.60%      0.03s  1.20%  github.com/milvus-io/milvus/internal/proxy/scheduler.(*TaskScheduler).processTask

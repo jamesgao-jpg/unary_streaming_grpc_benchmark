@@ -1,0 +1,39 @@
+File: milvus
+Build ID: ab33ced09ece335eaf903ef7cf0c319016afd529
+Type: cpu
+Time: 2026-09-17 11:36:24 CST
+Duration: 30s, Total samples = 34.49s (114.97%)
+Showing nodes accounting for 30.58s, 88.66% of 34.49s total
+Dropped 331 nodes (cum <= 0.17s)
+Showing top 30 nodes out of 143
+      flat  flat%   sum%        cum   cum%
+     7.20s 20.88% 20.88%      7.20s 20.88%  runtime.memmove
+     5.03s 14.58% 35.46%      8.99s 26.07%  google.golang.org/protobuf/internal/impl.consumeFloatSlice
+     4.49s 13.02% 48.48%      4.49s 13.02%  internal/runtime/syscall/linux.Syscall6
+     3.50s 10.15% 58.63%      3.57s 10.35%  google.golang.org/protobuf/encoding/protowire.ConsumeFixed32 (inline)
+     2.10s  6.09% 64.71%      2.10s  6.09%  runtime.memclrNoHeapPointers
+     1.86s  5.39% 70.11%      2.25s  6.52%  github.com/milvus-io/milvus/pkg/v3/util/typeutil.GetSizeOfIDs
+     0.88s  2.55% 72.66%      0.88s  2.55%  internal/runtime/maps.ctrlGroupMatchH2 (inline)
+     0.86s  2.49% 75.15%      5.71s 16.56%  github.com/milvus-io/milvus/pkg/v3/util/typeutil.SelectMinPK[go.shape.*uint8]
+     0.65s  1.88% 77.04%      2.97s  8.61%  github.com/milvus-io/milvus/pkg/v3/util/typeutil.GetPK
+     0.55s  1.59% 78.63%      1.18s  3.42%  runtime.mallocgcTiny
+     0.38s  1.10% 79.73%      2.63s  7.63%  runtime.mallocgc
+     0.35s  1.01% 80.75%      0.35s  1.01%  google.golang.org/grpc/mem.(*buffer).ReadOnlyData
+     0.31s   0.9% 81.65%      0.31s   0.9%  runtime.nanotime (inline)
+     0.27s  0.78% 82.43%      0.27s  0.78%  github.com/milvus-io/milvus-proto/go-api/v3/schemapb.(*IDs).GetIdField (inline)
+     0.27s  0.78% 83.21%      1.83s  5.31%  runtime.convT64
+     0.23s  0.67% 83.88%      1.53s  4.44%  google.golang.org/grpc/internal/mem.(*sizedBufferPool).Get
+     0.22s  0.64% 84.52%      0.22s  0.64%  runtime.nextFreeFast (inline)
+     0.21s  0.61% 85.13%     11.28s 32.71%  github.com/milvus-io/milvus/internal/util/queryutil.(*ReduceByPKOperator).mergeByPK
+     0.21s  0.61% 85.73%      0.38s  1.10%  google.golang.org/grpc/mem.NewBuffer
+     0.18s  0.52% 86.26%      0.18s  0.52%  runtime.madvise
+     0.18s  0.52% 86.78%      0.18s  0.52%  sync/atomic.(*Int32).Add
+     0.14s  0.41% 87.18%      0.26s  0.75%  google.golang.org/protobuf/internal/impl.consumeInt64Slice
+     0.12s  0.35% 87.53%      0.21s  0.61%  github.com/milvus-io/milvus-proto/go-api/v3/schemapb.(*IDs).GetIntId (inline)
+     0.09s  0.26% 87.79%      5.15s 14.93%  io.ReadAtLeast
+     0.08s  0.23% 88.03%      3.88s 11.25%  github.com/milvus-io/milvus/internal/util/queryutil.buildMergedVectorField
+     0.07s   0.2% 88.23%      1.04s  3.02%  runtime.mapaccess2
+     0.05s  0.14% 88.37%      0.21s  0.61%  golang.org/x/net/http2.(*Framer).ReadFrameHeader
+     0.04s  0.12% 88.49%      0.45s  1.30%  runtime.suspendG
+     0.03s 0.087% 88.58%      2.13s  6.18%  google.golang.org/grpc/internal/mem.(*BinaryTieredBufferPool).Get
+     0.03s 0.087% 88.66%      0.42s  1.22%  runtime.(*mcache).refill

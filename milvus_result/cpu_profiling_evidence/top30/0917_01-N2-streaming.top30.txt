@@ -1,0 +1,39 @@
+File: milvus
+Build ID: ab33ced09ece335eaf903ef7cf0c319016afd529
+Type: cpu
+Time: 2026-09-17 13:12:07 CST
+Duration: 30s, Total samples = 4.05s (13.50%)
+Showing nodes accounting for 3.41s, 84.20% of 4.05s total
+Dropped 251 nodes (cum <= 0.02s)
+Showing top 30 nodes out of 167
+      flat  flat%   sum%        cum   cum%
+     0.75s 18.52% 18.52%      0.75s 18.52%  internal/runtime/syscall/linux.Syscall6
+     0.72s 17.78% 36.30%      0.72s 17.78%  runtime.memmove
+     0.47s 11.60% 47.90%      0.68s 16.79%  google.golang.org/protobuf/internal/impl.consumeFloatSlice
+     0.39s  9.63% 57.53%      0.39s  9.63%  runtime.memclrNoHeapPointers
+     0.18s  4.44% 61.98%      0.32s  7.90%  google.golang.org/protobuf/internal/impl.appendFloatPackedSlice
+     0.17s  4.20% 66.17%      0.17s  4.20%  google.golang.org/protobuf/encoding/protowire.ConsumeFixed32 (inline)
+     0.11s  2.72% 68.89%      0.11s  2.72%  google.golang.org/protobuf/encoding/protowire.AppendFixed32 (inline)
+     0.09s  2.22% 71.11%      0.10s  2.47%  runtime.tryDeferToSpanScan
+     0.09s  2.22% 73.33%      0.10s  2.47%  runtime.typePointers.next
+     0.05s  1.23% 74.57%      0.19s  4.69%  runtime.scanObject
+     0.05s  1.23% 75.80%      0.12s  2.96%  runtime.scanObjectsSmall
+     0.04s  0.99% 76.79%      0.04s  0.99%  runtime.futex
+     0.03s  0.74% 77.53%      0.03s  0.74%  github.com/milvus-io/milvus-proto/go-api/v3/schemapb.(*IDs).GetIdField (inline)
+     0.03s  0.74% 78.27%      0.03s  0.74%  github.com/milvus-io/milvus-proto/go-api/v3/schemapb.(*LongArray).GetData (inline)
+     0.03s  0.74% 79.01%      0.26s  6.42%  github.com/milvus-io/milvus/pkg/v3/util/typeutil.AppendFieldData
+     0.03s  0.74% 79.75%      0.03s  0.74%  internal/sync.(*Mutex).Lock
+     0.03s  0.74% 80.49%      0.03s  0.74%  math.Float32bits (inline)
+     0.03s  0.74% 81.23%      0.04s  0.99%  runtime.nextFreeFast (inline)
+     0.02s  0.49% 81.73%      0.34s  8.40%  runtime.mallocgc
+     0.01s  0.25% 81.98%      0.03s  0.74%  github.com/milvus-io/milvus/pkg/v3/util/typeutil.GetFieldDataValidData
+     0.01s  0.25% 82.22%      0.12s  2.96%  github.com/milvus-io/milvus/pkg/v3/util/typeutil.GetPK
+     0.01s  0.25% 82.47%      0.10s  2.47%  google.golang.org/grpc/internal/mem.(*sizedBufferPool).Get
+     0.01s  0.25% 82.72%      0.03s  0.74%  google.golang.org/grpc/internal/transport.(*loopyWriter).handle
+     0.01s  0.25% 82.96%      0.35s  8.64%  google.golang.org/grpc/internal/transport/readyreader.(*bufReadyReader).Read
+     0.01s  0.25% 83.21%      0.36s  8.89%  io.ReadAtLeast
+     0.01s  0.25% 83.46%      0.16s  3.95%  runtime.findRunnable
+     0.01s  0.25% 83.70%      0.03s  0.74%  runtime.lock2
+     0.01s  0.25% 83.95%      0.05s  1.23%  runtime.mallocgcTiny
+     0.01s  0.25% 84.20%      0.03s  0.74%  runtime.runqgrab
+         0     0% 84.20%      0.28s  6.91%  bufio.(*Writer).Write

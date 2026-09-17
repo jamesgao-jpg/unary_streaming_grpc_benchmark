@@ -1,0 +1,39 @@
+File: milvus
+Build ID: ab33ced09ece335eaf903ef7cf0c319016afd529
+Type: cpu
+Time: 2026-09-17 13:25:52 CST
+Duration: 30s, Total samples = 2.49s ( 8.30%)
+Showing nodes accounting for 2.21s, 88.76% of 2.49s total
+Dropped 170 nodes (cum <= 0.01s)
+Showing top 30 nodes out of 172
+      flat  flat%   sum%        cum   cum%
+     0.57s 22.89% 22.89%      0.57s 22.89%  internal/runtime/syscall/linux.Syscall6
+     0.53s 21.29% 44.18%      0.75s 30.12%  google.golang.org/protobuf/internal/impl.consumeFloatSlice
+     0.30s 12.05% 56.22%      0.30s 12.05%  runtime.memmove
+     0.18s  7.23% 63.45%      0.18s  7.23%  google.golang.org/protobuf/encoding/protowire.ConsumeFixed32 (inline)
+     0.14s  5.62% 69.08%      0.14s  5.62%  runtime.memclrNoHeapPointers
+     0.12s  4.82% 73.90%      0.23s  9.24%  google.golang.org/protobuf/internal/impl.appendFloatPackedSlice
+     0.08s  3.21% 77.11%      0.08s  3.21%  google.golang.org/protobuf/encoding/protowire.AppendFixed32 (inline)
+     0.03s  1.20% 78.31%      0.03s  1.20%  math.Float32bits (inline)
+     0.02s   0.8% 79.12%      0.02s   0.8%  google.golang.org/grpc/mem.NewBuffer
+     0.02s   0.8% 79.92%      0.02s   0.8%  google.golang.org/protobuf/internal/impl.consumeInt64Slice
+     0.02s   0.8% 80.72%      0.02s   0.8%  runtime.futex
+     0.02s   0.8% 81.53%      0.03s  1.20%  runtime.greyobject
+     0.02s   0.8% 82.33%      0.02s   0.8%  runtime.lock2
+     0.02s   0.8% 83.13%      0.02s   0.8%  runtime.nanotime (inline)
+     0.02s   0.8% 83.94%      0.02s   0.8%  runtime.nextFreeFast (inline)
+     0.02s   0.8% 84.74%      0.05s  2.01%  runtime.stealWork
+     0.01s   0.4% 85.14%      0.11s  4.42%  google.golang.org/grpc/internal/mem.(*BinaryTieredBufferPool).Get
+     0.01s   0.4% 85.54%      0.31s 12.45%  google.golang.org/grpc/internal/transport.(*framer).readFrame
+     0.01s   0.4% 85.94%      0.22s  8.84%  google.golang.org/grpc/internal/transport/readyreader.(*bufReadyReader).Read
+     0.01s   0.4% 86.35%      0.79s 31.73%  google.golang.org/protobuf/internal/impl.(*MessageInfo).unmarshalPointerEager
+     0.01s   0.4% 86.75%      0.23s  9.24%  io.ReadAtLeast
+     0.01s   0.4% 87.15%      0.20s  8.03%  runtime.findRunnable
+     0.01s   0.4% 87.55%      0.03s  1.20%  runtime.mallocgcSmallScanNoHeader
+     0.01s   0.4% 87.95%      0.02s   0.8%  runtime.runqgrab
+     0.01s   0.4% 88.35%      0.05s  2.01%  runtime.scanObjectsSmall
+     0.01s   0.4% 88.76%      0.03s  1.20%  time.now
+         0     0% 88.76%      0.25s 10.04%  bufio.(*Writer).Write
+         0     0% 88.76%      0.02s   0.8%  github.com/grpc-ecosystem/go-grpc-middleware.ChainUnaryClient.func1
+         0     0% 88.76%      0.02s   0.8%  github.com/grpc-ecosystem/go-grpc-middleware.ChainUnaryClient.func1.ChainUnaryClient.func1.1.2
+         0     0% 88.76%      0.97s 38.96%  github.com/milvus-io/milvus/internal/querynodev2/client/handler.(*queryViewClient).QueryOnView

@@ -1,0 +1,38 @@
+File: milvus
+Build ID: d143016c1d1643f9789b41b9ef6d31997f429c50
+Type: cpu
+Time: 2026-09-16 18:07:01 CST
+Duration: 30s, Total samples = 1.38s ( 4.60%)
+Showing nodes accounting for 0.89s, 64.49% of 1.38s total
+Showing top 30 nodes out of 555
+      flat  flat%   sum%        cum   cum%
+     0.18s 13.04% 13.04%      0.18s 13.04%  internal/runtime/syscall/linux.Syscall6
+     0.10s  7.25% 20.29%      0.10s  7.25%  runtime.futex
+     0.07s  5.07% 25.36%      0.07s  5.07%  runtime.memclrNoHeapPointers
+     0.05s  3.62% 28.99%      0.05s  3.62%  github.com/milvus-io/milvus/pkg/v3/util/fastpb.consumeVarint (inline)
+     0.05s  3.62% 32.61%      0.06s  4.35%  runtime.step
+     0.04s  2.90% 35.51%      0.04s  2.90%  runtime.memmove
+     0.04s  2.90% 38.41%      0.04s  2.90%  runtime.tryDeferToSpanScan
+     0.03s  2.17% 40.58%      0.07s  5.07%  runtime.scanObject
+     0.02s  1.45% 42.03%      0.02s  1.45%  github.com/milvus-io/milvus/pkg/v3/mlog.(*textEncoder).needDoubleQuotes
+     0.02s  1.45% 43.48%      0.03s  2.17%  google.golang.org/protobuf/encoding/protowire.SizeVarint (inline)
+     0.02s  1.45% 44.93%      0.04s  2.90%  google.golang.org/protobuf/internal/impl.appendInt64PackedSlice
+     0.02s  1.45% 46.38%      0.02s  1.45%  internal/runtime/atomic.(*Uint32).CompareAndSwap
+     0.02s  1.45% 47.83%      0.04s  2.90%  runtime.(*stkframe).getStackMap
+     0.02s  1.45% 49.28%      0.03s  2.17%  runtime.(*unwinder).resolveInternal
+     0.02s  1.45% 50.72%      0.02s  1.45%  runtime.nextFreeFast
+     0.02s  1.45% 52.17%      0.04s  2.90%  runtime.scanObjectsSmall
+     0.02s  1.45% 53.62%      0.06s  4.35%  runtime.selectgo
+     0.02s  1.45% 55.07%      0.02s  1.45%  runtime.typePointers.next
+     0.02s  1.45% 56.52%      0.04s  2.90%  sync.(*Pool).Get
+     0.01s  0.72% 57.25%      0.01s  0.72%  github.com/cockroachdb/redact/internal/escape.InternalEscapeBytes
+     0.01s  0.72% 57.97%      0.05s  3.62%  github.com/milvus-io/milvus-proto/go-api/v3/milvuspb._MilvusService_DescribeCollection_Handler
+     0.01s  0.72% 58.70%      0.01s  0.72%  github.com/milvus-io/milvus/pkg/v3/mlog.(*textEncoder).tryAddRuneSelf
+     0.01s  0.72% 59.42%      0.02s  1.45%  github.com/milvus-io/milvus/pkg/v3/mlog.With
+     0.01s  0.72% 60.14%      0.11s  7.97%  github.com/milvus-io/milvus/pkg/v3/util/fastpb.decodePackedI64
+     0.01s  0.72% 60.87%      0.01s  0.72%  github.com/milvus-io/milvus/pkg/v3/util/funcutil.CheckCtxValid
+     0.01s  0.72% 61.59%      0.01s  0.72%  github.com/milvus-io/milvus/pkg/v3/util/paramtable.(*ParamItem).GetAsInt64
+     0.01s  0.72% 62.32%      0.03s  2.17%  go.opentelemetry.io/otel/sdk/trace.(*tracer).newSpan
+     0.01s  0.72% 63.04%      0.03s  2.17%  go.uber.org/zap.(*Logger).Warn
+     0.01s  0.72% 63.77%      0.01s  0.72%  go.uber.org/zap.AtomicLevel.Enabled
+     0.01s  0.72% 64.49%      0.02s  1.45%  golang.org/x/net/http2.(*Framer).readMetaFrame

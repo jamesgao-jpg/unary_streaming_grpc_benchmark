@@ -1,0 +1,39 @@
+File: milvus
+Build ID: ab33ced09ece335eaf903ef7cf0c319016afd529
+Type: cpu
+Time: 2026-09-17 12:55:04 CST
+Duration: 30s, Total samples = 4.59s (15.30%)
+Showing nodes accounting for 3.77s, 82.14% of 4.59s total
+Dropped 326 nodes (cum <= 0.02s)
+Showing top 30 nodes out of 205
+      flat  flat%   sum%        cum   cum%
+     0.82s 17.86% 17.86%      0.82s 17.86%  internal/runtime/syscall/linux.Syscall6
+     0.75s 16.34% 34.20%      0.75s 16.34%  runtime.memmove
+     0.56s 12.20% 46.41%      0.84s 18.30%  google.golang.org/protobuf/internal/impl.consumeFloatSlice
+     0.36s  7.84% 54.25%      0.36s  7.84%  runtime.memclrNoHeapPointers
+     0.24s  5.23% 59.48%      0.24s  5.23%  google.golang.org/protobuf/encoding/protowire.ConsumeFixed32 (inline)
+     0.15s  3.27% 62.75%      0.26s  5.66%  google.golang.org/protobuf/internal/impl.appendFloatPackedSlice
+     0.14s  3.05% 65.80%      0.14s  3.05%  runtime.futex
+     0.09s  1.96% 67.76%      0.09s  1.96%  google.golang.org/protobuf/encoding/protowire.AppendFixed32 (inline)
+     0.06s  1.31% 69.06%      0.13s  2.83%  runtime.scanObject
+     0.06s  1.31% 70.37%      0.06s  1.31%  runtime.typePointers.next
+     0.05s  1.09% 71.46%      0.08s  1.74%  runtime.mallocgcTiny
+     0.04s  0.87% 72.33%      0.04s  0.87%  github.com/milvus-io/milvus/pkg/v3/util/typeutil.GetSizeOfIDs
+     0.04s  0.87% 73.20%      0.04s  0.87%  runtime.madvise
+     0.03s  0.65% 73.86%      0.20s  4.36%  github.com/milvus-io/milvus/pkg/v3/util/typeutil.AppendFieldData
+     0.03s  0.65% 74.51%      0.03s  0.65%  google.golang.org/protobuf/internal/impl.consumeInt64Slice
+     0.03s  0.65% 75.16%      0.37s  8.06%  runtime.mallocgc
+     0.03s  0.65% 75.82%      0.03s  0.65%  runtime.procyieldAsm
+     0.03s  0.65% 76.47%      0.06s  1.31%  runtime.selectgo
+     0.03s  0.65% 77.12%      0.03s  0.65%  runtime.unlock2
+     0.03s  0.65% 77.78%      0.03s  0.65%  sync/atomic.(*Int32).Add
+     0.02s  0.44% 78.21%      0.03s  0.65%  internal/sync.(*Mutex).Lock
+     0.02s  0.44% 78.65%      0.05s  1.09%  runtime.(*lfstack).pop
+     0.02s  0.44% 79.08%      0.03s  0.65%  runtime.(*mspan).writeHeapBitsSmall
+     0.02s  0.44% 79.52%      0.03s  0.65%  runtime.(*unwinder).resolveInternal
+     0.02s  0.44% 79.96%      0.32s  6.97%  runtime.gcDrain
+     0.02s  0.44% 80.39%      0.23s  5.01%  runtime.makeslice
+     0.02s  0.44% 80.83%      0.03s  0.65%  runtime.pcvalue
+     0.02s  0.44% 81.26%      0.06s  1.31%  runtime.scanObjectsSmall
+     0.02s  0.44% 81.70%      0.04s  0.87%  runtime.stealWork
+     0.02s  0.44% 82.14%      0.03s  0.65%  runtime.sweepone

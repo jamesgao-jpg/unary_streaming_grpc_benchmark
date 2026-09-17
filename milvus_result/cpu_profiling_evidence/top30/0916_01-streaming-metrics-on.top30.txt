@@ -1,0 +1,39 @@
+File: milvus
+Build ID: d143016c1d1643f9789b41b9ef6d31997f429c50
+Type: cpu
+Time: 2026-09-16 18:09:41 CST
+Duration: 30s, Total samples = 2.42s ( 8.07%)
+Showing nodes accounting for 1.47s, 60.74% of 2.42s total
+Dropped 286 nodes (cum <= 0.01s)
+Showing top 30 nodes out of 354
+      flat  flat%   sum%        cum   cum%
+     0.14s  5.79%  5.79%      0.14s  5.79%  runtime.futex
+     0.13s  5.37% 11.16%      0.19s  7.85%  github.com/milvus-io/milvus/pkg/v3/util/typeutil.AppendFieldData
+     0.12s  4.96% 16.12%      0.12s  4.96%  runtime.nextFreeFast (inline)
+     0.10s  4.13% 20.25%      0.10s  4.13%  internal/runtime/syscall/linux.Syscall6
+     0.09s  3.72% 23.97%      0.16s  6.61%  github.com/milvus-io/milvus/pkg/v3/util/typeutil.GetPK
+     0.07s  2.89% 26.86%      0.07s  2.89%  runtime.step
+     0.06s  2.48% 29.34%      0.20s  8.26%  github.com/milvus-io/milvus/internal/util/searchutil.(*OrderedReduceStream).produceNextUnits
+     0.06s  2.48% 31.82%      0.41s 16.94%  runtime.mallocgc
+     0.05s  2.07% 33.88%      0.05s  2.07%  internal/runtime/atomic.(*Uint32).CompareAndSwap
+     0.05s  2.07% 35.95%      0.12s  4.96%  runtime.scanObject
+     0.05s  2.07% 38.02%      0.06s  2.48%  runtime.tryDeferToSpanScan
+     0.05s  2.07% 40.08%      0.05s  2.07%  runtime.typePointers.next
+     0.04s  1.65% 41.74%      0.08s  3.31%  github.com/milvus-io/milvus/internal/util/searchutil.(*orderedChildBuffer).accept
+     0.04s  1.65% 43.39%      0.40s 16.53%  github.com/milvus-io/milvus/internal/util/searchutil.buildSearchChunk
+     0.04s  1.65% 45.04%      0.10s  4.13%  google.golang.org/protobuf/internal/impl.consumeInt64Slice
+     0.04s  1.65% 46.69%      0.10s  4.13%  runtime.scanObjectsSmall
+     0.03s  1.24% 47.93%      0.03s  1.24%  github.com/milvus-io/milvus/pkg/v3/util/typeutil.(*FieldDataIdxComputer).Compute
+     0.03s  1.24% 49.17%      0.03s  1.24%  google.golang.org/protobuf/encoding/protowire.ConsumeVarint
+     0.03s  1.24% 50.41%      0.03s  1.24%  internal/sync.(*Mutex).Unlock (inline)
+     0.03s  1.24% 51.65%      0.03s  1.24%  runtime.findfunc
+     0.03s  1.24% 52.89%      0.04s  1.65%  runtime.lock2
+     0.03s  1.24% 54.13%      0.03s  1.24%  runtime.markBits.setMarked (inline)
+     0.02s  0.83% 54.96%      0.02s  0.83%  fmt.(*pp).printArg
+     0.02s  0.83% 55.79%      0.02s  0.83%  github.com/milvus-io/milvus-proto/go-api/v3/schemapb.(*ScalarField).GetValidData (inline)
+     0.02s  0.83% 56.61%      0.07s  2.89%  github.com/milvus-io/milvus/internal/util/searchutil.(*orderedChildBuffer).pop
+     0.02s  0.83% 57.44%      0.05s  2.07%  github.com/milvus-io/milvus/pkg/v3/util/typeutil.AppendPKs
+     0.02s  0.83% 58.26%      0.02s  0.83%  google.golang.org/protobuf/encoding/protowire.AppendVarint
+     0.02s  0.83% 59.09%      0.05s  2.07%  google.golang.org/protobuf/internal/impl.appendInt64PackedSlice
+     0.02s  0.83% 59.92%      0.02s  0.83%  internal/sync.(*Mutex).Lock (inline)
+     0.02s  0.83% 60.74%      0.02s  0.83%  runtime.(*mheap).allocNeedsZero
