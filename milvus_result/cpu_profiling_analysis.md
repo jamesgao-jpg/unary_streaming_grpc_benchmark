@@ -275,6 +275,10 @@ saturation); (c) whether Batch crosses into sustained multi-core saturation
 
 Committed under [`cpu_profiling_evidence/`](cpu_profiling_evidence/):
 
+- `flamegraph/` — **one flamegraph PNG per profile, organized by experiment**
+  (`flamegraph/test_0917_01/N32-batch.png`, ...), rendered from the pprof web
+  UI Flame Graph tab with headless Chrome; see
+  [`flamegraph/INDEX.md`](cpu_profiling_evidence/flamegraph/INDEX.md).
 - `svg/` — 11 `go tool pprof -svg` call graphs (graphviz 16.1.0):
   `0917_01-N{1,32}-{batch,streaming}.svg`,
   `0917_02-N16-streaming-{256,8192}.svg`,
@@ -282,8 +286,8 @@ Committed under [`cpu_profiling_evidence/`](cpu_profiling_evidence/):
   `0916_01-{batch,streaming}-metrics-on.svg`, `0916_02-streaming.svg`.
 - `top30/` — `-top -nodecount=30` text tables for all 24 profiles.
 
-The `-svg` files are pprof call graphs. For the interactive flamegraph view
-(no graphviz needed): `go tool pprof -http=:8081 <profile>`.
+The `-svg` files are pprof call graphs, not flame graphs. For the interactive
+flamegraph view (no graphviz needed): `go tool pprof -http=:8081 <profile>`.
 
 ---
 
