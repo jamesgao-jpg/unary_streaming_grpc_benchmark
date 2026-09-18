@@ -1,0 +1,1764 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1134" font-family="Menlo,monospace" font-size="12">
+<rect width="2400" height="1134" fill="#ffffff"/>
+<text x="4" y="22" font-size="16" font-weight="bold" fill="#222">0917_01 N32 Batch (Chunk 1024, 30s)</text>
+<text x="4" y="40" font-size="12" fill="#666">total sampled CPU = 34.49s in 30s window · width ∝ cumulative samples · red circles: mergeByPK, SelectMinPK, consumeFloatSlice</text>
+<rect x="4.0" y="64.0" width="953.8" height="16.0" fill="rgb(48,50,166)"/>
+<text x="7.0" y="76.5" font-size="11" fill="#fff"></text>
+<title>golang.org/x/sync/errgroup.(*Group).Go.func1  cum=13.76s (39.9%)</title>
+<rect x="4.0" y="82.0" width="953.8" height="16.0" fill="rgb(166,62,48)"/>
+<text x="7.0" y="94.5" font-size="11" fill="#fff"></text>
+<title>github.com/milvus-io/milvus/internal/views/queryclient.(*shardViewQueryClient).fanOutToWorkNodes.func1  cum=13.76s (39.9%)</title>
+<rect x="4.0" y="100.0" width="953.8" height="16.0" fill="rgb(48,74,166)"/>
+<text x="7.0" y="112.5" font-size="11" fill="#fff"></text>
+<title>github.com/milvus-io/milvus/internal/views/queryclient.(*shardViewQueryClient).Query.func2  cum=13.76s (39.9%)</title>
+<rect x="4.0" y="118.0" width="953.8" height="16.0" fill="rgb(48,166,152)"/>
+<text x="7.0" y="130.5" font-size="11" fill="#fff"></text>
+<title>github.com/milvus-io/milvus/internal/views/queryclient.(*compositeViewQueryServiceClient).QueryOnView  cum=13.76s (39.9%)</title>
+<rect x="4.0" y="136.0" width="953.8" height="16.0" fill="rgb(48,166,152)"/>
+<text x="7.0" y="148.5" font-size="11" fill="#fff"></text>
+<title>github.com/milvus-io/milvus/internal/querynodev2/client/handler.(*queryViewClient).QueryOnView  cum=13.76s (39.9%)</title>
+<rect x="4.0" y="154.0" width="953.8" height="16.0" fill="rgb(48,166,152)"/>
+<text x="7.0" y="166.5" font-size="11" fill="#fff">*uint8]</text>
+<title>github.com/milvus-io/milvus/internal/querynodev2/client/handler.executeViewQueryRPC[go.shape.*uint8]  cum=13.76s (39.9%)</title>
+<rect x="4.0" y="172.0" width="953.8" height="16.0" fill="rgb(166,48,91)"/>
+<text x="7.0" y="184.5" font-size="11" fill="#fff"></text>
+<title>github.com/milvus-io/milvus/internal/querynodev2/client/handler.(*queryViewClient).QueryOnView.func1  cum=13.76s (39.9%)</title>
+<rect x="4.0" y="190.0" width="953.8" height="16.0" fill="rgb(117,166,48)"/>
+<text x="7.0" y="202.5" font-size="11" fill="#fff"></text>
+<title>github.com/milvus-io/milvus/pkg/v3/proto/viewpb.(*viewQueryServiceClient).QueryOnView  cum=13.76s (39.9%)</title>
+<rect x="4.0" y="208.0" width="953.8" height="16.0" fill="rgb(166,48,113)"/>
+<text x="7.0" y="220.5" font-size="11" fill="#fff"></text>
+<title>google.golang.org/grpc.(*ClientConn).Invoke  cum=13.76s (39.9%)</title>
+<rect x="4.0" y="226.0" width="953.8" height="16.0" fill="rgb(48,144,166)"/>
+<text x="7.0" y="238.5" font-size="11" fill="#fff">func1</text>
+<title>google.golang.org/grpc.NewClient.chainUnaryClientInterceptors.func1  cum=13.76s (39.9%)</title>
+<rect x="4.0" y="244.0" width="953.8" height="16.0" fill="rgb(113,166,48)"/>
+<text x="7.0" y="256.5" font-size="11" fill="#fff">func1</text>
+<title>go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc.UnaryClientInterceptor.func1  cum=13.76s (39.9%)</title>
+<rect x="4.0" y="262.0" width="953.1" height="16.0" fill="rgb(52,48,166)"/>
+<text x="7.0" y="274.5" font-size="11" fill="#fff">func1</text>
+<title>google.golang.org/grpc.getChainUnaryInvoker.func1  cum=13.75s (39.9%)</title>
+<rect x="4.0" y="280.0" width="953.1" height="16.0" fill="rgb(62,48,166)"/>
+<text x="7.0" y="292.5" font-size="11" fill="#fff">func5</text>
+<title>github.com/milvus-io/milvus/internal/querynodev2/client/handler.getDialOptions.ClusterInjectionUnaryClientInterceptor.func5  cum=13.75s (39.9%)</title>
+<rect x="4.0" y="298.0" width="953.1" height="16.0" fill="rgb(137,48,166)"/>
+<text x="7.0" y="310.5" font-size="11" fill="#fff">1</text>
+<title>google.golang.org/grpc.getChainUnaryInvoker.func1.getChainUnaryInvoker.1  cum=13.75s (39.9%)</title>
+<rect x="4.0" y="316.0" width="953.1" height="16.0" fill="rgb(162,166,48)"/>
+<text x="7.0" y="328.5" font-size="11" fill="#fff">func6</text>
+<title>github.com/milvus-io/milvus/internal/querynodev2/client/handler.getDialOptions.NewStreamingServiceUnaryClientInterceptor.func6  cum=13.75s (39.9%)</title>
+<rect x="4.0" y="334.0" width="953.1" height="16.0" fill="rgb(166,105,48)"/>
+<text x="7.0" y="346.5" font-size="11" fill="#fff">invoke</text>
+<title>google.golang.org/grpc.invoke  cum=13.75s (39.9%)</title>
+<rect x="4.0" y="352.0" width="951.7" height="16.0" fill="rgb(144,166,48)"/>
+<text x="7.0" y="364.5" font-size="11" fill="#fff"></text>
+<title>google.golang.org/grpc.(*clientStream).RecvMsg  cum=13.73s (39.8%)</title>
+<rect x="4.0" y="370.0" width="950.3" height="16.0" fill="rgb(48,140,166)"/>
+<text x="7.0" y="382.5" font-size="11" fill="#fff"></text>
+<title>google.golang.org/grpc.(*clientStream).withRetry  cum=13.71s (39.8%)</title>
+<rect x="4.0" y="388.0" width="950.3" height="16.0" fill="rgb(144,166,48)"/>
+<text x="7.0" y="400.5" font-size="11" fill="#fff"></text>
+<title>google.golang.org/grpc.(*clientStream).RecvMsg.func1  cum=13.71s (39.8%)</title>
+<rect x="4.0" y="406.0" width="950.3" height="16.0" fill="rgb(166,48,156)"/>
+<text x="7.0" y="418.5" font-size="11" fill="#fff"></text>
+<title>google.golang.org/grpc.(*csAttempt).recvMsg  cum=13.71s (39.8%)</title>
+<rect x="4.0" y="424.0" width="950.3" height="16.0" fill="rgb(68,48,166)"/>
+<text x="7.0" y="436.5" font-size="11" fill="#fff">recv</text>
+<title>google.golang.org/grpc.recv  cum=13.71s (39.8%)</title>
+<rect x="4.0" y="442.0" width="890.0" height="16.0" fill="rgb(166,87,48)"/>
+<text x="7.0" y="454.5" font-size="11" fill="#fff">Unmarshal</text>
+<title>github.com/milvus-io/milvus/pkg/v3/util/resource.releaseCodec.Unmarshal  cum=12.84s (37.2%)</title>
+<rect x="4.0" y="460.0" width="644.5" height="16.0" fill="rgb(66,48,166)"/>
+<text x="7.0" y="472.5" font-size="11" fill="#fff">Unmarshal</text>
+<title>google.golang.org/protobuf/proto.Unmarshal  cum=9.30s (27.0%)</title>
+<rect x="4.0" y="478.0" width="643.8" height="16.0" fill="rgb(48,166,133)"/>
+<text x="7.0" y="490.5" font-size="11" fill="#fff">unmarshal</text>
+<title>google.golang.org/protobuf/proto.UnmarshalOptions.unmarshal  cum=9.29s (26.9%)</title>
+<rect x="4.0" y="496.0" width="643.1" height="16.0" fill="rgb(48,166,160)"/>
+<text x="7.0" y="508.5" font-size="11" fill="#fff"></text>
+<title>google.golang.org/protobuf/internal/impl.(*MessageInfo).unmarshal  cum=9.28s (26.9%)</title>
+<rect x="4.0" y="514.0" width="643.1" height="16.0" fill="rgb(48,162,166)"/>
+<text x="7.0" y="526.5" font-size="11" fill="#fff"></text>
+<title>google.golang.org/protobuf/internal/impl.(*MessageInfo).unmarshalPointer  cum=9.28s (26.9%)</title>
+<rect x="4.0" y="532.0" width="643.1" height="16.0" fill="rgb(48,152,166)"/>
+<text x="7.0" y="544.5" font-size="11" fill="#fff"></text>
+<title>google.golang.org/protobuf/internal/impl.(*MessageInfo).unmarshalPointerEager  cum=9.28s (26.9%)</title>
+<rect x="4.0" y="550.0" width="643.1" height="16.0" fill="rgb(48,166,142)"/>
+<text x="7.0" y="562.5" font-size="11" fill="#fff">consumeMessageInfo</text>
+<title>google.golang.org/protobuf/internal/impl.consumeMessageInfo  cum=9.28s (26.9%)</title>
+<rect x="4.0" y="568.0" width="643.1" height="16.0" fill="rgb(48,162,166)"/>
+<text x="7.0" y="580.5" font-size="11" fill="#fff"></text>
+<title>google.golang.org/protobuf/internal/impl.(*MessageInfo).unmarshalPointer  cum=9.28s (26.9%)</title>
+<rect x="4.0" y="586.0" width="643.1" height="16.0" fill="rgb(48,152,166)"/>
+<text x="7.0" y="598.5" font-size="11" fill="#fff"></text>
+<title>google.golang.org/protobuf/internal/impl.(*MessageInfo).unmarshalPointerEager  cum=9.28s (26.9%)</title>
+<rect x="4.0" y="604.0" width="634.8" height="16.0" fill="rgb(48,135,166)"/>
+<text x="7.0" y="616.5" font-size="11" fill="#fff">consumeMessageSliceInfo</text>
+<title>google.golang.org/protobuf/internal/impl.consumeMessageSliceInfo  cum=9.16s (26.6%)</title>
+<rect x="4.0" y="622.0" width="634.1" height="16.0" fill="rgb(48,162,166)"/>
+<text x="7.0" y="634.5" font-size="11" fill="#fff"></text>
+<title>google.golang.org/protobuf/internal/impl.(*MessageInfo).unmarshalPointer  cum=9.15s (26.5%)</title>
+<rect x="4.0" y="640.0" width="634.1" height="16.0" fill="rgb(48,152,166)"/>
+<text x="7.0" y="652.5" font-size="11" fill="#fff"></text>
+<title>google.golang.org/protobuf/internal/impl.(*MessageInfo).unmarshalPointerEager  cum=9.15s (26.5%)</title>
+<rect x="4.0" y="658.0" width="634.1" height="16.0" fill="rgb(48,166,125)"/>
+<text x="7.0" y="670.5" font-size="11" fill="#fff"></text>
+<title>google.golang.org/protobuf/internal/impl.(*MessageInfo).initOneofFieldCoders.func1  cum=9.15s (26.5%)</title>
+<rect x="4.0" y="676.0" width="634.1" height="16.0" fill="rgb(48,166,142)"/>
+<text x="7.0" y="688.5" font-size="11" fill="#fff">consumeMessageInfo</text>
+<title>google.golang.org/protobuf/internal/impl.consumeMessageInfo  cum=9.15s (26.5%)</title>
+<rect x="4.0" y="694.0" width="634.1" height="16.0" fill="rgb(48,162,166)"/>
+<text x="7.0" y="706.5" font-size="11" fill="#fff"></text>
+<title>google.golang.org/protobuf/internal/impl.(*MessageInfo).unmarshalPointer  cum=9.15s (26.5%)</title>
+<rect x="4.0" y="712.0" width="634.1" height="16.0" fill="rgb(48,152,166)"/>
+<text x="7.0" y="724.5" font-size="11" fill="#fff"></text>
+<title>google.golang.org/protobuf/internal/impl.(*MessageInfo).unmarshalPointerEager  cum=9.15s (26.5%)</title>
+<rect x="4.0" y="730.0" width="634.1" height="16.0" fill="rgb(48,166,125)"/>
+<text x="7.0" y="742.5" font-size="11" fill="#fff"></text>
+<title>google.golang.org/protobuf/internal/impl.(*MessageInfo).initOneofFieldCoders.func1  cum=9.15s (26.5%)</title>
+<rect x="4.0" y="748.0" width="634.1" height="16.0" fill="rgb(48,166,142)"/>
+<text x="7.0" y="760.5" font-size="11" fill="#fff">consumeMessageInfo</text>
+<title>google.golang.org/protobuf/internal/impl.consumeMessageInfo  cum=9.15s (26.5%)</title>
+<rect x="4.0" y="766.0" width="633.4" height="16.0" fill="rgb(48,162,166)"/>
+<text x="7.0" y="778.5" font-size="11" fill="#fff"></text>
+<title>google.golang.org/protobuf/internal/impl.(*MessageInfo).unmarshalPointer  cum=9.14s (26.5%)</title>
+<rect x="4.0" y="784.0" width="633.4" height="16.0" fill="rgb(48,152,166)"/>
+<text x="7.0" y="796.5" font-size="11" fill="#fff"></text>
+<title>google.golang.org/protobuf/internal/impl.(*MessageInfo).unmarshalPointerEager  cum=9.14s (26.5%)</title>
+<rect x="4.0" y="802.0" width="623.0" height="16.0" fill="rgb(166,158,48)"/>
+<text x="7.0" y="814.5" font-size="11" fill="#fff">consumeFloatSlice</text>
+<title>google.golang.org/protobuf/internal/impl.consumeFloatSlice  cum=8.99s (26.1%)</title>
+<rect x="4.0" y="820.0" width="247.1" height="16.0" fill="rgb(166,48,125)"/>
+<text x="7.0" y="832.5" font-size="11" fill="#fff">ConsumeFixed32 </text>
+<title>google.golang.org/protobuf/encoding/protowire.ConsumeFixed32 (inline)  cum=3.57s (10.4%)</title>
+<rect x="4.0" y="838.0" width="4.4" height="16.0" fill="rgb(164,166,48)"/>
+<title>runtime.asyncPreempt  cum=0.07s (0.2%)</title>
+<rect x="251.6" y="820.0" width="21.7" height="16.0" fill="rgb(48,56,166)"/>
+<title>google.golang.org/protobuf/internal/impl.pointer.growFloat32Slice (inline)  cum=0.32s (0.9%)</title>
+<rect x="251.6" y="838.0" width="21.7" height="16.0" fill="rgb(166,64,48)"/>
+<title>google.golang.org/protobuf/internal/impl.pointer.growInt32Slice (inline)  cum=0.32s (0.9%)</title>
+<rect x="251.6" y="856.0" width="21.7" height="16.0" fill="rgb(48,160,166)"/>
+<title>runtime.makeslice  cum=0.32s (0.9%)</title>
+<rect x="251.6" y="874.0" width="21.7" height="16.0" fill="rgb(99,166,48)"/>
+<title>runtime.mallocgc  cum=0.32s (0.9%)</title>
+<rect x="251.6" y="892.0" width="21.7" height="16.0" fill="rgb(125,48,166)"/>
+<title>runtime.mallocgcLarge  cum=0.32s (0.9%)</title>
+<rect x="251.6" y="910.0" width="20.3" height="16.0" fill="rgb(48,166,86)"/>
+<title>runtime.memclrNoHeapPointersChunked  cum=0.30s (0.9%)</title>
+<rect x="251.6" y="928.0" width="20.3" height="16.0" fill="rgb(48,166,131)"/>
+<title>runtime.memclrNoHeapPointers  cum=0.30s (0.9%)</title>
+<rect x="272.4" y="910.0" width="0.9" height="16.0" fill="rgb(103,48,166)"/>
+<title>runtime.(*mcache).allocLarge  cum=0.02s (0.1%)</title>
+<rect x="272.4" y="928.0" width="0.9" height="16.0" fill="rgb(109,48,166)"/>
+<title>runtime.(*mheap).alloc  cum=0.02s (0.1%)</title>
+<rect x="272.4" y="946.0" width="0.9" height="16.0" fill="rgb(166,70,48)"/>
+<title>runtime.systemstack  cum=0.02s (0.1%)</title>
+<rect x="272.4" y="964.0" width="0.9" height="16.0" fill="rgb(166,64,48)"/>
+<title>runtime.(*mheap).alloc.func1  cum=0.02s (0.1%)</title>
+<rect x="272.4" y="982.0" width="0.5" height="16.0" fill="rgb(52,166,48)"/>
+<title>runtime.(*mheap).allocSpan  cum=0.01s (0.0%)</title>
+<rect x="272.4" y="1000.0" width="0.5" height="16.0" fill="rgb(48,50,166)"/>
+<title>runtime.(*pageAlloc).alloc  cum=0.01s (0.0%)</title>
+<rect x="272.4" y="1018.0" width="0.5" height="16.0" fill="rgb(48,166,95)"/>
+<title>runtime.(*pageAlloc).find  cum=0.01s (0.0%)</title>
+<rect x="273.1" y="982.0" width="0.5" height="16.0" fill="rgb(166,148,48)"/>
+<title>runtime.(*mheap).reclaim  cum=0.01s (0.0%)</title>
+<rect x="273.1" y="1000.0" width="0.5" height="16.0" fill="rgb(166,144,48)"/>
+<title>runtime.(*mheap).reclaimChunk  cum=0.01s (0.0%)</title>
+<rect x="273.1" y="1018.0" width="0.5" height="16.0" fill="rgb(164,166,48)"/>
+<title>runtime.(*sweepLocked).sweep  cum=0.01s (0.0%)</title>
+<rect x="273.1" y="1036.0" width="0.5" height="16.0" fill="rgb(156,166,48)"/>
+<title>runtime.(*mheap).freeSpan (inline)  cum=0.01s (0.0%)</title>
+<rect x="273.1" y="1054.0" width="0.5" height="16.0" fill="rgb(48,166,135)"/>
+<title>runtime.(*sweepLocked).sweep.(*mheap).freeSpan.func2  cum=0.01s (0.0%)</title>
+<rect x="273.1" y="1072.0" width="0.5" height="16.0" fill="rgb(62,48,166)"/>
+<title>runtime.(*mheap).freeSpanLocked  cum=0.01s (0.0%)</title>
+<rect x="273.1" y="1090.0" width="0.5" height="16.0" fill="rgb(166,105,48)"/>
+<title>runtime.(*pageAlloc).free  cum=0.01s (0.0%)</title>
+<rect x="273.1" y="1108.0" width="0.5" height="16.0" fill="rgb(48,166,89)"/>
+<title>runtime.(*scavengeIndex).free  cum=0.01s (0.0%)</title>
+<rect x="273.8" y="820.0" width="4.4" height="16.0" fill="rgb(164,166,48)"/>
+<title>runtime.asyncPreempt  cum=0.07s (0.2%)</title>
+<rect x="627.5" y="802.0" width="9.9" height="16.0" fill="rgb(103,166,48)"/>
+<title>google.golang.org/protobuf/internal/impl.consumeInt64Slice  cum=0.15s (0.4%)</title>
+<rect x="627.5" y="820.0" width="1.6" height="16.0" fill="rgb(166,160,48)"/>
+<title>google.golang.org/protobuf/encoding/protowire.ConsumeVarint  cum=0.03s (0.1%)</title>
+<rect x="629.6" y="820.0" width="1.6" height="16.0" fill="rgb(166,48,146)"/>
+<title>google.golang.org/protobuf/internal/impl.pointer.growInt64Slice (inline)  cum=0.03s (0.1%)</title>
+<rect x="629.6" y="838.0" width="1.6" height="16.0" fill="rgb(48,160,166)"/>
+<title>runtime.makeslice  cum=0.03s (0.1%)</title>
+<rect x="629.6" y="856.0" width="1.6" height="16.0" fill="rgb(99,166,48)"/>
+<title>runtime.mallocgc  cum=0.03s (0.1%)</title>
+<rect x="629.6" y="874.0" width="1.6" height="16.0" fill="rgb(125,48,166)"/>
+<title>runtime.mallocgcLarge  cum=0.03s (0.1%)</title>
+<rect x="629.6" y="892.0" width="0.9" height="16.0" fill="rgb(166,146,48)"/>
+<title>runtime.profilealloc  cum=0.02s (0.1%)</title>
+<rect x="629.6" y="910.0" width="0.9" height="16.0" fill="rgb(93,48,166)"/>
+<title>runtime.mProf_Malloc  cum=0.02s (0.1%)</title>
+<rect x="629.6" y="928.0" width="0.9" height="16.0" fill="rgb(166,150,48)"/>
+<title>runtime.callers  cum=0.02s (0.1%)</title>
+<rect x="629.6" y="946.0" width="0.9" height="16.0" fill="rgb(166,70,48)"/>
+<title>runtime.systemstack  cum=0.02s (0.1%)</title>
+<rect x="629.6" y="964.0" width="0.9" height="16.0" fill="rgb(166,113,48)"/>
+<title>runtime.callers.func1  cum=0.02s (0.1%)</title>
+<rect x="629.6" y="982.0" width="0.9" height="16.0" fill="rgb(56,166,48)"/>
+<title>runtime.tracebackPCs  cum=0.02s (0.1%)</title>
+<rect x="629.6" y="1000.0" width="0.5" height="16.0" fill="rgb(166,48,129)"/>
+<title>runtime.(*unwinder).next  cum=0.01s (0.0%)</title>
+<rect x="629.6" y="1018.0" width="0.5" height="16.0" fill="rgb(166,48,137)"/>
+<title>runtime.findfunc  cum=0.01s (0.0%)</title>
+<rect x="630.3" y="1000.0" width="0.5" height="16.0" fill="rgb(48,166,135)"/>
+<title>runtime.newInlineUnwinder  cum=0.01s (0.0%)</title>
+<rect x="630.3" y="1018.0" width="0.5" height="16.0" fill="rgb(48,148,166)"/>
+<title>runtime.(*inlineUnwinder).resolveInternal (inline)  cum=0.01s (0.0%)</title>
+<rect x="630.3" y="1036.0" width="0.5" height="16.0" fill="rgb(166,48,84)"/>
+<title>runtime.pcdatavalue1  cum=0.01s (0.0%)</title>
+<rect x="630.3" y="1054.0" width="0.5" height="16.0" fill="rgb(48,166,84)"/>
+<title>runtime.pcvalue  cum=0.01s (0.0%)</title>
+<rect x="631.0" y="892.0" width="0.5" height="16.0" fill="rgb(48,166,86)"/>
+<title>runtime.memclrNoHeapPointersChunked  cum=0.01s (0.0%)</title>
+<rect x="631.0" y="910.0" width="0.5" height="16.0" fill="rgb(48,166,131)"/>
+<title>runtime.memclrNoHeapPointers  cum=0.01s (0.0%)</title>
+<rect x="638.6" y="622.0" width="0.5" height="16.0" fill="rgb(76,48,166)"/>
+<title>reflect.New  cum=0.01s (0.0%)</title>
+<rect x="638.6" y="640.0" width="0.5" height="16.0" fill="rgb(48,156,166)"/>
+<title>reflect.unsafe_New  cum=0.01s (0.0%)</title>
+<rect x="638.6" y="658.0" width="0.5" height="16.0" fill="rgb(99,166,48)"/>
+<title>runtime.mallocgc  cum=0.01s (0.0%)</title>
+<rect x="639.3" y="604.0" width="7.8" height="16.0" fill="rgb(48,166,142)"/>
+<title>google.golang.org/protobuf/internal/impl.consumeMessageInfo  cum=0.12s (0.3%)</title>
+<rect x="639.3" y="622.0" width="7.1" height="16.0" fill="rgb(48,162,166)"/>
+<title>google.golang.org/protobuf/internal/impl.(*MessageInfo).unmarshalPointer  cum=0.11s (0.3%)</title>
+<rect x="639.3" y="640.0" width="7.1" height="16.0" fill="rgb(48,152,166)"/>
+<title>google.golang.org/protobuf/internal/impl.(*MessageInfo).unmarshalPointerEager  cum=0.11s (0.3%)</title>
+<rect x="639.3" y="658.0" width="7.1" height="16.0" fill="rgb(48,166,125)"/>
+<title>google.golang.org/protobuf/internal/impl.(*MessageInfo).initOneofFieldCoders.func1  cum=0.11s (0.3%)</title>
+<rect x="639.3" y="676.0" width="7.1" height="16.0" fill="rgb(48,166,142)"/>
+<title>google.golang.org/protobuf/internal/impl.consumeMessageInfo  cum=0.11s (0.3%)</title>
+<rect x="639.3" y="694.0" width="7.1" height="16.0" fill="rgb(48,162,166)"/>
+<title>google.golang.org/protobuf/internal/impl.(*MessageInfo).unmarshalPointer  cum=0.11s (0.3%)</title>
+<rect x="639.3" y="712.0" width="7.1" height="16.0" fill="rgb(48,152,166)"/>
+<title>google.golang.org/protobuf/internal/impl.(*MessageInfo).unmarshalPointerEager  cum=0.11s (0.3%)</title>
+<rect x="639.3" y="730.0" width="7.1" height="16.0" fill="rgb(103,166,48)"/>
+<title>google.golang.org/protobuf/internal/impl.consumeInt64Slice  cum=0.11s (0.3%)</title>
+<rect x="639.3" y="748.0" width="3.7" height="16.0" fill="rgb(166,48,146)"/>
+<title>google.golang.org/protobuf/internal/impl.pointer.growInt64Slice (inline)  cum=0.06s (0.2%)</title>
+<rect x="639.3" y="766.0" width="3.7" height="16.0" fill="rgb(48,160,166)"/>
+<title>runtime.makeslice  cum=0.06s (0.2%)</title>
+<rect x="639.3" y="784.0" width="3.7" height="16.0" fill="rgb(99,166,48)"/>
+<title>runtime.mallocgc  cum=0.06s (0.2%)</title>
+<rect x="639.3" y="802.0" width="1.6" height="16.0" fill="rgb(113,166,48)"/>
+<title>runtime.newstack  cum=0.03s (0.1%)</title>
+<rect x="639.3" y="820.0" width="1.6" height="16.0" fill="rgb(48,166,82)"/>
+<title>runtime.copystack  cum=0.03s (0.1%)</title>
+<rect x="639.3" y="838.0" width="0.5" height="16.0" fill="rgb(166,48,129)"/>
+<title>runtime.(*unwinder).next  cum=0.01s (0.0%)</title>
+<rect x="639.3" y="856.0" width="0.5" height="16.0" fill="rgb(48,80,166)"/>
+<title>runtime.(*unwinder).resolveInternal  cum=0.01s (0.0%)</title>
+<rect x="639.3" y="874.0" width="0.5" height="16.0" fill="rgb(166,48,80)"/>
+<title>runtime.funcspdelta (inline)  cum=0.01s (0.0%)</title>
+<rect x="639.3" y="892.0" width="0.5" height="16.0" fill="rgb(48,166,84)"/>
+<title>runtime.pcvalue  cum=0.01s (0.0%)</title>
+<rect x="639.3" y="910.0" width="0.5" height="16.0" fill="rgb(158,48,166)"/>
+<title>runtime.step  cum=0.01s (0.0%)</title>
+<rect x="640.0" y="838.0" width="0.5" height="16.0" fill="rgb(139,166,48)"/>
+<title>runtime.adjustframe  cum=0.01s (0.0%)</title>
+<rect x="640.0" y="856.0" width="0.5" height="16.0" fill="rgb(164,48,166)"/>
+<title>runtime.(*stkframe).getStackMap  cum=0.01s (0.0%)</title>
+<rect x="640.7" y="838.0" width="0.5" height="16.0" fill="rgb(166,48,103)"/>
+<title>runtime.stackalloc  cum=0.01s (0.0%)</title>
+<rect x="640.7" y="856.0" width="0.5" height="16.0" fill="rgb(166,74,48)"/>
+<title>runtime.stackcacherefill  cum=0.01s (0.0%)</title>
+<rect x="640.7" y="874.0" width="0.5" height="16.0" fill="rgb(121,48,166)"/>
+<title>runtime.lock (inline)  cum=0.01s (0.0%)</title>
+<rect x="640.7" y="892.0" width="0.5" height="16.0" fill="rgb(166,158,48)"/>
+<title>runtime.lockWithRank (inline)  cum=0.01s (0.0%)</title>
+<rect x="640.7" y="910.0" width="0.5" height="16.0" fill="rgb(48,166,87)"/>
+<title>runtime.lock2  cum=0.01s (0.0%)</title>
+<rect x="641.4" y="802.0" width="0.9" height="16.0" fill="rgb(125,48,166)"/>
+<title>runtime.mallocgcLarge  cum=0.02s (0.1%)</title>
+<rect x="641.4" y="820.0" width="0.9" height="16.0" fill="rgb(103,48,166)"/>
+<title>runtime.(*mcache).allocLarge  cum=0.02s (0.1%)</title>
+<rect x="641.4" y="838.0" width="0.5" height="16.0" fill="rgb(109,48,166)"/>
+<title>runtime.(*mheap).alloc  cum=0.01s (0.0%)</title>
+<rect x="641.4" y="856.0" width="0.5" height="16.0" fill="rgb(166,70,48)"/>
+<title>runtime.systemstack  cum=0.01s (0.0%)</title>
+<rect x="641.4" y="874.0" width="0.5" height="16.0" fill="rgb(166,64,48)"/>
+<title>runtime.(*mheap).alloc.func1  cum=0.01s (0.0%)</title>
+<rect x="641.4" y="892.0" width="0.5" height="16.0" fill="rgb(52,166,48)"/>
+<title>runtime.(*mheap).allocSpan  cum=0.01s (0.0%)</title>
+<rect x="641.4" y="910.0" width="0.5" height="16.0" fill="rgb(127,166,48)"/>
+<title>runtime.(*mheap).initSpan  cum=0.01s (0.0%)</title>
+<rect x="641.4" y="928.0" width="0.5" height="16.0" fill="rgb(103,166,48)"/>
+<title>runtime.(*mspan).init  cum=0.01s (0.0%)</title>
+<rect x="642.1" y="838.0" width="0.5" height="16.0" fill="rgb(121,166,48)"/>
+<title>runtime.(*spanSet).push  cum=0.01s (0.0%)</title>
+<rect x="642.7" y="802.0" width="0.5" height="16.0" fill="rgb(166,48,60)"/>
+<title>runtime.deductAssistCredit  cum=0.01s (0.0%)</title>
+<rect x="642.7" y="820.0" width="0.5" height="16.0" fill="rgb(166,82,48)"/>
+<title>runtime.gcAssistAlloc  cum=0.01s (0.0%)</title>
+<rect x="642.7" y="838.0" width="0.5" height="16.0" fill="rgb(166,70,48)"/>
+<title>runtime.systemstack  cum=0.01s (0.0%)</title>
+<rect x="642.7" y="856.0" width="0.5" height="16.0" fill="rgb(48,166,52)"/>
+<title>runtime.gcAssistAlloc.func2  cum=0.01s (0.0%)</title>
+<rect x="642.7" y="874.0" width="0.5" height="16.0" fill="rgb(48,166,82)"/>
+<title>runtime.gcAssistAlloc1  cum=0.01s (0.0%)</title>
+<rect x="642.7" y="892.0" width="0.5" height="16.0" fill="rgb(48,150,166)"/>
+<title>runtime.gcDrainN  cum=0.01s (0.0%)</title>
+<rect x="642.7" y="910.0" width="0.5" height="16.0" fill="rgb(117,166,48)"/>
+<title>runtime.scanSpan  cum=0.01s (0.0%)</title>
+<rect x="642.7" y="928.0" width="0.5" height="16.0" fill="rgb(48,139,166)"/>
+<title>runtime.scanObjectsSmall  cum=0.01s (0.0%)</title>
+<rect x="642.7" y="946.0" width="0.5" height="16.0" fill="rgb(115,166,48)"/>
+<title>runtime.findObject  cum=0.01s (0.0%)</title>
+<rect x="646.9" y="622.0" width="0.5" height="16.0" fill="rgb(166,84,48)"/>
+<title>reflect.(*rtype).Elem  cum=0.01s (0.0%)</title>
+<rect x="646.9" y="640.0" width="0.5" height="16.0" fill="rgb(95,48,166)"/>
+<title>reflect.elem  cum=0.01s (0.0%)</title>
+<rect x="647.6" y="496.0" width="0.5" height="16.0" fill="rgb(48,131,166)"/>
+<title>google.golang.org/protobuf/proto.Reset  cum=0.01s (0.0%)</title>
+<rect x="647.6" y="514.0" width="0.5" height="16.0" fill="rgb(166,117,48)"/>
+<title>runtime.typeAssert  cum=0.01s (0.0%)</title>
+<rect x="647.6" y="532.0" width="0.5" height="16.0" fill="rgb(48,76,166)"/>
+<title>runtime.getitab  cum=0.01s (0.0%)</title>
+<rect x="648.3" y="478.0" width="0.5" height="16.0" fill="rgb(48,166,135)"/>
+<title>github.com/milvus-io/milvus/pkg/v3/proto/viewpb.(*QueryOnViewResponse).ProtoReflect  cum=0.01s (0.0%)</title>
+<rect x="648.3" y="496.0" width="0.5" height="16.0" fill="rgb(52,166,48)"/>
+<title>google.golang.org/protobuf/internal/impl.(*messageState).LoadMessageInfo  cum=0.01s (0.0%)</title>
+<rect x="649.0" y="460.0" width="245.0" height="16.0" fill="rgb(82,166,48)"/>
+<text x="652.0" y="472.5" font-size="11" fill="#fff">MaterializeToBuffer</text>
+<title>google.golang.org/grpc/mem.BufferSlice.MaterializeToBuffer  cum=3.54s (10.3%)</title>
+<rect x="649.0" y="478.0" width="206.2" height="16.0" fill="rgb(166,48,146)"/>
+<text x="652.0" y="490.5" font-size="11" fill="#fff">CopyTo </text>
+<title>google.golang.org/grpc/mem.BufferSlice.CopyTo (inline)  cum=2.98s (8.6%)</title>
+<rect x="649.0" y="496.0" width="191.6" height="16.0" fill="rgb(166,121,48)"/>
+<text x="652.0" y="508.5" font-size="11" fill="#fff">memmove</text>
+<title>runtime.memmove  cum=2.77s (8.0%)</title>
+<rect x="841.1" y="496.0" width="14.1" height="16.0" fill="rgb(166,48,76)"/>
+<title>google.golang.org/grpc/mem.(*buffer).ReadOnlyData  cum=0.21s (0.6%)</title>
+<rect x="855.7" y="478.0" width="38.3" height="16.0" fill="rgb(80,48,166)"/>
+<title>google.golang.org/grpc/internal/mem.(*BinaryTieredBufferPool).Get  cum=0.56s (1.6%)</title>
+<rect x="855.7" y="496.0" width="38.3" height="16.0" fill="rgb(48,135,166)"/>
+<title>google.golang.org/grpc/internal/mem.(*SimpleBufferPool).Get  cum=0.56s (1.6%)</title>
+<rect x="855.7" y="514.0" width="38.3" height="16.0" fill="rgb(48,166,131)"/>
+<title>runtime.memclrNoHeapPointers  cum=0.56s (1.6%)</title>
+<rect x="894.5" y="442.0" width="31.4" height="16.0" fill="rgb(48,166,103)"/>
+<title>google.golang.org/grpc.recvAndDecompress  cum=0.46s (1.3%)</title>
+<rect x="894.5" y="460.0" width="28.6" height="16.0" fill="rgb(93,166,48)"/>
+<title>google.golang.org/grpc.(*parser).recvMsg  cum=0.42s (1.2%)</title>
+<rect x="894.5" y="478.0" width="27.9" height="16.0" fill="rgb(80,166,48)"/>
+<title>google.golang.org/grpc/internal/transport.(*ClientStream).Read  cum=0.41s (1.2%)</title>
+<rect x="894.5" y="496.0" width="27.9" height="16.0" fill="rgb(48,166,115)"/>
+<title>google.golang.org/grpc/internal/transport.(*Stream).read  cum=0.41s (1.2%)</title>
+<rect x="894.5" y="514.0" width="26.5" height="16.0" fill="rgb(48,80,166)"/>
+<title>google.golang.org/grpc/internal/transport.(*transportReader).Read  cum=0.39s (1.1%)</title>
+<rect x="894.5" y="532.0" width="23.8" height="16.0" fill="rgb(48,139,166)"/>
+<title>google.golang.org/grpc/internal/transport.(*recvBufferReader).Read  cum=0.35s (1.0%)</title>
+<rect x="894.5" y="550.0" width="23.8" height="16.0" fill="rgb(54,48,166)"/>
+<title>google.golang.org/grpc/internal/transport.(*recvBufferReader).readClient  cum=0.35s (1.0%)</title>
+<rect x="894.5" y="568.0" width="14.8" height="16.0" fill="rgb(80,166,48)"/>
+<title>google.golang.org/grpc/internal/transport.(*recvBufferReader).readAdditional  cum=0.22s (0.6%)</title>
+<rect x="894.5" y="586.0" width="7.8" height="16.0" fill="rgb(99,48,166)"/>
+<title>google.golang.org/grpc/internal/transport.(*recvBuffer).load  cum=0.12s (0.3%)</title>
+<rect x="894.5" y="604.0" width="4.4" height="16.0" fill="rgb(150,48,166)"/>
+<title>runtime.selectnbsend  cum=0.07s (0.2%)</title>
+<rect x="894.5" y="622.0" width="4.4" height="16.0" fill="rgb(80,48,166)"/>
+<title>runtime.chansend  cum=0.07s (0.2%)</title>
+<rect x="894.5" y="640.0" width="1.6" height="16.0" fill="rgb(117,166,48)"/>
+<title>runtime.unlock (inline)  cum=0.03s (0.1%)</title>
+<rect x="894.5" y="658.0" width="1.6" height="16.0" fill="rgb(54,166,48)"/>
+<title>runtime.unlockWithRank (inline)  cum=0.03s (0.1%)</title>
+<rect x="894.5" y="676.0" width="1.6" height="16.0" fill="rgb(166,48,127)"/>
+<title>runtime.unlock2  cum=0.03s (0.1%)</title>
+<rect x="896.6" y="640.0" width="0.9" height="16.0" fill="rgb(121,48,166)"/>
+<title>runtime.lock (inline)  cum=0.02s (0.1%)</title>
+<rect x="896.6" y="658.0" width="0.9" height="16.0" fill="rgb(166,158,48)"/>
+<title>runtime.lockWithRank (inline)  cum=0.02s (0.1%)</title>
+<rect x="896.6" y="676.0" width="0.9" height="16.0" fill="rgb(48,166,87)"/>
+<title>runtime.lock2  cum=0.02s (0.1%)</title>
+<rect x="898.0" y="640.0" width="0.5" height="16.0" fill="rgb(48,166,62)"/>
+<title>runtime.typedmemmove  cum=0.01s (0.0%)</title>
+<rect x="898.0" y="658.0" width="0.5" height="16.0" fill="rgb(166,121,48)"/>
+<title>runtime.memmove  cum=0.01s (0.0%)</title>
+<rect x="899.4" y="604.0" width="1.6" height="16.0" fill="rgb(48,164,166)"/>
+<title>sync.(*Mutex).Unlock (inline)  cum=0.03s (0.1%)</title>
+<rect x="899.4" y="622.0" width="1.6" height="16.0" fill="rgb(48,166,144)"/>
+<title>internal/sync.(*Mutex).Unlock (inline)  cum=0.03s (0.1%)</title>
+<rect x="901.4" y="604.0" width="0.9" height="16.0" fill="rgb(166,117,48)"/>
+<title>sync.(*Mutex).Lock (inline)  cum=0.02s (0.1%)</title>
+<rect x="901.4" y="622.0" width="0.9" height="16.0" fill="rgb(166,87,48)"/>
+<title>internal/sync.(*Mutex).Lock (inline)  cum=0.02s (0.1%)</title>
+<rect x="902.8" y="586.0" width="6.4" height="16.0" fill="rgb(64,48,166)"/>
+<title>google.golang.org/grpc/mem.(*buffer).Len  cum=0.10s (0.3%)</title>
+<rect x="902.8" y="604.0" width="6.4" height="16.0" fill="rgb(48,54,166)"/>
+<title>google.golang.org/grpc/mem.(*buffer).ReadOnlyData (inline)  cum=0.10s (0.3%)</title>
+<rect x="909.8" y="568.0" width="8.5" height="16.0" fill="rgb(48,80,166)"/>
+<title>runtime.selectgo  cum=0.13s (0.4%)</title>
+<rect x="909.8" y="586.0" width="5.0" height="16.0" fill="rgb(139,166,48)"/>
+<title>runtime.selunlock  cum=0.08s (0.2%)</title>
+<rect x="909.8" y="604.0" width="5.0" height="16.0" fill="rgb(117,166,48)"/>
+<title>runtime.unlock (inline)  cum=0.08s (0.2%)</title>
+<rect x="909.8" y="622.0" width="5.0" height="16.0" fill="rgb(54,166,48)"/>
+<title>runtime.unlockWithRank (inline)  cum=0.08s (0.2%)</title>
+<rect x="909.8" y="640.0" width="5.0" height="16.0" fill="rgb(166,48,127)"/>
+<title>runtime.unlock2  cum=0.08s (0.2%)</title>
+<rect x="915.3" y="586.0" width="0.9" height="16.0" fill="rgb(164,166,48)"/>
+<title>runtime.sellock  cum=0.02s (0.1%)</title>
+<rect x="915.3" y="604.0" width="0.9" height="16.0" fill="rgb(121,48,166)"/>
+<title>runtime.lock (inline)  cum=0.02s (0.1%)</title>
+<rect x="915.3" y="622.0" width="0.9" height="16.0" fill="rgb(166,158,48)"/>
+<title>runtime.lockWithRank (inline)  cum=0.02s (0.1%)</title>
+<rect x="915.3" y="640.0" width="0.9" height="16.0" fill="rgb(48,166,87)"/>
+<title>runtime.lock2  cum=0.02s (0.1%)</title>
+<rect x="918.8" y="532.0" width="2.3" height="16.0" fill="rgb(48,166,48)"/>
+<title>google.golang.org/grpc/internal/transport.(*ClientStream).updateWindow  cum=0.04s (0.1%)</title>
+<rect x="918.8" y="550.0" width="2.3" height="16.0" fill="rgb(48,89,166)"/>
+<title>google.golang.org/grpc/internal/transport.(*http2Client).updateWindow  cum=0.04s (0.1%)</title>
+<rect x="918.8" y="568.0" width="2.3" height="16.0" fill="rgb(48,166,93)"/>
+<title>google.golang.org/grpc/internal/transport.(*inFlow).onRead  cum=0.04s (0.1%)</title>
+<rect x="918.8" y="586.0" width="2.3" height="16.0" fill="rgb(166,117,48)"/>
+<title>sync.(*Mutex).Lock (inline)  cum=0.04s (0.1%)</title>
+<rect x="918.8" y="604.0" width="2.3" height="16.0" fill="rgb(166,87,48)"/>
+<title>internal/sync.(*Mutex).Lock (inline)  cum=0.04s (0.1%)</title>
+<rect x="921.5" y="514.0" width="0.5" height="16.0" fill="rgb(64,48,166)"/>
+<title>google.golang.org/grpc/mem.(*buffer).Len  cum=0.01s (0.0%)</title>
+<rect x="922.2" y="514.0" width="0.5" height="16.0" fill="rgb(68,48,166)"/>
+<title>runtime.growslice  cum=0.01s (0.0%)</title>
+<rect x="922.2" y="532.0" width="0.5" height="16.0" fill="rgb(99,166,48)"/>
+<title>runtime.mallocgc  cum=0.01s (0.0%)</title>
+<rect x="922.2" y="550.0" width="0.5" height="16.0" fill="rgb(48,166,101)"/>
+<title>runtime.mallocgcSmallScanHeader  cum=0.01s (0.0%)</title>
+<rect x="922.2" y="568.0" width="0.5" height="16.0" fill="rgb(166,48,142)"/>
+<title>runtime.nextFreeFast (inline)  cum=0.01s (0.0%)</title>
+<rect x="922.9" y="478.0" width="0.5" height="16.0" fill="rgb(166,113,48)"/>
+<title>google.golang.org/grpc/internal/transport.(*Stream).ReadMessageHeader  cum=0.01s (0.0%)</title>
+<rect x="922.9" y="496.0" width="0.5" height="16.0" fill="rgb(166,48,113)"/>
+<title>google.golang.org/grpc/internal/transport.(*transportReader).ReadMessageHeader  cum=0.01s (0.0%)</title>
+<rect x="922.9" y="514.0" width="0.5" height="16.0" fill="rgb(48,166,158)"/>
+<title>google.golang.org/grpc/internal/transport.(*recvBufferReader).ReadMessageHeader  cum=0.01s (0.0%)</title>
+<rect x="922.9" y="532.0" width="0.5" height="16.0" fill="rgb(166,48,101)"/>
+<title>google.golang.org/grpc/internal/transport.(*recvBufferReader).readMessageHeaderClient  cum=0.01s (0.0%)</title>
+<rect x="922.9" y="550.0" width="0.5" height="16.0" fill="rgb(48,80,166)"/>
+<title>runtime.selectgo  cum=0.01s (0.0%)</title>
+<rect x="923.6" y="460.0" width="2.3" height="16.0" fill="rgb(146,166,48)"/>
+<title>google.golang.org/grpc/mem.BufferSlice.Len (inline)  cum=0.04s (0.1%)</title>
+<rect x="923.6" y="478.0" width="2.3" height="16.0" fill="rgb(64,48,166)"/>
+<title>google.golang.org/grpc/mem.(*buffer).Len  cum=0.04s (0.1%)</title>
+<rect x="923.6" y="496.0" width="2.3" height="16.0" fill="rgb(48,54,166)"/>
+<title>google.golang.org/grpc/mem.(*buffer).ReadOnlyData (inline)  cum=0.04s (0.1%)</title>
+<rect x="926.4" y="442.0" width="27.9" height="16.0" fill="rgb(166,48,48)"/>
+<title>google.golang.org/grpc/mem.BufferSlice.Free  cum=0.41s (1.2%)</title>
+<rect x="926.4" y="460.0" width="27.9" height="16.0" fill="rgb(166,89,48)"/>
+<title>google.golang.org/grpc/mem.(*buffer).Free  cum=0.41s (1.2%)</title>
+<rect x="926.4" y="478.0" width="14.1" height="16.0" fill="rgb(48,97,166)"/>
+<title>google.golang.org/grpc/internal/mem.(*BinaryTieredBufferPool).Put  cum=0.21s (0.6%)</title>
+<rect x="926.4" y="496.0" width="11.3" height="16.0" fill="rgb(113,48,166)"/>
+<title>google.golang.org/grpc/internal/mem.(*BinaryTieredBufferPool).poolForPut (inline)  cum=0.17s (0.5%)</title>
+<rect x="938.2" y="496.0" width="2.3" height="16.0" fill="rgb(48,166,87)"/>
+<title>google.golang.org/grpc/internal/mem.(*sizedBufferPool).Put  cum=0.04s (0.1%)</title>
+<rect x="938.2" y="514.0" width="1.6" height="16.0" fill="rgb(48,166,82)"/>
+<title>sync.(*Pool).Put  cum=0.03s (0.1%)</title>
+<rect x="938.2" y="532.0" width="1.6" height="16.0" fill="rgb(89,48,166)"/>
+<title>sync.(*poolChain).pushHead  cum=0.03s (0.1%)</title>
+<rect x="938.2" y="550.0" width="0.9" height="16.0" fill="rgb(140,166,48)"/>
+<title>sync.(*poolDequeue).pushHead  cum=0.02s (0.1%)</title>
+<rect x="938.2" y="568.0" width="0.9" height="16.0" fill="rgb(166,156,48)"/>
+<title>sync/atomic.(*Uint64).Add (inline)  cum=0.02s (0.1%)</title>
+<rect x="941.0" y="478.0" width="9.9" height="16.0" fill="rgb(125,166,48)"/>
+<title>sync/atomic.(*Int32).Add (inline)  cum=0.15s (0.4%)</title>
+<rect x="951.4" y="478.0" width="2.3" height="16.0" fill="rgb(48,166,82)"/>
+<title>sync.(*Pool).Put  cum=0.04s (0.1%)</title>
+<rect x="951.4" y="496.0" width="1.6" height="16.0" fill="rgb(89,48,166)"/>
+<title>sync.(*poolChain).pushHead  cum=0.03s (0.1%)</title>
+<rect x="951.4" y="514.0" width="1.6" height="16.0" fill="rgb(140,166,48)"/>
+<title>sync.(*poolDequeue).pushHead  cum=0.03s (0.1%)</title>
+<rect x="951.4" y="532.0" width="1.6" height="16.0" fill="rgb(166,156,48)"/>
+<title>sync/atomic.(*Uint64).Add (inline)  cum=0.03s (0.1%)</title>
+<rect x="953.4" y="496.0" width="0.5" height="16.0" fill="rgb(166,89,48)"/>
+<title>sync.(*Pool).pin  cum=0.01s (0.0%)</title>
+<rect x="954.1" y="478.0" width="0.5" height="16.0" fill="rgb(86,166,48)"/>
+<title>gcWriteBarrier  cum=0.01s (0.0%)</title>
+<rect x="954.1" y="496.0" width="0.5" height="16.0" fill="rgb(166,72,48)"/>
+<title>runtime.wbBufFlush  cum=0.01s (0.0%)</title>
+<rect x="954.1" y="514.0" width="0.5" height="16.0" fill="rgb(166,70,48)"/>
+<title>runtime.systemstack  cum=0.01s (0.0%)</title>
+<rect x="954.1" y="532.0" width="0.5" height="16.0" fill="rgb(166,48,150)"/>
+<title>runtime.wbBufFlush.func1  cum=0.01s (0.0%)</title>
+<rect x="954.1" y="550.0" width="0.5" height="16.0" fill="rgb(166,156,48)"/>
+<title>runtime.wbBufFlush1  cum=0.01s (0.0%)</title>
+<rect x="954.1" y="568.0" width="0.5" height="16.0" fill="rgb(115,166,48)"/>
+<title>runtime.findObject  cum=0.01s (0.0%)</title>
+<rect x="954.8" y="370.0" width="0.9" height="16.0" fill="rgb(164,48,166)"/>
+<title>google.golang.org/grpc.(*clientStream).finish  cum=0.02s (0.1%)</title>
+<rect x="954.8" y="388.0" width="0.5" height="16.0" fill="rgb(127,48,166)"/>
+<title>context.WithCancel.func1  cum=0.01s (0.0%)</title>
+<rect x="954.8" y="406.0" width="0.5" height="16.0" fill="rgb(166,48,70)"/>
+<title>context.(*cancelCtx).cancel  cum=0.01s (0.0%)</title>
+<rect x="954.8" y="424.0" width="0.5" height="16.0" fill="rgb(142,48,166)"/>
+<title>context.removeChild  cum=0.01s (0.0%)</title>
+<rect x="954.8" y="442.0" width="0.5" height="16.0" fill="rgb(48,166,113)"/>
+<title>runtime.mapdelete  cum=0.01s (0.0%)</title>
+<rect x="954.8" y="460.0" width="0.5" height="16.0" fill="rgb(48,166,86)"/>
+<title>internal/runtime/maps.(*Map).Delete  cum=0.01s (0.0%)</title>
+<rect x="955.5" y="388.0" width="0.5" height="16.0" fill="rgb(166,144,48)"/>
+<title>google.golang.org/grpc.endOfClientStream  cum=0.01s (0.0%)</title>
+<rect x="956.2" y="352.0" width="0.5" height="16.0" fill="rgb(99,48,166)"/>
+<title>google.golang.org/grpc.(*clientStream).SendMsg  cum=0.01s (0.0%)</title>
+<rect x="956.2" y="370.0" width="0.5" height="16.0" fill="rgb(48,166,103)"/>
+<title>google.golang.org/grpc.(*clientStream).SendMsg.func1  cum=0.01s (0.0%)</title>
+<rect x="956.9" y="352.0" width="0.5" height="16.0" fill="rgb(148,48,166)"/>
+<title>google.golang.org/grpc.newClientStream  cum=0.01s (0.0%)</title>
+<rect x="956.9" y="370.0" width="0.5" height="16.0" fill="rgb(107,48,166)"/>
+<title>google.golang.org/grpc.newClientStream.func3  cum=0.01s (0.0%)</title>
+<rect x="956.9" y="388.0" width="0.5" height="16.0" fill="rgb(48,166,148)"/>
+<title>google.golang.org/grpc.newClientStreamWithParams  cum=0.01s (0.0%)</title>
+<rect x="956.9" y="406.0" width="0.5" height="16.0" fill="rgb(48,140,166)"/>
+<title>google.golang.org/grpc.(*clientStream).withRetry  cum=0.01s (0.0%)</title>
+<rect x="956.9" y="424.0" width="0.5" height="16.0" fill="rgb(166,48,142)"/>
+<title>google.golang.org/grpc.newClientStreamWithParams.func2  cum=0.01s (0.0%)</title>
+<rect x="956.9" y="442.0" width="0.5" height="16.0" fill="rgb(48,107,166)"/>
+<title>google.golang.org/grpc.(*csAttempt).newStream  cum=0.01s (0.0%)</title>
+<rect x="956.9" y="460.0" width="0.5" height="16.0" fill="rgb(48,166,103)"/>
+<title>google.golang.org/grpc/internal/transport.(*http2Client).NewStream  cum=0.01s (0.0%)</title>
+<rect x="956.9" y="478.0" width="0.5" height="16.0" fill="rgb(48,166,82)"/>
+<title>google.golang.org/grpc/internal/transport.(*http2Client).createHeaderFields  cum=0.01s (0.0%)</title>
+<rect x="956.9" y="496.0" width="0.5" height="16.0" fill="rgb(48,109,166)"/>
+<title>google.golang.org/grpc/internal/transport.isReservedHeader (inline)  cum=0.01s (0.0%)</title>
+<rect x="957.6" y="262.0" width="0.5" height="16.0" fill="rgb(48,62,166)"/>
+<title>go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc.inject  cum=0.01s (0.0%)</title>
+<rect x="957.6" y="280.0" width="0.5" height="16.0" fill="rgb(166,48,117)"/>
+<title>go.opentelemetry.io/otel/propagation.compositeTextMapPropagator.Inject  cum=0.01s (0.0%)</title>
+<rect x="957.6" y="298.0" width="0.5" height="16.0" fill="rgb(48,166,123)"/>
+<title>go.opentelemetry.io/otel/propagation.Baggage.Inject  cum=0.01s (0.0%)</title>
+<rect x="958.3" y="64.0" width="781.8" height="16.0" fill="rgb(166,68,48)"/>
+<text x="961.3" y="76.5" font-size="11" fill="#fff"></text>
+<title>github.com/panjf2000/ants/v2.(*goWorker).run.func1  cum=11.28s (32.7%)</title>
+<rect x="958.3" y="82.0" width="781.8" height="16.0" fill="rgb(48,166,101)"/>
+<text x="961.3" y="94.5" font-size="11" fill="#fff"></text>
+<title>github.com/milvus-io/milvus/pkg/v3/util/conc.(*Pool[go.shape.struct {}]).Submit.func1  cum=11.28s (32.7%)</title>
+<rect x="958.3" y="100.0" width="781.8" height="16.0" fill="rgb(166,111,48)"/>
+<text x="961.3" y="112.5" font-size="11" fill="#fff"></text>
+<title>github.com/milvus-io/milvus/internal/proxy/scheduler.(*TaskScheduler).queryLoop.func1  cum=11.28s (32.7%)</title>
+<rect x="958.3" y="118.0" width="781.8" height="16.0" fill="rgb(87,48,166)"/>
+<text x="961.3" y="130.5" font-size="11" fill="#fff"></text>
+<title>github.com/milvus-io/milvus/internal/proxy/scheduler.(*TaskScheduler).processTask  cum=11.28s (32.7%)</title>
+<rect x="958.3" y="136.0" width="781.8" height="16.0" fill="rgb(48,48,166)"/>
+<text x="961.3" y="148.5" font-size="11" fill="#fff"></text>
+<title>github.com/milvus-io/milvus/internal/proxy.(*queryTask).PostExecute  cum=11.28s (32.7%)</title>
+<rect x="958.3" y="154.0" width="781.8" height="16.0" fill="rgb(166,48,156)"/>
+<text x="961.3" y="166.5" font-size="11" fill="#fff"></text>
+<title>github.com/milvus-io/milvus/internal/proxy.(*QueryPipeline).Execute  cum=11.28s (32.7%)</title>
+<rect x="958.3" y="172.0" width="781.8" height="16.0" fill="rgb(166,74,48)"/>
+<text x="961.3" y="184.5" font-size="11" fill="#fff"></text>
+<title>github.com/milvus-io/milvus/internal/util/queryutil.(*Pipeline).Run  cum=11.28s (32.7%)</title>
+<rect x="958.3" y="190.0" width="781.8" height="16.0" fill="rgb(66,166,48)"/>
+<text x="961.3" y="202.5" font-size="11" fill="#fff"></text>
+<title>github.com/milvus-io/milvus/internal/util/queryutil.(*Node).Run  cum=11.28s (32.7%)</title>
+<rect x="958.3" y="208.0" width="781.8" height="16.0" fill="rgb(48,166,95)"/>
+<text x="961.3" y="220.5" font-size="11" fill="#fff"></text>
+<title>github.com/milvus-io/milvus/internal/util/queryutil.(*ReduceByPKOperator).Run  cum=11.28s (32.7%)</title>
+<rect x="958.3" y="226.0" width="781.8" height="16.0" fill="rgb(48,166,93)"/>
+<text x="961.3" y="238.5" font-size="11" fill="#fff"></text>
+<title>github.com/milvus-io/milvus/internal/util/queryutil.(*ReduceByPKOperator).mergeByPK  cum=11.28s (32.7%)</title>
+<rect x="958.3" y="244.0" width="395.5" height="16.0" fill="rgb(158,48,166)"/>
+<text x="961.3" y="256.5" font-size="11" fill="#fff">*uint8]</text>
+<title>github.com/milvus-io/milvus/pkg/v3/util/typeutil.SelectMinPK[go.shape.*uint8]  cum=5.71s (16.6%)</title>
+<rect x="958.3" y="262.0" width="197.2" height="16.0" fill="rgb(166,137,48)"/>
+<text x="961.3" y="274.5" font-size="11" fill="#fff">GetPK</text>
+<title>github.com/milvus-io/milvus/pkg/v3/util/typeutil.GetPK  cum=2.85s (8.3%)</title>
+<rect x="958.3" y="280.0" width="122.3" height="16.0" fill="rgb(166,121,48)"/>
+<text x="961.3" y="292.5" font-size="11" fill="#fff">convT64</text>
+<title>runtime.convT64  cum=1.77s (5.1%)</title>
+<rect x="958.3" y="298.0" width="103.5" height="16.0" fill="rgb(99,166,48)"/>
+<text x="961.3" y="310.5" font-size="11" fill="#fff">mallocgc</text>
+<title>runtime.mallocgc  cum=1.50s (4.3%)</title>
+<rect x="958.3" y="316.0" width="79.9" height="16.0" fill="rgb(166,101,48)"/>
+<text x="961.3" y="328.5" font-size="11" fill="#fff">mallocgcTiny</text>
+<title>runtime.mallocgcTiny  cum=1.16s (3.4%)</title>
+<rect x="958.3" y="334.0" width="14.1" height="16.0" fill="rgb(166,48,58)"/>
+<title>runtime.(*mcache).nextFree  cum=0.21s (0.6%)</title>
+<rect x="958.3" y="352.0" width="12.0" height="16.0" fill="rgb(166,48,129)"/>
+<title>runtime.(*mcache).refill  cum=0.18s (0.5%)</title>
+<rect x="958.3" y="370.0" width="6.4" height="16.0" fill="rgb(166,48,62)"/>
+<title>runtime.(*mcentral).cacheSpan  cum=0.10s (0.3%)</title>
+<rect x="958.3" y="388.0" width="6.4" height="16.0" fill="rgb(166,127,48)"/>
+<title>runtime.(*mcentral).grow  cum=0.10s (0.3%)</title>
+<rect x="958.3" y="406.0" width="4.4" height="16.0" fill="rgb(166,48,60)"/>
+<title>runtime.(*mspan).initHeapBits  cum=0.07s (0.2%)</title>
+<rect x="958.3" y="424.0" width="4.4" height="16.0" fill="rgb(48,166,129)"/>
+<title>runtime.(*mspan).initInlineMarkBits (inline)  cum=0.07s (0.2%)</title>
+<rect x="958.3" y="442.0" width="4.4" height="16.0" fill="rgb(48,166,64)"/>
+<title>runtime.(*spanInlineMarkBits).init  cum=0.07s (0.2%)</title>
+<rect x="963.2" y="406.0" width="1.6" height="16.0" fill="rgb(109,48,166)"/>
+<title>runtime.(*mheap).alloc  cum=0.03s (0.1%)</title>
+<rect x="963.2" y="424.0" width="1.6" height="16.0" fill="rgb(166,70,48)"/>
+<title>runtime.systemstack  cum=0.03s (0.1%)</title>
+<rect x="963.2" y="442.0" width="1.6" height="16.0" fill="rgb(166,64,48)"/>
+<title>runtime.(*mheap).alloc.func1  cum=0.03s (0.1%)</title>
+<rect x="963.2" y="460.0" width="1.6" height="16.0" fill="rgb(52,166,48)"/>
+<title>runtime.(*mheap).allocSpan  cum=0.03s (0.1%)</title>
+<rect x="963.2" y="478.0" width="0.9" height="16.0" fill="rgb(48,166,87)"/>
+<title>runtime.(*sysMemStat).add  cum=0.02s (0.1%)</title>
+<rect x="964.5" y="478.0" width="0.5" height="16.0" fill="rgb(127,166,48)"/>
+<title>runtime.(*mheap).initSpan  cum=0.01s (0.0%)</title>
+<rect x="964.5" y="496.0" width="0.5" height="16.0" fill="rgb(48,84,166)"/>
+<title>runtime.newAllocBits (inline)  cum=0.01s (0.0%)</title>
+<rect x="964.5" y="514.0" width="0.5" height="16.0" fill="rgb(166,140,48)"/>
+<title>runtime.newMarkBits  cum=0.01s (0.0%)</title>
+<rect x="964.5" y="532.0" width="0.5" height="16.0" fill="rgb(166,107,48)"/>
+<title>runtime.newArenaMayUnlock  cum=0.01s (0.0%)</title>
+<rect x="965.2" y="370.0" width="3.0" height="16.0" fill="rgb(156,48,166)"/>
+<title>runtime.(*gcControllerState).update  cum=0.05s (0.1%)</title>
+<rect x="965.2" y="388.0" width="3.0" height="16.0" fill="rgb(146,48,166)"/>
+<title>internal/runtime/atomic.(*Uint64).Add (inline)  cum=0.05s (0.1%)</title>
+<rect x="968.7" y="370.0" width="0.5" height="16.0" fill="rgb(166,48,127)"/>
+<title>runtime.(*mcentral).uncacheSpan  cum=0.01s (0.0%)</title>
+<rect x="968.7" y="388.0" width="0.5" height="16.0" fill="rgb(121,166,48)"/>
+<title>runtime.(*spanSet).push  cum=0.01s (0.0%)</title>
+<rect x="968.7" y="406.0" width="0.5" height="16.0" fill="rgb(166,152,48)"/>
+<title>runtime.(*atomicHeadTailIndex).incTail  cum=0.01s (0.0%)</title>
+<rect x="968.7" y="424.0" width="0.5" height="16.0" fill="rgb(146,48,166)"/>
+<title>internal/runtime/atomic.(*Uint64).Add (inline)  cum=0.01s (0.0%)</title>
+<rect x="970.8" y="352.0" width="0.5" height="16.0" fill="rgb(48,166,91)"/>
+<title>runtime.(*mspan).nextFreeIndex  cum=0.01s (0.0%)</title>
+<rect x="972.9" y="334.0" width="11.3" height="16.0" fill="rgb(166,48,142)"/>
+<title>runtime.nextFreeFast (inline)  cum=0.17s (0.5%)</title>
+<rect x="984.7" y="334.0" width="5.7" height="16.0" fill="rgb(48,166,140)"/>
+<title>runtime.releasem (inline)  cum=0.09s (0.3%)</title>
+<rect x="990.9" y="334.0" width="5.0" height="16.0" fill="rgb(48,166,109)"/>
+<title>runtime.acquirem (inline)  cum=0.08s (0.2%)</title>
+<rect x="996.4" y="334.0" width="2.3" height="16.0" fill="rgb(48,166,166)"/>
+<title>runtime.getMCache (inline)  cum=0.04s (0.1%)</title>
+<rect x="999.2" y="334.0" width="0.9" height="16.0" fill="rgb(48,166,111)"/>
+<title>runtime.alignUp (inline)  cum=0.02s (0.1%)</title>
+<rect x="1038.8" y="316.0" width="0.5" height="16.0" fill="rgb(166,48,74)"/>
+<title>internal/abi.(*Type).Pointers (inline)  cum=0.01s (0.0%)</title>
+<rect x="1081.1" y="280.0" width="23.1" height="16.0" fill="rgb(166,125,48)"/>
+<title>github.com/milvus-io/milvus/pkg/v3/util/typeutil.GetSizeOfIDs  cum=0.34s (1.0%)</title>
+<rect x="1081.1" y="298.0" width="5.7" height="16.0" fill="rgb(97,166,48)"/>
+<title>github.com/milvus-io/milvus-proto/go-api/v3/schemapb.(*IDs).GetIntId (inline)  cum=0.09s (0.3%)</title>
+<rect x="1081.1" y="316.0" width="2.3" height="16.0" fill="rgb(166,48,150)"/>
+<title>github.com/milvus-io/milvus-proto/go-api/v3/schemapb.(*IDs).GetIdField (inline)  cum=0.04s (0.1%)</title>
+<rect x="1087.3" y="298.0" width="0.9" height="16.0" fill="rgb(166,48,150)"/>
+<title>github.com/milvus-io/milvus-proto/go-api/v3/schemapb.(*IDs).GetIdField (inline)  cum=0.02s (0.1%)</title>
+<rect x="1088.7" y="298.0" width="0.5" height="16.0" fill="rgb(48,86,166)"/>
+<title>github.com/milvus-io/milvus-proto/go-api/v3/schemapb.(*LongArray).GetData (inline)  cum=0.01s (0.0%)</title>
+<rect x="1104.6" y="280.0" width="2.3" height="16.0" fill="rgb(166,48,150)"/>
+<title>github.com/milvus-io/milvus-proto/go-api/v3/schemapb.(*IDs).GetIdField (inline)  cum=0.04s (0.1%)</title>
+<rect x="1107.4" y="280.0" width="2.3" height="16.0" fill="rgb(48,86,166)"/>
+<title>github.com/milvus-io/milvus-proto/go-api/v3/schemapb.(*LongArray).GetData (inline)  cum=0.04s (0.1%)</title>
+<rect x="1110.2" y="280.0" width="1.6" height="16.0" fill="rgb(97,166,48)"/>
+<title>github.com/milvus-io/milvus-proto/go-api/v3/schemapb.(*IDs).GetIntId (inline)  cum=0.03s (0.1%)</title>
+<rect x="1156.0" y="262.0" width="129.9" height="16.0" fill="rgb(166,125,48)"/>
+<text x="1159.0" y="274.5" font-size="11" fill="#fff">GetSizeOfIDs</text>
+<title>github.com/milvus-io/milvus/pkg/v3/util/typeutil.GetSizeOfIDs  cum=1.88s (5.5%)</title>
+<rect x="1156.0" y="280.0" width="7.1" height="16.0" fill="rgb(166,48,150)"/>
+<title>github.com/milvus-io/milvus-proto/go-api/v3/schemapb.(*IDs).GetIdField (inline)  cum=0.11s (0.3%)</title>
+<rect x="1163.6" y="280.0" width="5.0" height="16.0" fill="rgb(97,166,48)"/>
+<title>github.com/milvus-io/milvus-proto/go-api/v3/schemapb.(*IDs).GetIntId (inline)  cum=0.08s (0.2%)</title>
+<rect x="1163.6" y="298.0" width="3.0" height="16.0" fill="rgb(166,48,150)"/>
+<title>github.com/milvus-io/milvus-proto/go-api/v3/schemapb.(*IDs).GetIdField (inline)  cum=0.05s (0.1%)</title>
+<rect x="1169.1" y="280.0" width="4.4" height="16.0" fill="rgb(48,86,166)"/>
+<title>github.com/milvus-io/milvus-proto/go-api/v3/schemapb.(*LongArray).GetData (inline)  cum=0.07s (0.2%)</title>
+<rect x="1286.3" y="262.0" width="7.8" height="16.0" fill="rgb(50,166,48)"/>
+<title>github.com/milvus-io/milvus/pkg/v3/proto/internalpb.(*RetrieveResults).GetIds  cum=0.12s (0.3%)</title>
+<rect x="1354.3" y="244.0" width="277.6" height="16.0" fill="rgb(166,48,99)"/>
+<text x="1357.3" y="256.5" font-size="11" fill="#fff">buildMergedRetrieveResults</text>
+<title>github.com/milvus-io/milvus/internal/util/queryutil.buildMergedRetrieveResults  cum=4.01s (11.6%)</title>
+<rect x="1354.3" y="262.0" width="276.2" height="16.0" fill="rgb(166,48,133)"/>
+<text x="1357.3" y="274.5" font-size="11" fill="#fff">buildMergedFieldData</text>
+<title>github.com/milvus-io/milvus/internal/util/queryutil.buildMergedFieldData  cum=3.99s (11.6%)</title>
+<rect x="1354.3" y="280.0" width="268.6" height="16.0" fill="rgb(48,99,166)"/>
+<text x="1357.3" y="292.5" font-size="11" fill="#fff">buildMergedVectorField</text>
+<title>github.com/milvus-io/milvus/internal/util/queryutil.buildMergedVectorField  cum=3.88s (11.2%)</title>
+<rect x="1354.3" y="298.0" width="238.8" height="16.0" fill="rgb(166,121,48)"/>
+<text x="1357.3" y="310.5" font-size="11" fill="#fff">memmove</text>
+<title>runtime.memmove  cum=3.45s (10.0%)</title>
+<rect x="1593.6" y="298.0" width="16.8" height="16.0" fill="rgb(48,160,166)"/>
+<title>runtime.makeslice  cum=0.25s (0.7%)</title>
+<rect x="1593.6" y="316.0" width="16.8" height="16.0" fill="rgb(99,166,48)"/>
+<title>runtime.mallocgc  cum=0.25s (0.7%)</title>
+<rect x="1593.6" y="334.0" width="16.8" height="16.0" fill="rgb(125,48,166)"/>
+<title>runtime.mallocgcLarge  cum=0.25s (0.7%)</title>
+<rect x="1593.6" y="352.0" width="16.8" height="16.0" fill="rgb(48,166,86)"/>
+<title>runtime.memclrNoHeapPointersChunked  cum=0.25s (0.7%)</title>
+<rect x="1593.6" y="370.0" width="16.8" height="16.0" fill="rgb(48,166,131)"/>
+<title>runtime.memclrNoHeapPointers  cum=0.25s (0.7%)</title>
+<rect x="1610.9" y="298.0" width="3.0" height="16.0" fill="rgb(48,144,166)"/>
+<title>github.com/milvus-io/milvus-proto/go-api/v3/schemapb.(*FieldData).GetVectors (inline)  cum=0.05s (0.1%)</title>
+<rect x="1610.9" y="316.0" width="0.5" height="16.0" fill="rgb(105,166,48)"/>
+<title>github.com/milvus-io/milvus-proto/go-api/v3/schemapb.(*FieldData).GetField (inline)  cum=0.01s (0.0%)</title>
+<rect x="1614.4" y="298.0" width="2.3" height="16.0" fill="rgb(48,74,166)"/>
+<title>github.com/milvus-io/milvus-proto/go-api/v3/schemapb.(*VectorField).GetFloatVector (inline)  cum=0.04s (0.1%)</title>
+<rect x="1617.2" y="298.0" width="0.5" height="16.0" fill="rgb(48,133,166)"/>
+<title>github.com/milvus-io/milvus-proto/go-api/v3/schemapb.(*FloatArray).GetData (inline)  cum=0.01s (0.0%)</title>
+<rect x="1623.4" y="280.0" width="7.1" height="16.0" fill="rgb(166,48,89)"/>
+<title>github.com/milvus-io/milvus/internal/util/queryutil.buildMergedScalarField  cum=0.11s (0.3%)</title>
+<rect x="1623.4" y="298.0" width="0.5" height="16.0" fill="rgb(48,86,166)"/>
+<title>github.com/milvus-io/milvus-proto/go-api/v3/schemapb.(*LongArray).GetData (inline)  cum=0.01s (0.0%)</title>
+<rect x="1624.1" y="298.0" width="0.5" height="16.0" fill="rgb(139,48,166)"/>
+<title>github.com/milvus-io/milvus-proto/go-api/v3/schemapb.(*ScalarField).GetLongData (inline)  cum=0.01s (0.0%)</title>
+<rect x="1624.8" y="298.0" width="0.5" height="16.0" fill="rgb(166,48,133)"/>
+<title>github.com/milvus-io/milvus/pkg/v3/proto/internalpb.(*RetrieveResults).GetFieldsData (inline)  cum=0.01s (0.0%)</title>
+<rect x="1625.5" y="298.0" width="0.5" height="16.0" fill="rgb(48,160,166)"/>
+<title>runtime.makeslice  cum=0.01s (0.0%)</title>
+<rect x="1625.5" y="316.0" width="0.5" height="16.0" fill="rgb(99,166,48)"/>
+<title>runtime.mallocgc  cum=0.01s (0.0%)</title>
+<rect x="1625.5" y="334.0" width="0.5" height="16.0" fill="rgb(125,48,166)"/>
+<title>runtime.mallocgcLarge  cum=0.01s (0.0%)</title>
+<rect x="1625.5" y="352.0" width="0.5" height="16.0" fill="rgb(166,146,48)"/>
+<title>runtime.profilealloc  cum=0.01s (0.0%)</title>
+<rect x="1625.5" y="370.0" width="0.5" height="16.0" fill="rgb(93,48,166)"/>
+<title>runtime.mProf_Malloc  cum=0.01s (0.0%)</title>
+<rect x="1625.5" y="388.0" width="0.5" height="16.0" fill="rgb(166,144,48)"/>
+<title>runtime.stkbucket  cum=0.01s (0.0%)</title>
+<rect x="1631.0" y="262.0" width="0.9" height="16.0" fill="rgb(54,166,48)"/>
+<title>github.com/milvus-io/milvus/internal/util/queryutil.buildMergedIDs  cum=0.02s (0.1%)</title>
+<rect x="1631.0" y="280.0" width="0.5" height="16.0" fill="rgb(48,95,166)"/>
+<title>github.com/milvus-io/milvus/pkg/v3/proto/internalpb.(*RetrieveResults).GetIds (inline)  cum=0.01s (0.0%)</title>
+<rect x="1631.7" y="280.0" width="0.5" height="16.0" fill="rgb(48,160,166)"/>
+<title>runtime.makeslice  cum=0.01s (0.0%)</title>
+<rect x="1631.7" y="298.0" width="0.5" height="16.0" fill="rgb(99,166,48)"/>
+<title>runtime.mallocgc  cum=0.01s (0.0%)</title>
+<rect x="1631.7" y="316.0" width="0.5" height="16.0" fill="rgb(125,48,166)"/>
+<title>runtime.mallocgcLarge  cum=0.01s (0.0%)</title>
+<rect x="1631.7" y="334.0" width="0.5" height="16.0" fill="rgb(166,146,48)"/>
+<title>runtime.profilealloc  cum=0.01s (0.0%)</title>
+<rect x="1631.7" y="352.0" width="0.5" height="16.0" fill="rgb(93,48,166)"/>
+<title>runtime.mProf_Malloc  cum=0.01s (0.0%)</title>
+<rect x="1631.7" y="370.0" width="0.5" height="16.0" fill="rgb(166,150,48)"/>
+<title>runtime.callers  cum=0.01s (0.0%)</title>
+<rect x="1631.7" y="388.0" width="0.5" height="16.0" fill="rgb(166,70,48)"/>
+<title>runtime.systemstack  cum=0.01s (0.0%)</title>
+<rect x="1631.7" y="406.0" width="0.5" height="16.0" fill="rgb(166,113,48)"/>
+<title>runtime.callers.func1  cum=0.01s (0.0%)</title>
+<rect x="1631.7" y="424.0" width="0.5" height="16.0" fill="rgb(56,166,48)"/>
+<title>runtime.tracebackPCs  cum=0.01s (0.0%)</title>
+<rect x="1631.7" y="442.0" width="0.5" height="16.0" fill="rgb(48,166,135)"/>
+<title>runtime.newInlineUnwinder  cum=0.01s (0.0%)</title>
+<rect x="1631.7" y="460.0" width="0.5" height="16.0" fill="rgb(48,148,166)"/>
+<title>runtime.(*inlineUnwinder).resolveInternal (inline)  cum=0.01s (0.0%)</title>
+<rect x="1631.7" y="478.0" width="0.5" height="16.0" fill="rgb(166,48,84)"/>
+<title>runtime.pcdatavalue1  cum=0.01s (0.0%)</title>
+<rect x="1631.7" y="496.0" width="0.5" height="16.0" fill="rgb(48,166,84)"/>
+<title>runtime.pcvalue  cum=0.01s (0.0%)</title>
+<rect x="1631.7" y="514.0" width="0.5" height="16.0" fill="rgb(158,48,166)"/>
+<title>runtime.step  cum=0.01s (0.0%)</title>
+<rect x="1632.4" y="244.0" width="71.6" height="16.0" fill="rgb(166,62,48)"/>
+<text x="1635.4" y="256.5" font-size="11" fill="#fff">mapaccess2</text>
+<title>runtime.mapaccess2  cum=1.04s (3.0%)</title>
+<rect x="1632.4" y="262.0" width="60.5" height="16.0" fill="rgb(89,48,166)"/>
+<text x="1635.4" y="274.5" font-size="11" fill="#fff">matchH2 </text>
+<title>internal/runtime/maps.ctrlGroup.matchH2 (inline)  cum=0.88s (2.6%)</title>
+<rect x="1632.4" y="280.0" width="60.5" height="16.0" fill="rgb(152,166,48)"/>
+<text x="1635.4" y="292.5" font-size="11" fill="#fff">ctrlGroupMatchH2 </text>
+<title>internal/runtime/maps.ctrlGroupMatchH2 (inline)  cum=0.88s (2.6%)</title>
+<rect x="1693.4" y="262.0" width="1.6" height="16.0" fill="rgb(93,48,166)"/>
+<title>runtime.nilinterequal  cum=0.03s (0.1%)</title>
+<rect x="1693.4" y="280.0" width="1.6" height="16.0" fill="rgb(48,166,107)"/>
+<title>runtime.efaceeq  cum=0.03s (0.1%)</title>
+<rect x="1693.4" y="298.0" width="1.6" height="16.0" fill="rgb(166,156,48)"/>
+<title>runtime.memequal64  cum=0.03s (0.1%)</title>
+<rect x="1695.5" y="262.0" width="1.6" height="16.0" fill="rgb(119,48,166)"/>
+<title>runtime.nilinterhash  cum=0.03s (0.1%)</title>
+<rect x="1695.5" y="280.0" width="0.5" height="16.0" fill="rgb(48,166,154)"/>
+<title>runtime.typehash  cum=0.01s (0.0%)</title>
+<rect x="1697.6" y="262.0" width="0.9" height="16.0" fill="rgb(48,166,54)"/>
+<title>internal/runtime/maps.(*Map).directoryAt (inline)  cum=0.02s (0.1%)</title>
+<rect x="1699.0" y="262.0" width="0.5" height="16.0" fill="rgb(48,166,107)"/>
+<title>internal/runtime/maps.(*groupsReference).group (inline)  cum=0.01s (0.0%)</title>
+<rect x="1704.5" y="244.0" width="7.8" height="16.0" fill="rgb(166,137,48)"/>
+<title>github.com/milvus-io/milvus/pkg/v3/util/typeutil.GetPK  cum=0.12s (0.3%)</title>
+<rect x="1704.5" y="262.0" width="3.7" height="16.0" fill="rgb(166,121,48)"/>
+<title>runtime.convT64  cum=0.06s (0.2%)</title>
+<rect x="1704.5" y="280.0" width="3.7" height="16.0" fill="rgb(99,166,48)"/>
+<title>runtime.mallocgc  cum=0.06s (0.2%)</title>
+<rect x="1704.5" y="298.0" width="0.9" height="16.0" fill="rgb(166,101,48)"/>
+<title>runtime.mallocgcTiny  cum=0.02s (0.1%)</title>
+<rect x="1704.5" y="316.0" width="0.5" height="16.0" fill="rgb(166,48,58)"/>
+<title>runtime.(*mcache).nextFree  cum=0.01s (0.0%)</title>
+<rect x="1704.5" y="334.0" width="0.5" height="16.0" fill="rgb(166,48,129)"/>
+<title>runtime.(*mcache).refill  cum=0.01s (0.0%)</title>
+<rect x="1705.2" y="316.0" width="0.5" height="16.0" fill="rgb(48,166,109)"/>
+<title>runtime.acquirem (inline)  cum=0.01s (0.0%)</title>
+<rect x="1708.7" y="262.0" width="1.6" height="16.0" fill="rgb(166,125,48)"/>
+<title>github.com/milvus-io/milvus/pkg/v3/util/typeutil.GetSizeOfIDs  cum=0.03s (0.1%)</title>
+<rect x="1708.7" y="280.0" width="0.5" height="16.0" fill="rgb(166,48,150)"/>
+<title>github.com/milvus-io/milvus-proto/go-api/v3/schemapb.(*IDs).GetIdField (inline)  cum=0.01s (0.0%)</title>
+<rect x="1710.8" y="262.0" width="0.5" height="16.0" fill="rgb(97,166,48)"/>
+<title>github.com/milvus-io/milvus-proto/go-api/v3/schemapb.(*IDs).GetIntId (inline)  cum=0.01s (0.0%)</title>
+<rect x="1712.9" y="244.0" width="5.0" height="16.0" fill="rgb(68,48,166)"/>
+<title>runtime.growslice  cum=0.08s (0.2%)</title>
+<rect x="1712.9" y="262.0" width="4.4" height="16.0" fill="rgb(166,121,48)"/>
+<title>runtime.memmove  cum=0.07s (0.2%)</title>
+<rect x="1717.7" y="262.0" width="0.5" height="16.0" fill="rgb(48,166,131)"/>
+<title>runtime.memclrNoHeapPointers  cum=0.01s (0.0%)</title>
+<rect x="1718.4" y="244.0" width="3.7" height="16.0" fill="rgb(139,166,48)"/>
+<title>runtime.mapassign  cum=0.06s (0.2%)</title>
+<rect x="1718.4" y="262.0" width="0.9" height="16.0" fill="rgb(113,48,166)"/>
+<title>internal/runtime/maps.typedmemmove  cum=0.02s (0.1%)</title>
+<rect x="1718.4" y="280.0" width="0.9" height="16.0" fill="rgb(48,166,62)"/>
+<title>runtime.typedmemmove  cum=0.02s (0.1%)</title>
+<rect x="1718.4" y="298.0" width="0.9" height="16.0" fill="rgb(166,121,48)"/>
+<title>runtime.memmove  cum=0.02s (0.1%)</title>
+<rect x="1722.6" y="244.0" width="3.0" height="16.0" fill="rgb(166,48,48)"/>
+<title>github.com/milvus-io/milvus/internal/util/reduce.ShouldStopWhenDrained (inline)  cum=0.05s (0.1%)</title>
+<rect x="1740.6" y="64.0" width="534.2" height="16.0" fill="rgb(166,48,115)"/>
+<text x="1743.6" y="76.5" font-size="11" fill="#fff"></text>
+<title>google.golang.org/grpc/internal/transport.(*http2Client).reader  cum=7.71s (22.4%)</title>
+<rect x="1740.6" y="82.0" width="499.5" height="16.0" fill="rgb(166,48,166)"/>
+<text x="1743.6" y="94.5" font-size="11" fill="#fff"></text>
+<title>google.golang.org/grpc/internal/transport.(*framer).readFrame  cum=7.21s (20.9%)</title>
+<rect x="1740.6" y="100.0" width="482.9" height="16.0" fill="rgb(166,48,97)"/>
+<text x="1743.6" y="112.5" font-size="11" fill="#fff"></text>
+<title>google.golang.org/grpc/internal/transport.(*framer).readDataFrame  cum=6.97s (20.2%)</title>
+<rect x="1740.6" y="118.0" width="347.0" height="16.0" fill="rgb(166,48,89)"/>
+<text x="1743.6" y="130.5" font-size="11" fill="#fff">ReadFull </text>
+<title>io.ReadFull (inline)  cum=5.01s (14.5%)</title>
+<rect x="1740.6" y="136.0" width="347.0" height="16.0" fill="rgb(48,166,162)"/>
+<text x="1743.6" y="148.5" font-size="11" fill="#fff">ReadAtLeast</text>
+<title>io.ReadAtLeast  cum=5.01s (14.5%)</title>
+<rect x="1740.6" y="154.0" width="342.8" height="16.0" fill="rgb(166,123,48)"/>
+<text x="1743.6" y="166.5" font-size="11" fill="#fff"></text>
+<title>google.golang.org/grpc/internal/transport/readyreader.(*bufReadyReader).Read  cum=4.95s (14.4%)</title>
+<rect x="1740.6" y="172.0" width="285.9" height="16.0" fill="rgb(166,48,97)"/>
+<text x="1743.6" y="184.5" font-size="11" fill="#fff"></text>
+<title>google.golang.org/grpc/internal/transport/readyreader.(*nonBlockingReader).ReadOnReady  cum=4.13s (12.0%)</title>
+<rect x="1740.6" y="190.0" width="285.2" height="16.0" fill="rgb(166,162,48)"/>
+<text x="1743.6" y="202.5" font-size="11" fill="#fff"></text>
+<title>net.(*rawConn).Read  cum=4.12s (11.9%)</title>
+<rect x="1740.6" y="208.0" width="284.5" height="16.0" fill="rgb(166,158,48)"/>
+<text x="1743.6" y="220.5" font-size="11" fill="#fff"></text>
+<title>internal/poll.(*FD).RawRead  cum=4.11s (11.9%)</title>
+<rect x="1740.6" y="226.0" width="281.8" height="16.0" fill="rgb(89,166,48)"/>
+<text x="1743.6" y="238.5" font-size="11" fill="#fff">func1</text>
+<title>google.golang.org/grpc/internal/transport/readyreader.NewNonBlocking.func1  cum=4.07s (11.8%)</title>
+<rect x="1740.6" y="244.0" width="280.4" height="16.0" fill="rgb(166,48,50)"/>
+<text x="1743.6" y="256.5" font-size="11" fill="#fff">sysRead </text>
+<title>google.golang.org/grpc/internal/transport/readyreader.sysRead (inline)  cum=4.05s (11.7%)</title>
+<rect x="1740.6" y="262.0" width="280.4" height="16.0" fill="rgb(166,48,164)"/>
+<text x="1743.6" y="274.5" font-size="11" fill="#fff">Read </text>
+<title>syscall.Read (inline)  cum=4.05s (11.7%)</title>
+<rect x="1740.6" y="280.0" width="280.4" height="16.0" fill="rgb(166,48,140)"/>
+<text x="1743.6" y="292.5" font-size="11" fill="#fff">read</text>
+<title>syscall.read  cum=4.05s (11.7%)</title>
+<rect x="1740.6" y="298.0" width="280.4" height="16.0" fill="rgb(48,158,166)"/>
+<text x="1743.6" y="310.5" font-size="11" fill="#fff">Syscall</text>
+<title>syscall.Syscall  cum=4.05s (11.7%)</title>
+<rect x="1740.6" y="316.0" width="274.1" height="16.0" fill="rgb(166,48,58)"/>
+<text x="1743.6" y="328.5" font-size="11" fill="#fff">RawSyscall6</text>
+<title>syscall.RawSyscall6  cum=3.96s (11.5%)</title>
+<rect x="1740.6" y="334.0" width="274.1" height="16.0" fill="rgb(52,166,48)"/>
+<text x="1743.6" y="346.5" font-size="11" fill="#fff">Syscall6</text>
+<title>internal/runtime/syscall/linux.Syscall6  cum=3.96s (11.5%)</title>
+<rect x="2015.2" y="316.0" width="3.7" height="16.0" fill="rgb(111,48,166)"/>
+<title>runtime.entersyscall  cum=0.06s (0.2%)</title>
+<rect x="2015.2" y="334.0" width="3.7" height="16.0" fill="rgb(48,111,166)"/>
+<title>runtime.reentersyscall  cum=0.06s (0.2%)</title>
+<rect x="2015.2" y="352.0" width="2.3" height="16.0" fill="rgb(97,48,166)"/>
+<title>internal/runtime/atomic.(*Uint32).CompareAndSwap (inline)  cum=0.04s (0.1%)</title>
+<rect x="2019.4" y="316.0" width="1.6" height="16.0" fill="rgb(48,140,166)"/>
+<title>runtime.exitsyscall  cum=0.03s (0.1%)</title>
+<rect x="2019.4" y="334.0" width="0.5" height="16.0" fill="rgb(97,48,166)"/>
+<title>internal/runtime/atomic.(*Uint32).CompareAndSwap (inline)  cum=0.01s (0.0%)</title>
+<rect x="2021.5" y="244.0" width="0.5" height="16.0" fill="rgb(48,135,166)"/>
+<title>google.golang.org/grpc/internal/mem.(*SimpleBufferPool).Get  cum=0.01s (0.0%)</title>
+<rect x="2021.5" y="262.0" width="0.5" height="16.0" fill="rgb(48,156,166)"/>
+<title>sync.(*Pool).Get  cum=0.01s (0.0%)</title>
+<rect x="2021.5" y="280.0" width="0.5" height="16.0" fill="rgb(48,135,166)"/>
+<title>sync.(*Pool).getSlow  cum=0.01s (0.0%)</title>
+<rect x="2021.5" y="298.0" width="0.5" height="16.0" fill="rgb(48,166,54)"/>
+<title>sync.(*poolChain).popTail  cum=0.01s (0.0%)</title>
+<rect x="2021.5" y="316.0" width="0.5" height="16.0" fill="rgb(48,148,166)"/>
+<title>sync/atomic.(*Pointer[go.shape.struct { sync.poolDequeue; sync.next sync/atomic.Pointer[sync.poolChainElt]; sync.prev sync/atomic.Pointer[sync.poolChainElt] }]).Load (inline)  cum=0.01s (0.0%)</title>
+<rect x="2022.9" y="226.0" width="0.9" height="16.0" fill="rgb(166,66,48)"/>
+<title>internal/poll.(*FD).readLock (inline)  cum=0.02s (0.1%)</title>
+<rect x="2022.9" y="244.0" width="0.9" height="16.0" fill="rgb(158,48,166)"/>
+<title>internal/poll.(*fdMutex).rwlock  cum=0.02s (0.1%)</title>
+<rect x="2024.3" y="226.0" width="0.5" height="16.0" fill="rgb(78,166,48)"/>
+<title>internal/poll.(*FD).readUnlock  cum=0.01s (0.0%)</title>
+<rect x="2025.0" y="226.0" width="0.5" height="16.0" fill="rgb(48,166,117)"/>
+<title>internal/poll.(*pollDesc).prepareRead (inline)  cum=0.01s (0.0%)</title>
+<rect x="2025.0" y="244.0" width="0.5" height="16.0" fill="rgb(48,166,166)"/>
+<title>internal/poll.(*pollDesc).prepare  cum=0.01s (0.0%)</title>
+<rect x="2027.0" y="172.0" width="55.0" height="16.0" fill="rgb(166,121,48)"/>
+<title>runtime.memmove  cum=0.80s (2.3%)</title>
+<rect x="2088.1" y="118.0" width="107.7" height="16.0" fill="rgb(80,48,166)"/>
+<text x="2091.1" y="130.5" font-size="11" fill="#fff"></text>
+<title>google.golang.org/grpc/internal/mem.(*BinaryTieredBufferPool).Get  cum=1.56s (4.5%)</title>
+<rect x="2088.1" y="136.0" width="105.6" height="16.0" fill="rgb(101,48,166)"/>
+<text x="2091.1" y="148.5" font-size="11" fill="#fff"></text>
+<title>google.golang.org/grpc/internal/mem.(*sizedBufferPool).Get  cum=1.53s (4.4%)</title>
+<rect x="2088.1" y="154.0" width="64.7" height="16.0" fill="rgb(48,166,131)"/>
+<text x="2091.1" y="166.5" font-size="11" fill="#fff">memclrNoHeapPointers</text>
+<title>runtime.memclrNoHeapPointers  cum=0.94s (2.7%)</title>
+<rect x="2153.3" y="154.0" width="18.9" height="16.0" fill="rgb(48,160,166)"/>
+<title>runtime.makeslice  cum=0.28s (0.8%)</title>
+<rect x="2153.3" y="172.0" width="18.9" height="16.0" fill="rgb(99,166,48)"/>
+<title>runtime.mallocgc  cum=0.28s (0.8%)</title>
+<rect x="2153.3" y="190.0" width="16.1" height="16.0" fill="rgb(91,166,48)"/>
+<title>runtime.mallocgcSmallNoscan  cum=0.24s (0.7%)</title>
+<rect x="2153.3" y="208.0" width="13.4" height="16.0" fill="rgb(166,48,58)"/>
+<title>runtime.(*mcache).nextFree  cum=0.20s (0.6%)</title>
+<rect x="2153.3" y="226.0" width="13.4" height="16.0" fill="rgb(166,48,129)"/>
+<title>runtime.(*mcache).refill  cum=0.20s (0.6%)</title>
+<rect x="2153.3" y="244.0" width="13.4" height="16.0" fill="rgb(166,48,62)"/>
+<title>runtime.(*mcentral).cacheSpan  cum=0.20s (0.6%)</title>
+<rect x="2153.3" y="262.0" width="7.1" height="16.0" fill="rgb(166,127,48)"/>
+<title>runtime.(*mcentral).grow  cum=0.11s (0.3%)</title>
+<rect x="2153.3" y="280.0" width="7.1" height="16.0" fill="rgb(109,48,166)"/>
+<title>runtime.(*mheap).alloc  cum=0.11s (0.3%)</title>
+<rect x="2153.3" y="298.0" width="7.1" height="16.0" fill="rgb(166,70,48)"/>
+<title>runtime.systemstack  cum=0.11s (0.3%)</title>
+<rect x="2153.3" y="316.0" width="7.1" height="16.0" fill="rgb(166,64,48)"/>
+<title>runtime.(*mheap).alloc.func1  cum=0.11s (0.3%)</title>
+<rect x="2153.3" y="334.0" width="7.1" height="16.0" fill="rgb(52,166,48)"/>
+<title>runtime.(*mheap).allocSpan  cum=0.11s (0.3%)</title>
+<rect x="2153.3" y="352.0" width="2.3" height="16.0" fill="rgb(117,166,48)"/>
+<title>runtime.unlock (inline)  cum=0.04s (0.1%)</title>
+<rect x="2153.3" y="370.0" width="2.3" height="16.0" fill="rgb(54,166,48)"/>
+<title>runtime.unlockWithRank (inline)  cum=0.04s (0.1%)</title>
+<rect x="2153.3" y="388.0" width="2.3" height="16.0" fill="rgb(166,48,127)"/>
+<title>runtime.unlock2  cum=0.04s (0.1%)</title>
+<rect x="2153.3" y="406.0" width="2.3" height="16.0" fill="rgb(48,68,166)"/>
+<title>runtime.unlock2Wake  cum=0.04s (0.1%)</title>
+<rect x="2153.3" y="424.0" width="2.3" height="16.0" fill="rgb(166,95,48)"/>
+<title>runtime.semawakeup (inline)  cum=0.04s (0.1%)</title>
+<rect x="2153.3" y="442.0" width="2.3" height="16.0" fill="rgb(48,166,156)"/>
+<title>runtime.futexwakeup  cum=0.04s (0.1%)</title>
+<rect x="2153.3" y="460.0" width="2.3" height="16.0" fill="rgb(166,103,48)"/>
+<title>runtime.futex  cum=0.04s (0.1%)</title>
+<rect x="2156.0" y="352.0" width="0.5" height="16.0" fill="rgb(50,48,166)"/>
+<title>runtime.(*mheap).grow  cum=0.01s (0.0%)</title>
+<rect x="2156.0" y="370.0" width="0.5" height="16.0" fill="rgb(166,131,48)"/>
+<title>runtime.(*pageAlloc).grow  cum=0.01s (0.0%)</title>
+<rect x="2156.0" y="388.0" width="0.5" height="16.0" fill="rgb(123,166,48)"/>
+<title>runtime.(*pageAlloc).sysGrow  cum=0.01s (0.0%)</title>
+<rect x="2156.0" y="406.0" width="0.5" height="16.0" fill="rgb(48,154,166)"/>
+<title>runtime.makeAddrRange  cum=0.01s (0.0%)</title>
+<rect x="2156.7" y="352.0" width="0.5" height="16.0" fill="rgb(127,166,48)"/>
+<title>runtime.(*mheap).initSpan  cum=0.01s (0.0%)</title>
+<rect x="2156.7" y="370.0" width="0.5" height="16.0" fill="rgb(97,48,166)"/>
+<title>runtime.(*mheap).allocNeedsZero  cum=0.01s (0.0%)</title>
+<rect x="2157.4" y="352.0" width="0.5" height="16.0" fill="rgb(48,166,107)"/>
+<title>runtime.(*mheap).tryAllocMSpan (inline)  cum=0.01s (0.0%)</title>
+<rect x="2158.1" y="352.0" width="0.5" height="16.0" fill="rgb(48,50,166)"/>
+<title>runtime.(*pageAlloc).alloc  cum=0.01s (0.0%)</title>
+<rect x="2158.1" y="370.0" width="0.5" height="16.0" fill="rgb(166,48,95)"/>
+<title>runtime.(*pageAlloc).allocRange  cum=0.01s (0.0%)</title>
+<rect x="2158.1" y="388.0" width="0.5" height="16.0" fill="rgb(166,48,127)"/>
+<title>runtime.(*scavengeIndex).alloc  cum=0.01s (0.0%)</title>
+<rect x="2158.1" y="406.0" width="0.5" height="16.0" fill="rgb(154,166,48)"/>
+<title>runtime.(*atomicScavChunkData).load (inline)  cum=0.01s (0.0%)</title>
+<rect x="2158.1" y="424.0" width="0.5" height="16.0" fill="rgb(82,166,48)"/>
+<title>runtime.unpackScavChunkData (inline)  cum=0.01s (0.0%)</title>
+<rect x="2158.8" y="352.0" width="0.5" height="16.0" fill="rgb(48,166,87)"/>
+<title>runtime.(*sysMemStat).add  cum=0.01s (0.0%)</title>
+<rect x="2159.5" y="352.0" width="0.5" height="16.0" fill="rgb(121,48,166)"/>
+<title>runtime.lock (inline)  cum=0.01s (0.0%)</title>
+<rect x="2159.5" y="370.0" width="0.5" height="16.0" fill="rgb(166,158,48)"/>
+<title>runtime.lockWithRank (inline)  cum=0.01s (0.0%)</title>
+<rect x="2159.5" y="388.0" width="0.5" height="16.0" fill="rgb(48,166,87)"/>
+<title>runtime.lock2  cum=0.01s (0.0%)</title>
+<rect x="2159.5" y="406.0" width="0.5" height="16.0" fill="rgb(166,48,156)"/>
+<title>runtime.semasleep  cum=0.01s (0.0%)</title>
+<rect x="2159.5" y="424.0" width="0.5" height="16.0" fill="rgb(166,48,70)"/>
+<title>runtime.futexsleep  cum=0.01s (0.0%)</title>
+<rect x="2159.5" y="442.0" width="0.5" height="16.0" fill="rgb(166,103,48)"/>
+<title>runtime.futex  cum=0.01s (0.0%)</title>
+<rect x="2160.2" y="352.0" width="0.5" height="16.0" fill="rgb(58,48,166)"/>
+<title>runtime.sysUsed (inline)  cum=0.01s (0.0%)</title>
+<rect x="2160.2" y="370.0" width="0.5" height="16.0" fill="rgb(166,48,103)"/>
+<title>runtime.sysUsedOS  cum=0.01s (0.0%)</title>
+<rect x="2160.9" y="262.0" width="5.0" height="16.0" fill="rgb(72,48,166)"/>
+<title>runtime.(*spanSet).pop  cum=0.08s (0.2%)</title>
+<rect x="2160.9" y="280.0" width="3.0" height="16.0" fill="rgb(166,52,48)"/>
+<title>runtime.procyield (inline)  cum=0.05s (0.1%)</title>
+<rect x="2160.9" y="298.0" width="3.0" height="16.0" fill="rgb(48,166,121)"/>
+<title>runtime.procyieldAsm  cum=0.05s (0.1%)</title>
+<rect x="2164.4" y="280.0" width="1.6" height="16.0" fill="rgb(166,48,48)"/>
+<title>runtime.(*atomicHeadTailIndex).cas (inline)  cum=0.03s (0.1%)</title>
+<rect x="2164.4" y="298.0" width="1.6" height="16.0" fill="rgb(89,48,166)"/>
+<title>internal/runtime/atomic.(*Uint64).CompareAndSwap (inline)  cum=0.03s (0.1%)</title>
+<rect x="2166.4" y="262.0" width="0.5" height="16.0" fill="rgb(121,166,48)"/>
+<title>runtime.(*spanSet).push  cum=0.01s (0.0%)</title>
+<rect x="2167.1" y="208.0" width="0.9" height="16.0" fill="rgb(48,166,131)"/>
+<title>runtime.memclrNoHeapPointers  cum=0.02s (0.1%)</title>
+<rect x="2168.5" y="208.0" width="0.5" height="16.0" fill="rgb(160,166,48)"/>
+<title>runtime.gcStart  cum=0.01s (0.0%)</title>
+<rect x="2168.5" y="226.0" width="0.5" height="16.0" fill="rgb(166,70,48)"/>
+<title>runtime.systemstack  cum=0.01s (0.0%)</title>
+<rect x="2168.5" y="244.0" width="0.5" height="16.0" fill="rgb(48,166,127)"/>
+<title>runtime.gcStart.func2  cum=0.01s (0.0%)</title>
+<rect x="2168.5" y="262.0" width="0.5" height="16.0" fill="rgb(48,64,166)"/>
+<title>runtime.stopTheWorldWithSema  cum=0.01s (0.0%)</title>
+<rect x="2168.5" y="280.0" width="0.5" height="16.0" fill="rgb(48,166,113)"/>
+<title>runtime.preemptall  cum=0.01s (0.0%)</title>
+<rect x="2168.5" y="298.0" width="0.5" height="16.0" fill="rgb(48,166,60)"/>
+<title>runtime.preemptone  cum=0.01s (0.0%)</title>
+<rect x="2168.5" y="316.0" width="0.5" height="16.0" fill="rgb(164,166,48)"/>
+<title>runtime.preemptM (inline)  cum=0.01s (0.0%)</title>
+<rect x="2168.5" y="334.0" width="0.5" height="16.0" fill="rgb(95,166,48)"/>
+<title>runtime.signalM  cum=0.01s (0.0%)</title>
+<rect x="2168.5" y="352.0" width="0.5" height="16.0" fill="rgb(166,123,48)"/>
+<title>runtime.tgkill  cum=0.01s (0.0%)</title>
+<rect x="2169.2" y="208.0" width="0.5" height="16.0" fill="rgb(166,146,48)"/>
+<title>runtime.profilealloc  cum=0.01s (0.0%)</title>
+<rect x="2169.2" y="226.0" width="0.5" height="16.0" fill="rgb(93,48,166)"/>
+<title>runtime.mProf_Malloc  cum=0.01s (0.0%)</title>
+<rect x="2169.2" y="244.0" width="0.5" height="16.0" fill="rgb(166,150,48)"/>
+<title>runtime.callers  cum=0.01s (0.0%)</title>
+<rect x="2169.2" y="262.0" width="0.5" height="16.0" fill="rgb(166,70,48)"/>
+<title>runtime.systemstack  cum=0.01s (0.0%)</title>
+<rect x="2169.2" y="280.0" width="0.5" height="16.0" fill="rgb(166,113,48)"/>
+<title>runtime.callers.func1  cum=0.01s (0.0%)</title>
+<rect x="2169.2" y="298.0" width="0.5" height="16.0" fill="rgb(56,166,48)"/>
+<title>runtime.tracebackPCs  cum=0.01s (0.0%)</title>
+<rect x="2169.2" y="316.0" width="0.5" height="16.0" fill="rgb(166,48,129)"/>
+<title>runtime.(*unwinder).next  cum=0.01s (0.0%)</title>
+<rect x="2169.2" y="334.0" width="0.5" height="16.0" fill="rgb(48,80,166)"/>
+<title>runtime.(*unwinder).resolveInternal  cum=0.01s (0.0%)</title>
+<rect x="2169.9" y="190.0" width="2.3" height="16.0" fill="rgb(166,48,60)"/>
+<title>runtime.deductAssistCredit  cum=0.04s (0.1%)</title>
+<rect x="2169.9" y="208.0" width="2.3" height="16.0" fill="rgb(166,82,48)"/>
+<title>runtime.gcAssistAlloc  cum=0.04s (0.1%)</title>
+<rect x="2169.9" y="226.0" width="2.3" height="16.0" fill="rgb(166,70,48)"/>
+<title>runtime.systemstack  cum=0.04s (0.1%)</title>
+<rect x="2169.9" y="244.0" width="2.3" height="16.0" fill="rgb(48,166,52)"/>
+<title>runtime.gcAssistAlloc.func2  cum=0.04s (0.1%)</title>
+<rect x="2169.9" y="262.0" width="2.3" height="16.0" fill="rgb(48,166,82)"/>
+<title>runtime.gcAssistAlloc1  cum=0.04s (0.1%)</title>
+<rect x="2169.9" y="280.0" width="2.3" height="16.0" fill="rgb(48,150,166)"/>
+<title>runtime.gcDrainN  cum=0.04s (0.1%)</title>
+<rect x="2169.9" y="298.0" width="2.3" height="16.0" fill="rgb(117,166,48)"/>
+<title>runtime.scanSpan  cum=0.04s (0.1%)</title>
+<rect x="2169.9" y="316.0" width="1.6" height="16.0" fill="rgb(48,139,166)"/>
+<title>runtime.scanObjectsSmall  cum=0.03s (0.1%)</title>
+<rect x="2169.9" y="334.0" width="0.5" height="16.0" fill="rgb(115,166,48)"/>
+<title>runtime.findObject  cum=0.01s (0.0%)</title>
+<rect x="2170.6" y="334.0" width="0.5" height="16.0" fill="rgb(48,139,166)"/>
+<title>runtime.greyobject  cum=0.01s (0.0%)</title>
+<rect x="2170.6" y="352.0" width="0.5" height="16.0" fill="rgb(166,48,139)"/>
+<title>runtime.markBits.setMarked (inline)  cum=0.01s (0.0%)</title>
+<rect x="2172.0" y="316.0" width="0.5" height="16.0" fill="rgb(48,111,166)"/>
+<title>runtime.spanSetScans  cum=0.01s (0.0%)</title>
+<rect x="2172.7" y="154.0" width="4.4" height="16.0" fill="rgb(48,156,166)"/>
+<title>sync.(*Pool).Get  cum=0.07s (0.2%)</title>
+<rect x="2172.7" y="172.0" width="3.7" height="16.0" fill="rgb(48,135,166)"/>
+<title>sync.(*Pool).getSlow  cum=0.06s (0.2%)</title>
+<rect x="2172.7" y="190.0" width="3.7" height="16.0" fill="rgb(48,166,54)"/>
+<title>sync.(*poolChain).popTail  cum=0.06s (0.2%)</title>
+<rect x="2172.7" y="208.0" width="2.3" height="16.0" fill="rgb(48,166,56)"/>
+<title>sync.(*poolDequeue).popTail  cum=0.04s (0.1%)</title>
+<rect x="2172.7" y="226.0" width="1.6" height="16.0" fill="rgb(48,48,166)"/>
+<title>sync/atomic.(*Uint64).CompareAndSwap (inline)  cum=0.03s (0.1%)</title>
+<rect x="2175.5" y="208.0" width="0.9" height="16.0" fill="rgb(48,148,166)"/>
+<title>sync/atomic.(*Pointer[go.shape.struct { sync.poolDequeue; sync.next sync/atomic.Pointer[sync.poolChainElt]; sync.prev sync/atomic.Pointer[sync.poolChainElt] }]).Load (inline)  cum=0.02s (0.1%)</title>
+<rect x="2176.8" y="172.0" width="0.5" height="16.0" fill="rgb(84,166,48)"/>
+<title>sync.(*poolChain).popHead  cum=0.01s (0.0%)</title>
+<rect x="2176.8" y="190.0" width="0.5" height="16.0" fill="rgb(166,89,48)"/>
+<title>sync.(*poolDequeue).popHead  cum=0.01s (0.0%)</title>
+<rect x="2177.5" y="154.0" width="0.5" height="16.0" fill="rgb(95,48,166)"/>
+<title>runtime.newobject  cum=0.01s (0.0%)</title>
+<rect x="2177.5" y="172.0" width="0.5" height="16.0" fill="rgb(99,166,48)"/>
+<title>runtime.mallocgc  cum=0.01s (0.0%)</title>
+<rect x="2177.5" y="190.0" width="0.5" height="16.0" fill="rgb(48,99,166)"/>
+<title>runtime.mallocgcSmallScanNoHeader  cum=0.01s (0.0%)</title>
+<rect x="2177.5" y="208.0" width="0.5" height="16.0" fill="rgb(166,48,142)"/>
+<title>runtime.nextFreeFast (inline)  cum=0.01s (0.0%)</title>
+<rect x="2196.3" y="118.0" width="25.9" height="16.0" fill="rgb(48,62,166)"/>
+<title>google.golang.org/grpc/mem.NewBuffer  cum=0.38s (1.1%)</title>
+<rect x="2196.3" y="136.0" width="11.3" height="16.0" fill="rgb(131,48,166)"/>
+<title>google.golang.org/grpc/mem.newBuffer (inline)  cum=0.17s (0.5%)</title>
+<rect x="2196.3" y="154.0" width="11.3" height="16.0" fill="rgb(48,156,166)"/>
+<title>sync.(*Pool).Get  cum=0.17s (0.5%)</title>
+<rect x="2196.3" y="172.0" width="7.1" height="16.0" fill="rgb(48,135,166)"/>
+<title>sync.(*Pool).getSlow  cum=0.11s (0.3%)</title>
+<rect x="2196.3" y="190.0" width="7.1" height="16.0" fill="rgb(48,166,54)"/>
+<title>sync.(*poolChain).popTail  cum=0.11s (0.3%)</title>
+<rect x="2196.3" y="208.0" width="4.4" height="16.0" fill="rgb(48,166,56)"/>
+<title>sync.(*poolDequeue).popTail  cum=0.07s (0.2%)</title>
+<rect x="2196.3" y="226.0" width="2.3" height="16.0" fill="rgb(48,48,166)"/>
+<title>sync/atomic.(*Uint64).CompareAndSwap (inline)  cum=0.04s (0.1%)</title>
+<rect x="2201.1" y="208.0" width="2.3" height="16.0" fill="rgb(48,148,166)"/>
+<title>sync/atomic.(*Pointer[go.shape.struct { sync.poolDequeue; sync.next sync/atomic.Pointer[sync.poolChainElt]; sync.prev sync/atomic.Pointer[sync.poolChainElt] }]).Load (inline)  cum=0.04s (0.1%)</title>
+<rect x="2203.9" y="172.0" width="3.0" height="16.0" fill="rgb(84,166,48)"/>
+<title>sync.(*poolChain).popHead  cum=0.05s (0.1%)</title>
+<rect x="2203.9" y="190.0" width="2.3" height="16.0" fill="rgb(166,89,48)"/>
+<title>sync.(*poolDequeue).popHead  cum=0.04s (0.1%)</title>
+<rect x="2203.9" y="208.0" width="0.9" height="16.0" fill="rgb(48,48,166)"/>
+<title>sync/atomic.(*Uint64).CompareAndSwap (inline)  cum=0.02s (0.1%)</title>
+<rect x="2207.4" y="172.0" width="0.5" height="16.0" fill="rgb(166,89,48)"/>
+<title>sync.(*Pool).pin  cum=0.01s (0.0%)</title>
+<rect x="2207.4" y="190.0" width="0.5" height="16.0" fill="rgb(139,48,166)"/>
+<title>sync.runtime_procPin  cum=0.01s (0.0%)</title>
+<rect x="2207.4" y="208.0" width="0.5" height="16.0" fill="rgb(48,78,166)"/>
+<title>runtime.procPin (inline)  cum=0.01s (0.0%)</title>
+<rect x="2224.0" y="100.0" width="14.1" height="16.0" fill="rgb(52,48,166)"/>
+<title>golang.org/x/net/http2.(*Framer).ReadFrameHeader  cum=0.21s (0.6%)</title>
+<rect x="2224.0" y="118.0" width="10.6" height="16.0" fill="rgb(48,166,117)"/>
+<title>golang.org/x/net/http2.readFrameHeader  cum=0.16s (0.5%)</title>
+<rect x="2224.0" y="136.0" width="9.9" height="16.0" fill="rgb(166,48,89)"/>
+<title>io.ReadFull (inline)  cum=0.15s (0.4%)</title>
+<rect x="2224.0" y="154.0" width="9.2" height="16.0" fill="rgb(48,166,162)"/>
+<title>io.ReadAtLeast  cum=0.14s (0.4%)</title>
+<rect x="2224.0" y="172.0" width="7.1" height="16.0" fill="rgb(166,123,48)"/>
+<title>google.golang.org/grpc/internal/transport/readyreader.(*bufReadyReader).Read  cum=0.11s (0.3%)</title>
+<rect x="2224.0" y="190.0" width="7.1" height="16.0" fill="rgb(166,48,97)"/>
+<title>google.golang.org/grpc/internal/transport/readyreader.(*nonBlockingReader).ReadOnReady  cum=0.11s (0.3%)</title>
+<rect x="2224.0" y="208.0" width="7.1" height="16.0" fill="rgb(166,162,48)"/>
+<title>net.(*rawConn).Read  cum=0.11s (0.3%)</title>
+<rect x="2224.0" y="226.0" width="7.1" height="16.0" fill="rgb(166,158,48)"/>
+<title>internal/poll.(*FD).RawRead  cum=0.11s (0.3%)</title>
+<rect x="2224.0" y="244.0" width="7.1" height="16.0" fill="rgb(89,166,48)"/>
+<title>google.golang.org/grpc/internal/transport/readyreader.NewNonBlocking.func1  cum=0.11s (0.3%)</title>
+<rect x="2224.0" y="262.0" width="7.1" height="16.0" fill="rgb(166,48,50)"/>
+<title>google.golang.org/grpc/internal/transport/readyreader.sysRead (inline)  cum=0.11s (0.3%)</title>
+<rect x="2224.0" y="280.0" width="7.1" height="16.0" fill="rgb(166,48,164)"/>
+<title>syscall.Read (inline)  cum=0.11s (0.3%)</title>
+<rect x="2224.0" y="298.0" width="7.1" height="16.0" fill="rgb(166,48,140)"/>
+<title>syscall.read  cum=0.11s (0.3%)</title>
+<rect x="2224.0" y="316.0" width="7.1" height="16.0" fill="rgb(48,158,166)"/>
+<title>syscall.Syscall  cum=0.11s (0.3%)</title>
+<rect x="2224.0" y="334.0" width="7.1" height="16.0" fill="rgb(166,48,58)"/>
+<title>syscall.RawSyscall6  cum=0.11s (0.3%)</title>
+<rect x="2224.0" y="352.0" width="7.1" height="16.0" fill="rgb(52,166,48)"/>
+<title>internal/runtime/syscall/linux.Syscall6  cum=0.11s (0.3%)</title>
+<rect x="2238.6" y="100.0" width="0.5" height="16.0" fill="rgb(48,154,166)"/>
+<title>golang.org/x/net/http2.(*Framer).ReadFrameForHeader  cum=0.01s (0.0%)</title>
+<rect x="2238.6" y="118.0" width="0.5" height="16.0" fill="rgb(164,48,166)"/>
+<title>golang.org/x/net/http2.(*Framer).readMetaFrame  cum=0.01s (0.0%)</title>
+<rect x="2238.6" y="136.0" width="0.5" height="16.0" fill="rgb(95,48,166)"/>
+<title>runtime.newobject  cum=0.01s (0.0%)</title>
+<rect x="2238.6" y="154.0" width="0.5" height="16.0" fill="rgb(99,166,48)"/>
+<title>runtime.mallocgc  cum=0.01s (0.0%)</title>
+<rect x="2238.6" y="172.0" width="0.5" height="16.0" fill="rgb(48,99,166)"/>
+<title>runtime.mallocgcSmallScanNoHeader  cum=0.01s (0.0%)</title>
+<rect x="2238.6" y="190.0" width="0.5" height="16.0" fill="rgb(166,48,142)"/>
+<title>runtime.nextFreeFast (inline)  cum=0.01s (0.0%)</title>
+<rect x="2240.6" y="82.0" width="24.5" height="16.0" fill="rgb(137,48,166)"/>
+<title>google.golang.org/grpc/internal/transport.(*http2Client).handleData  cum=0.36s (1.0%)</title>
+<rect x="2240.6" y="100.0" width="10.6" height="16.0" fill="rgb(166,48,160)"/>
+<title>google.golang.org/grpc/internal/transport.(*Stream).write (inline)  cum=0.16s (0.5%)</title>
+<rect x="2240.6" y="118.0" width="10.6" height="16.0" fill="rgb(129,48,166)"/>
+<title>google.golang.org/grpc/internal/transport.(*recvBuffer).put  cum=0.16s (0.5%)</title>
+<rect x="2240.6" y="136.0" width="6.4" height="16.0" fill="rgb(68,48,166)"/>
+<title>runtime.growslice  cum=0.10s (0.3%)</title>
+<rect x="2240.6" y="154.0" width="4.4" height="16.0" fill="rgb(99,166,48)"/>
+<title>runtime.mallocgc  cum=0.07s (0.2%)</title>
+<rect x="2240.6" y="172.0" width="3.7" height="16.0" fill="rgb(48,166,101)"/>
+<title>runtime.mallocgcSmallScanHeader  cum=0.06s (0.2%)</title>
+<rect x="2240.6" y="190.0" width="1.6" height="16.0" fill="rgb(166,48,58)"/>
+<title>runtime.(*mcache).nextFree  cum=0.03s (0.1%)</title>
+<rect x="2240.6" y="208.0" width="1.6" height="16.0" fill="rgb(166,48,129)"/>
+<title>runtime.(*mcache).refill  cum=0.03s (0.1%)</title>
+<rect x="2240.6" y="226.0" width="0.9" height="16.0" fill="rgb(166,48,62)"/>
+<title>runtime.(*mcentral).cacheSpan  cum=0.02s (0.1%)</title>
+<rect x="2240.6" y="244.0" width="0.9" height="16.0" fill="rgb(166,127,48)"/>
+<title>runtime.(*mcentral).grow  cum=0.02s (0.1%)</title>
+<rect x="2240.6" y="262.0" width="0.9" height="16.0" fill="rgb(109,48,166)"/>
+<title>runtime.(*mheap).alloc  cum=0.02s (0.1%)</title>
+<rect x="2240.6" y="280.0" width="0.9" height="16.0" fill="rgb(166,70,48)"/>
+<title>runtime.systemstack  cum=0.02s (0.1%)</title>
+<rect x="2240.6" y="298.0" width="0.9" height="16.0" fill="rgb(166,64,48)"/>
+<title>runtime.(*mheap).alloc.func1  cum=0.02s (0.1%)</title>
+<rect x="2240.6" y="316.0" width="0.9" height="16.0" fill="rgb(52,166,48)"/>
+<title>runtime.(*mheap).allocSpan  cum=0.02s (0.1%)</title>
+<rect x="2240.6" y="334.0" width="0.5" height="16.0" fill="rgb(121,48,166)"/>
+<title>runtime.lock (inline)  cum=0.01s (0.0%)</title>
+<rect x="2242.0" y="226.0" width="0.5" height="16.0" fill="rgb(166,48,127)"/>
+<title>runtime.(*mcentral).uncacheSpan  cum=0.01s (0.0%)</title>
+<rect x="2242.0" y="244.0" width="0.5" height="16.0" fill="rgb(121,166,48)"/>
+<title>runtime.(*spanSet).push  cum=0.01s (0.0%)</title>
+<rect x="2242.7" y="190.0" width="0.9" height="16.0" fill="rgb(166,48,142)"/>
+<title>runtime.nextFreeFast (inline)  cum=0.02s (0.1%)</title>
+<rect x="2244.1" y="190.0" width="0.5" height="16.0" fill="rgb(48,62,166)"/>
+<title>runtime.heapSetTypeSmallHeader (inline)  cum=0.01s (0.0%)</title>
+<rect x="2244.8" y="172.0" width="0.5" height="16.0" fill="rgb(166,48,60)"/>
+<title>runtime.deductAssistCredit  cum=0.01s (0.0%)</title>
+<rect x="2244.8" y="190.0" width="0.5" height="16.0" fill="rgb(166,82,48)"/>
+<title>runtime.gcAssistAlloc  cum=0.01s (0.0%)</title>
+<rect x="2244.8" y="208.0" width="0.5" height="16.0" fill="rgb(166,70,48)"/>
+<title>runtime.systemstack  cum=0.01s (0.0%)</title>
+<rect x="2244.8" y="226.0" width="0.5" height="16.0" fill="rgb(48,166,52)"/>
+<title>runtime.gcAssistAlloc.func2  cum=0.01s (0.0%)</title>
+<rect x="2244.8" y="244.0" width="0.5" height="16.0" fill="rgb(48,166,82)"/>
+<title>runtime.gcAssistAlloc1  cum=0.01s (0.0%)</title>
+<rect x="2244.8" y="262.0" width="0.5" height="16.0" fill="rgb(48,150,166)"/>
+<title>runtime.gcDrainN  cum=0.01s (0.0%)</title>
+<rect x="2244.8" y="280.0" width="0.5" height="16.0" fill="rgb(48,113,166)"/>
+<title>runtime.scanObject  cum=0.01s (0.0%)</title>
+<rect x="2244.8" y="298.0" width="0.5" height="16.0" fill="rgb(91,48,166)"/>
+<title>runtime.typePointers.next  cum=0.01s (0.0%)</title>
+<rect x="2245.5" y="154.0" width="1.6" height="16.0" fill="rgb(166,121,48)"/>
+<title>runtime.memmove  cum=0.03s (0.1%)</title>
+<rect x="2247.6" y="136.0" width="2.3" height="16.0" fill="rgb(48,164,166)"/>
+<title>sync.(*Mutex).Unlock (inline)  cum=0.04s (0.1%)</title>
+<rect x="2247.6" y="154.0" width="2.3" height="16.0" fill="rgb(48,166,144)"/>
+<title>internal/sync.(*Mutex).Unlock (inline)  cum=0.04s (0.1%)</title>
+<rect x="2250.4" y="136.0" width="0.5" height="16.0" fill="rgb(150,48,166)"/>
+<title>runtime.selectnbsend  cum=0.01s (0.0%)</title>
+<rect x="2250.4" y="154.0" width="0.5" height="16.0" fill="rgb(80,48,166)"/>
+<title>runtime.chansend  cum=0.01s (0.0%)</title>
+<rect x="2250.4" y="172.0" width="0.5" height="16.0" fill="rgb(48,166,131)"/>
+<title>runtime.send  cum=0.01s (0.0%)</title>
+<rect x="2250.4" y="190.0" width="0.5" height="16.0" fill="rgb(95,166,48)"/>
+<title>runtime.goready (inline)  cum=0.01s (0.0%)</title>
+<rect x="2250.4" y="208.0" width="0.5" height="16.0" fill="rgb(166,70,48)"/>
+<title>runtime.systemstack  cum=0.01s (0.0%)</title>
+<rect x="2250.4" y="226.0" width="0.5" height="16.0" fill="rgb(99,166,48)"/>
+<title>runtime.send.goready.func1  cum=0.01s (0.0%)</title>
+<rect x="2250.4" y="244.0" width="0.5" height="16.0" fill="rgb(115,166,48)"/>
+<title>runtime.ready  cum=0.01s (0.0%)</title>
+<rect x="2250.4" y="262.0" width="0.5" height="16.0" fill="rgb(48,84,166)"/>
+<title>runtime.runqput  cum=0.01s (0.0%)</title>
+<rect x="2251.1" y="136.0" width="0.5" height="16.0" fill="rgb(166,117,48)"/>
+<title>sync.(*Mutex).Lock (inline)  cum=0.01s (0.0%)</title>
+<rect x="2251.1" y="154.0" width="0.5" height="16.0" fill="rgb(166,87,48)"/>
+<title>internal/sync.(*Mutex).Lock (inline)  cum=0.01s (0.0%)</title>
+<rect x="2251.7" y="100.0" width="4.4" height="16.0" fill="rgb(48,97,166)"/>
+<title>google.golang.org/grpc/internal/transport.(*controlBuffer).put (inline)  cum=0.07s (0.2%)</title>
+<rect x="2251.7" y="118.0" width="4.4" height="16.0" fill="rgb(166,48,150)"/>
+<title>google.golang.org/grpc/internal/transport.(*controlBuffer).executeAndPut  cum=0.07s (0.2%)</title>
+<rect x="2251.7" y="136.0" width="2.3" height="16.0" fill="rgb(48,97,166)"/>
+<title>google.golang.org/grpc/internal/transport.(*itemList).enqueue  cum=0.04s (0.1%)</title>
+<rect x="2251.7" y="154.0" width="1.6" height="16.0" fill="rgb(48,156,166)"/>
+<title>sync.(*Pool).Get  cum=0.03s (0.1%)</title>
+<rect x="2251.7" y="172.0" width="0.5" height="16.0" fill="rgb(48,135,166)"/>
+<title>sync.(*Pool).getSlow  cum=0.01s (0.0%)</title>
+<rect x="2251.7" y="190.0" width="0.5" height="16.0" fill="rgb(48,166,54)"/>
+<title>sync.(*poolChain).popTail  cum=0.01s (0.0%)</title>
+<rect x="2251.7" y="208.0" width="0.5" height="16.0" fill="rgb(48,148,166)"/>
+<title>sync/atomic.(*Pointer[go.shape.struct { sync.poolDequeue; sync.next sync/atomic.Pointer[sync.poolChainElt]; sync.prev sync/atomic.Pointer[sync.poolChainElt] }]).Load (inline)  cum=0.01s (0.0%)</title>
+<rect x="2254.5" y="136.0" width="1.6" height="16.0" fill="rgb(150,48,166)"/>
+<title>runtime.selectnbsend  cum=0.03s (0.1%)</title>
+<rect x="2254.5" y="154.0" width="1.6" height="16.0" fill="rgb(80,48,166)"/>
+<title>runtime.chansend  cum=0.03s (0.1%)</title>
+<rect x="2254.5" y="172.0" width="0.5" height="16.0" fill="rgb(48,74,166)"/>
+<title>runtime.(*waitq).dequeue (inline)  cum=0.01s (0.0%)</title>
+<rect x="2254.5" y="190.0" width="0.5" height="16.0" fill="rgb(97,48,166)"/>
+<title>internal/runtime/atomic.(*Uint32).CompareAndSwap (inline)  cum=0.01s (0.0%)</title>
+<rect x="2255.2" y="172.0" width="0.5" height="16.0" fill="rgb(48,166,131)"/>
+<title>runtime.send  cum=0.01s (0.0%)</title>
+<rect x="2255.2" y="190.0" width="0.5" height="16.0" fill="rgb(95,166,48)"/>
+<title>runtime.goready (inline)  cum=0.01s (0.0%)</title>
+<rect x="2255.2" y="208.0" width="0.5" height="16.0" fill="rgb(166,70,48)"/>
+<title>runtime.systemstack  cum=0.01s (0.0%)</title>
+<rect x="2255.2" y="226.0" width="0.5" height="16.0" fill="rgb(99,166,48)"/>
+<title>runtime.send.goready.func1  cum=0.01s (0.0%)</title>
+<rect x="2255.2" y="244.0" width="0.5" height="16.0" fill="rgb(115,166,48)"/>
+<title>runtime.ready  cum=0.01s (0.0%)</title>
+<rect x="2256.6" y="100.0" width="2.3" height="16.0" fill="rgb(166,48,62)"/>
+<title>google.golang.org/grpc/internal/transport.(*bdpEstimator).add  cum=0.04s (0.1%)</title>
+<rect x="2256.6" y="118.0" width="0.9" height="16.0" fill="rgb(166,117,48)"/>
+<title>sync.(*Mutex).Lock (inline)  cum=0.02s (0.1%)</title>
+<rect x="2256.6" y="136.0" width="0.9" height="16.0" fill="rgb(166,87,48)"/>
+<title>internal/sync.(*Mutex).Lock (inline)  cum=0.02s (0.1%)</title>
+<rect x="2258.0" y="118.0" width="0.9" height="16.0" fill="rgb(48,166,84)"/>
+<title>sync.(*Mutex).Unlock  cum=0.02s (0.1%)</title>
+<rect x="2258.0" y="136.0" width="0.9" height="16.0" fill="rgb(48,166,144)"/>
+<title>internal/sync.(*Mutex).Unlock (inline)  cum=0.02s (0.1%)</title>
+<rect x="2259.4" y="100.0" width="1.6" height="16.0" fill="rgb(48,166,125)"/>
+<title>google.golang.org/grpc/internal/transport.(*http2Client).getStream  cum=0.03s (0.1%)</title>
+<rect x="2259.4" y="118.0" width="0.9" height="16.0" fill="rgb(48,166,84)"/>
+<title>google.golang.org/grpc/internal/transport.(*parsedDataFrame).Header  cum=0.02s (0.1%)</title>
+<rect x="2260.8" y="118.0" width="0.5" height="16.0" fill="rgb(48,164,166)"/>
+<title>sync.(*Mutex).Unlock (inline)  cum=0.01s (0.0%)</title>
+<rect x="2260.8" y="136.0" width="0.5" height="16.0" fill="rgb(48,166,144)"/>
+<title>internal/sync.(*Mutex).Unlock (inline)  cum=0.01s (0.0%)</title>
+<rect x="2261.5" y="100.0" width="0.9" height="16.0" fill="rgb(109,48,166)"/>
+<title>google.golang.org/grpc/internal/transport.(*inFlow).onData  cum=0.02s (0.1%)</title>
+<rect x="2261.5" y="118.0" width="0.5" height="16.0" fill="rgb(166,117,48)"/>
+<title>sync.(*Mutex).Lock (inline)  cum=0.01s (0.0%)</title>
+<rect x="2261.5" y="136.0" width="0.5" height="16.0" fill="rgb(166,87,48)"/>
+<title>internal/sync.(*Mutex).Lock (inline)  cum=0.01s (0.0%)</title>
+<rect x="2262.8" y="100.0" width="0.9" height="16.0" fill="rgb(146,166,48)"/>
+<title>google.golang.org/grpc/mem.(*buffer).Ref  cum=0.02s (0.1%)</title>
+<rect x="2262.8" y="118.0" width="0.9" height="16.0" fill="rgb(125,166,48)"/>
+<title>sync/atomic.(*Int32).Add (inline)  cum=0.02s (0.1%)</title>
+<rect x="2265.6" y="82.0" width="7.1" height="16.0" fill="rgb(137,48,166)"/>
+<title>time.Now  cum=0.11s (0.3%)</title>
+<rect x="2265.6" y="100.0" width="7.1" height="16.0" fill="rgb(152,48,166)"/>
+<title>time.runtimeNow  cum=0.11s (0.3%)</title>
+<rect x="2265.6" y="118.0" width="7.1" height="16.0" fill="rgb(166,48,164)"/>
+<title>time.now  cum=0.11s (0.3%)</title>
+<rect x="2265.6" y="136.0" width="3.0" height="16.0" fill="rgb(56,166,48)"/>
+<title>runtime.nanotime (inline)  cum=0.05s (0.1%)</title>
+<rect x="2273.2" y="82.0" width="0.9" height="16.0" fill="rgb(166,89,48)"/>
+<title>google.golang.org/grpc/mem.(*buffer).Free  cum=0.02s (0.1%)</title>
+<rect x="2273.2" y="100.0" width="0.5" height="16.0" fill="rgb(125,166,48)"/>
+<title>sync/atomic.(*Int32).Add (inline)  cum=0.01s (0.0%)</title>
+<rect x="2275.3" y="64.0" width="43.9" height="16.0" fill="rgb(166,152,48)"/>
+<title>runtime.gcBgMarkWorker  cum=0.64s (1.9%)</title>
+<rect x="2275.3" y="82.0" width="43.9" height="16.0" fill="rgb(166,70,48)"/>
+<title>runtime.systemstack  cum=0.64s (1.9%)</title>
+<rect x="2275.3" y="100.0" width="43.9" height="16.0" fill="rgb(84,48,166)"/>
+<title>runtime.gcBgMarkWorker.func2  cum=0.64s (1.9%)</title>
+<rect x="2275.3" y="118.0" width="22.4" height="16.0" fill="rgb(48,166,97)"/>
+<title>runtime.gcDrainMarkWorkerDedicated (inline)  cum=0.33s (1.0%)</title>
+<rect x="2275.3" y="136.0" width="22.4" height="16.0" fill="rgb(48,166,62)"/>
+<title>runtime.gcDrain  cum=0.33s (1.0%)</title>
+<rect x="2275.3" y="154.0" width="14.8" height="16.0" fill="rgb(48,166,146)"/>
+<title>runtime.markroot  cum=0.22s (0.6%)</title>
+<rect x="2275.3" y="172.0" width="14.1" height="16.0" fill="rgb(48,52,166)"/>
+<title>runtime.markroot.func1  cum=0.21s (0.6%)</title>
+<rect x="2275.3" y="190.0" width="14.1" height="16.0" fill="rgb(166,48,111)"/>
+<title>runtime.suspendG  cum=0.21s (0.6%)</title>
+<rect x="2275.3" y="208.0" width="5.7" height="16.0" fill="rgb(56,166,48)"/>
+<title>runtime.nanotime (inline)  cum=0.09s (0.3%)</title>
+<rect x="2281.6" y="208.0" width="3.7" height="16.0" fill="rgb(84,48,166)"/>
+<title>runtime.osyield  cum=0.06s (0.2%)</title>
+<rect x="2285.7" y="208.0" width="1.6" height="16.0" fill="rgb(166,52,48)"/>
+<title>runtime.procyield (inline)  cum=0.03s (0.1%)</title>
+<rect x="2285.7" y="226.0" width="1.6" height="16.0" fill="rgb(48,166,121)"/>
+<title>runtime.procyieldAsm  cum=0.03s (0.1%)</title>
+<rect x="2289.9" y="172.0" width="0.5" height="16.0" fill="rgb(129,166,48)"/>
+<title>runtime.markrootBlock  cum=0.01s (0.0%)</title>
+<rect x="2289.9" y="190.0" width="0.5" height="16.0" fill="rgb(166,156,48)"/>
+<title>runtime.scanblock  cum=0.01s (0.0%)</title>
+<rect x="2289.9" y="208.0" width="0.5" height="16.0" fill="rgb(48,139,166)"/>
+<title>runtime.greyobject  cum=0.01s (0.0%)</title>
+<rect x="2289.9" y="226.0" width="0.5" height="16.0" fill="rgb(166,48,139)"/>
+<title>runtime.markBits.setMarked (inline)  cum=0.01s (0.0%)</title>
+<rect x="2290.6" y="154.0" width="4.4" height="16.0" fill="rgb(48,113,166)"/>
+<title>runtime.scanObject  cum=0.07s (0.2%)</title>
+<rect x="2290.6" y="172.0" width="3.0" height="16.0" fill="rgb(91,48,166)"/>
+<title>runtime.typePointers.next  cum=0.05s (0.1%)</title>
+<rect x="2295.4" y="154.0" width="2.3" height="16.0" fill="rgb(117,166,48)"/>
+<title>runtime.scanSpan  cum=0.04s (0.1%)</title>
+<rect x="2295.4" y="172.0" width="2.3" height="16.0" fill="rgb(48,139,166)"/>
+<title>runtime.scanObjectsSmall  cum=0.04s (0.1%)</title>
+<rect x="2295.4" y="190.0" width="0.9" height="16.0" fill="rgb(48,139,166)"/>
+<title>runtime.greyobject  cum=0.02s (0.1%)</title>
+<rect x="2296.8" y="190.0" width="0.5" height="16.0" fill="rgb(115,166,48)"/>
+<title>runtime.findObject  cum=0.01s (0.0%)</title>
+<rect x="2297.5" y="190.0" width="0.5" height="16.0" fill="rgb(131,166,48)"/>
+<title>runtime.tryDeferToSpanScan  cum=0.01s (0.0%)</title>
+<rect x="2298.2" y="118.0" width="21.0" height="16.0" fill="rgb(166,166,48)"/>
+<title>runtime.gcDrainMarkWorkerIdle (inline)  cum=0.31s (0.9%)</title>
+<rect x="2298.2" y="136.0" width="21.0" height="16.0" fill="rgb(48,166,62)"/>
+<title>runtime.gcDrain  cum=0.31s (0.9%)</title>
+<rect x="2298.2" y="154.0" width="16.8" height="16.0" fill="rgb(48,166,146)"/>
+<title>runtime.markroot  cum=0.25s (0.7%)</title>
+<rect x="2298.2" y="172.0" width="16.1" height="16.0" fill="rgb(48,52,166)"/>
+<title>runtime.markroot.func1  cum=0.24s (0.7%)</title>
+<rect x="2298.2" y="190.0" width="16.1" height="16.0" fill="rgb(166,48,111)"/>
+<title>runtime.suspendG  cum=0.24s (0.7%)</title>
+<rect x="2298.2" y="208.0" width="10.6" height="16.0" fill="rgb(56,166,48)"/>
+<title>runtime.nanotime (inline)  cum=0.16s (0.5%)</title>
+<rect x="2309.3" y="208.0" width="4.4" height="16.0" fill="rgb(166,52,48)"/>
+<title>runtime.procyield (inline)  cum=0.07s (0.2%)</title>
+<rect x="2309.3" y="226.0" width="4.4" height="16.0" fill="rgb(48,166,121)"/>
+<title>runtime.procyieldAsm  cum=0.07s (0.2%)</title>
+<rect x="2314.9" y="172.0" width="0.5" height="16.0" fill="rgb(48,166,74)"/>
+<title>runtime.markrootSpans  cum=0.01s (0.0%)</title>
+<rect x="2315.6" y="154.0" width="1.6" height="16.0" fill="rgb(166,68,48)"/>
+<title>runtime.gcNextMarkRoot  cum=0.03s (0.1%)</title>
+<rect x="2315.6" y="172.0" width="1.6" height="16.0" fill="rgb(166,48,127)"/>
+<title>internal/runtime/atomic.(*Uint32).Add (inline)  cum=0.03s (0.1%)</title>
+<rect x="2317.6" y="154.0" width="0.9" height="16.0" fill="rgb(117,166,48)"/>
+<title>runtime.scanSpan  cum=0.02s (0.1%)</title>
+<rect x="2317.6" y="172.0" width="0.9" height="16.0" fill="rgb(48,139,166)"/>
+<title>runtime.scanObjectsSmall  cum=0.02s (0.1%)</title>
+<rect x="2319.0" y="154.0" width="0.5" height="16.0" fill="rgb(48,113,166)"/>
+<title>runtime.scanObject  cum=0.01s (0.0%)</title>
+<rect x="2319.0" y="172.0" width="0.5" height="16.0" fill="rgb(131,166,48)"/>
+<title>runtime.tryDeferToSpanScan  cum=0.01s (0.0%)</title>
+<rect x="2319.0" y="190.0" width="0.5" height="16.0" fill="rgb(101,166,48)"/>
+<title>runtime.(*spanInlineMarkBits).tryAcquire  cum=0.01s (0.0%)</title>
+<rect x="2319.0" y="208.0" width="0.5" height="16.0" fill="rgb(166,164,48)"/>
+<title>runtime.(*spanScanOwnership).load (inline)  cum=0.01s (0.0%)</title>
+<rect x="2319.7" y="64.0" width="21.7" height="16.0" fill="rgb(48,166,146)"/>
+<title>google.golang.org/grpc/internal/transport.NewHTTP2Client.func6  cum=0.32s (0.9%)</title>
+<rect x="2319.7" y="82.0" width="21.7" height="16.0" fill="rgb(48,166,72)"/>
+<title>google.golang.org/grpc/internal/transport.(*loopyWriter).run  cum=0.32s (0.9%)</title>
+<rect x="2319.7" y="100.0" width="20.3" height="16.0" fill="rgb(154,166,48)"/>
+<title>google.golang.org/grpc/internal/transport.(*bufWriter).Flush  cum=0.30s (0.9%)</title>
+<rect x="2319.7" y="118.0" width="20.3" height="16.0" fill="rgb(121,166,48)"/>
+<title>google.golang.org/grpc/internal/transport.(*bufWriter).flushKeepBuffer  cum=0.30s (0.9%)</title>
+<rect x="2319.7" y="136.0" width="20.3" height="16.0" fill="rgb(166,156,48)"/>
+<title>net.(*conn).Write  cum=0.30s (0.9%)</title>
+<rect x="2319.7" y="154.0" width="20.3" height="16.0" fill="rgb(48,139,166)"/>
+<title>net.(*netFD).Write  cum=0.30s (0.9%)</title>
+<rect x="2319.7" y="172.0" width="20.3" height="16.0" fill="rgb(48,113,166)"/>
+<title>internal/poll.(*FD).Write  cum=0.30s (0.9%)</title>
+<rect x="2319.7" y="190.0" width="20.3" height="16.0" fill="rgb(48,166,115)"/>
+<title>internal/poll.ignoringEINTRIO (inline)  cum=0.30s (0.9%)</title>
+<rect x="2319.7" y="208.0" width="20.3" height="16.0" fill="rgb(164,166,48)"/>
+<title>syscall.Write (inline)  cum=0.30s (0.9%)</title>
+<rect x="2319.7" y="226.0" width="20.3" height="16.0" fill="rgb(166,48,142)"/>
+<title>syscall.write  cum=0.30s (0.9%)</title>
+<rect x="2319.7" y="244.0" width="20.3" height="16.0" fill="rgb(48,158,166)"/>
+<title>syscall.Syscall  cum=0.30s (0.9%)</title>
+<rect x="2319.7" y="262.0" width="20.3" height="16.0" fill="rgb(166,48,58)"/>
+<title>syscall.RawSyscall6  cum=0.30s (0.9%)</title>
+<rect x="2319.7" y="280.0" width="20.3" height="16.0" fill="rgb(52,166,48)"/>
+<title>internal/runtime/syscall/linux.Syscall6  cum=0.30s (0.9%)</title>
+<rect x="2340.5" y="100.0" width="0.5" height="16.0" fill="rgb(86,48,166)"/>
+<title>google.golang.org/grpc/internal/transport.(*controlBuffer).get  cum=0.01s (0.0%)</title>
+<rect x="2340.5" y="118.0" width="0.5" height="16.0" fill="rgb(48,80,166)"/>
+<title>runtime.selectgo  cum=0.01s (0.0%)</title>
+<rect x="2340.5" y="136.0" width="0.5" height="16.0" fill="rgb(164,166,48)"/>
+<title>runtime.sellock  cum=0.01s (0.0%)</title>
+<rect x="2340.5" y="154.0" width="0.5" height="16.0" fill="rgb(121,48,166)"/>
+<title>runtime.lock (inline)  cum=0.01s (0.0%)</title>
+<rect x="2340.5" y="172.0" width="0.5" height="16.0" fill="rgb(166,158,48)"/>
+<title>runtime.lockWithRank (inline)  cum=0.01s (0.0%)</title>
+<rect x="2340.5" y="190.0" width="0.5" height="16.0" fill="rgb(48,166,87)"/>
+<title>runtime.lock2  cum=0.01s (0.0%)</title>
+<rect x="2341.2" y="100.0" width="0.5" height="16.0" fill="rgb(48,91,166)"/>
+<title>google.golang.org/grpc/internal/transport.(*loopyWriter).handle  cum=0.01s (0.0%)</title>
+<rect x="2341.2" y="118.0" width="0.5" height="16.0" fill="rgb(166,60,48)"/>
+<title>google.golang.org/grpc/internal/transport.(*loopyWriter).outgoingWindowUpdateHandler (inline)  cum=0.01s (0.0%)</title>
+<rect x="2341.9" y="64.0" width="12.0" height="16.0" fill="rgb(48,166,50)"/>
+<title>runtime.bgscavenge  cum=0.18s (0.5%)</title>
+<rect x="2341.9" y="82.0" width="12.0" height="16.0" fill="rgb(107,166,48)"/>
+<title>runtime.(*scavengerState).run  cum=0.18s (0.5%)</title>
+<rect x="2341.9" y="100.0" width="12.0" height="16.0" fill="rgb(166,48,129)"/>
+<title>runtime.(*scavengerState).init.func2  cum=0.18s (0.5%)</title>
+<rect x="2341.9" y="118.0" width="12.0" height="16.0" fill="rgb(166,48,54)"/>
+<title>runtime.(*pageAlloc).scavenge  cum=0.18s (0.5%)</title>
+<rect x="2341.9" y="136.0" width="12.0" height="16.0" fill="rgb(166,70,48)"/>
+<title>runtime.systemstack  cum=0.18s (0.5%)</title>
+<rect x="2341.9" y="154.0" width="12.0" height="16.0" fill="rgb(121,48,166)"/>
+<title>runtime.(*pageAlloc).scavenge.func1  cum=0.18s (0.5%)</title>
+<rect x="2341.9" y="172.0" width="12.0" height="16.0" fill="rgb(48,166,146)"/>
+<title>runtime.(*pageAlloc).scavengeOne  cum=0.18s (0.5%)</title>
+<rect x="2341.9" y="190.0" width="12.0" height="16.0" fill="rgb(166,95,48)"/>
+<title>runtime.sysUnused (inline)  cum=0.18s (0.5%)</title>
+<rect x="2341.9" y="208.0" width="12.0" height="16.0" fill="rgb(107,166,48)"/>
+<title>runtime.sysUnusedOS  cum=0.18s (0.5%)</title>
+<rect x="2341.9" y="226.0" width="12.0" height="16.0" fill="rgb(60,48,166)"/>
+<title>runtime.madvise  cum=0.18s (0.5%)</title>
+<rect x="2354.4" y="64.0" width="9.2" height="16.0" fill="rgb(48,148,166)"/>
+<title>runtime.mcall  cum=0.14s (0.4%)</title>
+<rect x="2354.4" y="82.0" width="8.5" height="16.0" fill="rgb(74,166,48)"/>
+<title>runtime.park_m  cum=0.13s (0.4%)</title>
+<rect x="2354.4" y="100.0" width="8.5" height="16.0" fill="rgb(166,48,64)"/>
+<title>runtime.schedule  cum=0.13s (0.4%)</title>
+<rect x="2354.4" y="118.0" width="5.7" height="16.0" fill="rgb(142,166,48)"/>
+<title>runtime.findRunnable  cum=0.09s (0.3%)</title>
+<rect x="2354.4" y="136.0" width="3.0" height="16.0" fill="rgb(48,166,140)"/>
+<title>runtime.netpoll  cum=0.05s (0.1%)</title>
+<rect x="2354.4" y="154.0" width="1.6" height="16.0" fill="rgb(48,166,119)"/>
+<title>internal/runtime/syscall/linux.EpollWait  cum=0.03s (0.1%)</title>
+<rect x="2354.4" y="172.0" width="1.6" height="16.0" fill="rgb(52,166,48)"/>
+<title>internal/runtime/syscall/linux.Syscall6  cum=0.03s (0.1%)</title>
+<rect x="2356.5" y="154.0" width="0.5" height="16.0" fill="rgb(166,160,48)"/>
+<title>internal/runtime/atomic.(*Uintptr).Load (inline)  cum=0.01s (0.0%)</title>
+<rect x="2357.9" y="136.0" width="0.9" height="16.0" fill="rgb(166,48,87)"/>
+<title>runtime.stealWork  cum=0.02s (0.1%)</title>
+<rect x="2357.9" y="154.0" width="0.5" height="16.0" fill="rgb(166,48,103)"/>
+<title>runtime.(*randomEnum).next (inline)  cum=0.01s (0.0%)</title>
+<rect x="2358.5" y="154.0" width="0.5" height="16.0" fill="rgb(48,95,166)"/>
+<title>runtime.runqsteal  cum=0.01s (0.0%)</title>
+<rect x="2358.5" y="172.0" width="0.5" height="16.0" fill="rgb(142,48,166)"/>
+<title>runtime.runqgrab  cum=0.01s (0.0%)</title>
+<rect x="2358.5" y="190.0" width="0.5" height="16.0" fill="rgb(48,166,80)"/>
+<title>runtime.usleep  cum=0.01s (0.0%)</title>
+<rect x="2359.2" y="136.0" width="0.5" height="16.0" fill="rgb(48,135,166)"/>
+<title>internal/runtime/atomic.(*Int32).Swap (inline)  cum=0.01s (0.0%)</title>
+<rect x="2359.9" y="136.0" width="0.5" height="16.0" fill="rgb(78,48,166)"/>
+<title>runtime.(*timers).check  cum=0.01s (0.0%)</title>
+<rect x="2359.9" y="154.0" width="0.5" height="16.0" fill="rgb(56,166,48)"/>
+<title>runtime.nanotime (inline)  cum=0.01s (0.0%)</title>
+<rect x="2360.6" y="118.0" width="0.9" height="16.0" fill="rgb(166,48,82)"/>
+<title>runtime.execute  cum=0.02s (0.1%)</title>
+<rect x="2360.6" y="136.0" width="0.9" height="16.0" fill="rgb(166,68,48)"/>
+<title>runtime.casgstatus  cum=0.02s (0.1%)</title>
+<rect x="2360.6" y="154.0" width="0.9" height="16.0" fill="rgb(97,48,166)"/>
+<title>internal/runtime/atomic.(*Uint32).CompareAndSwap (inline)  cum=0.02s (0.1%)</title>
+<rect x="2362.0" y="118.0" width="0.5" height="16.0" fill="rgb(140,166,48)"/>
+<title>runtime.resetspinning  cum=0.01s (0.0%)</title>
+<rect x="2362.0" y="136.0" width="0.5" height="16.0" fill="rgb(84,48,166)"/>
+<title>runtime.wakep  cum=0.01s (0.0%)</title>
+<rect x="2362.0" y="154.0" width="0.5" height="16.0" fill="rgb(162,48,166)"/>
+<title>runtime.startm  cum=0.01s (0.0%)</title>
+<rect x="2362.0" y="172.0" width="0.5" height="16.0" fill="rgb(86,48,166)"/>
+<title>runtime.notewakeup  cum=0.01s (0.0%)</title>
+<rect x="2362.0" y="190.0" width="0.5" height="16.0" fill="rgb(48,166,156)"/>
+<title>runtime.futexwakeup  cum=0.01s (0.0%)</title>
+<rect x="2362.0" y="208.0" width="0.5" height="16.0" fill="rgb(166,103,48)"/>
+<title>runtime.futex  cum=0.01s (0.0%)</title>
+<rect x="2363.4" y="82.0" width="0.5" height="16.0" fill="rgb(87,166,48)"/>
+<title>runtime.exitsyscallNoP  cum=0.01s (0.0%)</title>
+<rect x="2363.4" y="100.0" width="0.5" height="16.0" fill="rgb(48,109,166)"/>
+<title>runtime.stopm  cum=0.01s (0.0%)</title>
+<rect x="2363.4" y="118.0" width="0.5" height="16.0" fill="rgb(166,48,60)"/>
+<title>runtime.mPark (inline)  cum=0.01s (0.0%)</title>
+<rect x="2363.4" y="136.0" width="0.5" height="16.0" fill="rgb(48,125,166)"/>
+<title>runtime.notesleep  cum=0.01s (0.0%)</title>
+<rect x="2363.4" y="154.0" width="0.5" height="16.0" fill="rgb(166,48,70)"/>
+<title>runtime.futexsleep  cum=0.01s (0.0%)</title>
+<rect x="2363.4" y="172.0" width="0.5" height="16.0" fill="rgb(166,103,48)"/>
+<title>runtime.futex  cum=0.01s (0.0%)</title>
+<rect x="2364.1" y="64.0" width="8.5" height="16.0" fill="rgb(166,72,48)"/>
+<title>runtime.bgsweep  cum=0.13s (0.4%)</title>
+<rect x="2364.1" y="82.0" width="8.5" height="16.0" fill="rgb(48,166,66)"/>
+<title>runtime.sweepone  cum=0.13s (0.4%)</title>
+<rect x="2364.1" y="100.0" width="7.1" height="16.0" fill="rgb(164,166,48)"/>
+<title>runtime.(*sweepLocked).sweep  cum=0.11s (0.3%)</title>
+<rect x="2364.1" y="118.0" width="4.4" height="16.0" fill="rgb(156,166,48)"/>
+<title>runtime.(*mheap).freeSpan (inline)  cum=0.07s (0.2%)</title>
+<rect x="2364.1" y="136.0" width="4.4" height="16.0" fill="rgb(166,70,48)"/>
+<title>runtime.systemstack  cum=0.07s (0.2%)</title>
+<rect x="2364.1" y="154.0" width="4.4" height="16.0" fill="rgb(48,166,135)"/>
+<title>runtime.(*sweepLocked).sweep.(*mheap).freeSpan.func2  cum=0.07s (0.2%)</title>
+<rect x="2364.1" y="172.0" width="3.0" height="16.0" fill="rgb(62,48,166)"/>
+<title>runtime.(*mheap).freeSpanLocked  cum=0.05s (0.1%)</title>
+<rect x="2364.1" y="190.0" width="0.9" height="16.0" fill="rgb(166,105,48)"/>
+<title>runtime.(*pageAlloc).free  cum=0.02s (0.1%)</title>
+<rect x="2364.1" y="208.0" width="0.9" height="16.0" fill="rgb(48,166,89)"/>
+<title>runtime.(*scavengeIndex).free  cum=0.02s (0.1%)</title>
+<rect x="2365.5" y="190.0" width="0.5" height="16.0" fill="rgb(48,166,87)"/>
+<title>runtime.(*sysMemStat).add  cum=0.01s (0.0%)</title>
+<rect x="2367.6" y="172.0" width="0.5" height="16.0" fill="rgb(48,129,166)"/>
+<title>runtime.lock  cum=0.01s (0.0%)</title>
+<rect x="2367.6" y="190.0" width="0.5" height="16.0" fill="rgb(166,158,48)"/>
+<title>runtime.lockWithRank (inline)  cum=0.01s (0.0%)</title>
+<rect x="2367.6" y="208.0" width="0.5" height="16.0" fill="rgb(48,166,87)"/>
+<title>runtime.lock2  cum=0.01s (0.0%)</title>
+<rect x="2368.3" y="172.0" width="0.5" height="16.0" fill="rgb(166,66,48)"/>
+<title>runtime.unlock  cum=0.01s (0.0%)</title>
+<rect x="2368.3" y="190.0" width="0.5" height="16.0" fill="rgb(54,166,48)"/>
+<title>runtime.unlockWithRank (inline)  cum=0.01s (0.0%)</title>
+<rect x="2368.3" y="208.0" width="0.5" height="16.0" fill="rgb(166,48,127)"/>
+<title>runtime.unlock2  cum=0.01s (0.0%)</title>
+<rect x="2368.3" y="226.0" width="0.5" height="16.0" fill="rgb(48,123,166)"/>
+<title>runtime.mutexSampleContention (inline)  cum=0.01s (0.0%)</title>
+<rect x="2369.0" y="118.0" width="0.5" height="16.0" fill="rgb(48,101,166)"/>
+<title>runtime.(*consistentHeapStats).acquire  cum=0.01s (0.0%)</title>
+<rect x="2369.6" y="118.0" width="0.5" height="16.0" fill="rgb(48,166,52)"/>
+<title>runtime.(*mspan).moveInlineMarks  cum=0.01s (0.0%)</title>
+<rect x="2370.3" y="118.0" width="0.5" height="16.0" fill="rgb(166,140,48)"/>
+<title>runtime.newMarkBits  cum=0.01s (0.0%)</title>
+<rect x="2370.3" y="136.0" width="0.5" height="16.0" fill="rgb(48,166,103)"/>
+<title>runtime.(*gcBitsArena).tryAlloc (inline)  cum=0.01s (0.0%)</title>
+<rect x="2371.7" y="100.0" width="0.9" height="16.0" fill="rgb(166,164,48)"/>
+<title>runtime.(*mheap).nextSpanForSweep  cum=0.02s (0.1%)</title>
+<rect x="2371.7" y="118.0" width="0.9" height="16.0" fill="rgb(72,48,166)"/>
+<title>runtime.(*spanSet).pop  cum=0.02s (0.1%)</title>
+<rect x="2371.7" y="136.0" width="0.5" height="16.0" fill="rgb(166,48,48)"/>
+<title>runtime.(*atomicHeadTailIndex).cas (inline)  cum=0.01s (0.0%)</title>
+<rect x="2371.7" y="154.0" width="0.5" height="16.0" fill="rgb(89,48,166)"/>
+<title>internal/runtime/atomic.(*Uint64).CompareAndSwap (inline)  cum=0.01s (0.0%)</title>
+<rect x="2372.4" y="136.0" width="0.5" height="16.0" fill="rgb(166,52,48)"/>
+<title>runtime.procyield (inline)  cum=0.01s (0.0%)</title>
+<rect x="2372.4" y="154.0" width="0.5" height="16.0" fill="rgb(48,166,121)"/>
+<title>runtime.procyieldAsm  cum=0.01s (0.0%)</title>
+<rect x="2373.1" y="64.0" width="7.8" height="16.0" fill="rgb(54,166,48)"/>
+<title>google.golang.org/grpc.(*Server).serveStreams.func2.1  cum=0.12s (0.3%)</title>
+<rect x="2373.1" y="82.0" width="7.8" height="16.0" fill="rgb(123,48,166)"/>
+<title>google.golang.org/grpc.(*Server).handleStream  cum=0.12s (0.3%)</title>
+<rect x="2373.1" y="100.0" width="7.8" height="16.0" fill="rgb(48,97,166)"/>
+<title>google.golang.org/grpc.(*Server).processUnaryRPC  cum=0.12s (0.3%)</title>
+<rect x="2373.1" y="118.0" width="7.8" height="16.0" fill="rgb(166,58,48)"/>
+<title>google.golang.org/grpc.(*Server).sendResponse  cum=0.12s (0.3%)</title>
+<rect x="2373.1" y="136.0" width="7.8" height="16.0" fill="rgb(48,166,70)"/>
+<title>google.golang.org/grpc.encode  cum=0.12s (0.3%)</title>
+<rect x="2373.1" y="154.0" width="7.8" height="16.0" fill="rgb(166,70,48)"/>
+<title>github.com/milvus-io/milvus/pkg/v3/util/resource.releaseCodec.Marshal  cum=0.12s (0.3%)</title>
+<rect x="2373.1" y="172.0" width="7.1" height="16.0" fill="rgb(144,48,166)"/>
+<title>google.golang.org/protobuf/proto.MarshalOptions.MarshalAppend  cum=0.11s (0.3%)</title>
+<rect x="2373.1" y="190.0" width="7.1" height="16.0" fill="rgb(166,48,140)"/>
+<title>google.golang.org/protobuf/proto.MarshalOptions.marshal  cum=0.11s (0.3%)</title>
+<rect x="2373.1" y="208.0" width="6.4" height="16.0" fill="rgb(166,48,119)"/>
+<title>google.golang.org/protobuf/internal/impl.(*MessageInfo).marshal  cum=0.10s (0.3%)</title>
+<rect x="2373.1" y="226.0" width="6.4" height="16.0" fill="rgb(129,166,48)"/>
+<title>google.golang.org/protobuf/internal/impl.(*MessageInfo).marshalAppendPointer  cum=0.10s (0.3%)</title>
+<rect x="2373.1" y="244.0" width="5.7" height="16.0" fill="rgb(166,133,48)"/>
+<title>google.golang.org/protobuf/internal/impl.appendMessageSliceInfo  cum=0.09s (0.3%)</title>
+<rect x="2373.1" y="262.0" width="5.7" height="16.0" fill="rgb(129,166,48)"/>
+<title>google.golang.org/protobuf/internal/impl.(*MessageInfo).marshalAppendPointer  cum=0.09s (0.3%)</title>
+<rect x="2373.1" y="280.0" width="5.7" height="16.0" fill="rgb(166,48,135)"/>
+<title>google.golang.org/protobuf/internal/impl.(*MessageInfo).initOneofFieldCoders.func4  cum=0.09s (0.3%)</title>
+<rect x="2373.1" y="298.0" width="5.7" height="16.0" fill="rgb(166,119,48)"/>
+<title>google.golang.org/protobuf/internal/impl.appendMessageInfo  cum=0.09s (0.3%)</title>
+<rect x="2373.1" y="316.0" width="5.7" height="16.0" fill="rgb(129,166,48)"/>
+<title>google.golang.org/protobuf/internal/impl.(*MessageInfo).marshalAppendPointer  cum=0.09s (0.3%)</title>
+<rect x="2373.1" y="334.0" width="5.7" height="16.0" fill="rgb(166,48,135)"/>
+<title>google.golang.org/protobuf/internal/impl.(*MessageInfo).initOneofFieldCoders.func4  cum=0.09s (0.3%)</title>
+<rect x="2373.1" y="352.0" width="5.7" height="16.0" fill="rgb(166,119,48)"/>
+<title>google.golang.org/protobuf/internal/impl.appendMessageInfo  cum=0.09s (0.3%)</title>
+<rect x="2373.1" y="370.0" width="5.7" height="16.0" fill="rgb(129,166,48)"/>
+<title>google.golang.org/protobuf/internal/impl.(*MessageInfo).marshalAppendPointer  cum=0.09s (0.3%)</title>
+<rect x="2373.1" y="388.0" width="5.7" height="16.0" fill="rgb(166,72,48)"/>
+<title>google.golang.org/protobuf/internal/impl.appendFloatPackedSlice  cum=0.09s (0.3%)</title>
+<rect x="2373.1" y="406.0" width="0.9" height="16.0" fill="rgb(60,166,48)"/>
+<title>google.golang.org/protobuf/encoding/protowire.AppendFixed32 (inline)  cum=0.02s (0.1%)</title>
+<rect x="2374.5" y="406.0" width="0.5" height="16.0" fill="rgb(95,166,48)"/>
+<title>math.Float32bits (inline)  cum=0.01s (0.0%)</title>
+<rect x="2379.4" y="244.0" width="0.5" height="16.0" fill="rgb(166,119,48)"/>
+<title>google.golang.org/protobuf/internal/impl.appendMessageInfo  cum=0.01s (0.0%)</title>
+<rect x="2379.4" y="262.0" width="0.5" height="16.0" fill="rgb(129,166,48)"/>
+<title>google.golang.org/protobuf/internal/impl.(*MessageInfo).marshalAppendPointer  cum=0.01s (0.0%)</title>
+<rect x="2380.0" y="208.0" width="0.5" height="16.0" fill="rgb(166,140,48)"/>
+<title>google.golang.org/protobuf/proto.checkInitialized  cum=0.01s (0.0%)</title>
+<rect x="2380.7" y="172.0" width="0.5" height="16.0" fill="rgb(80,48,166)"/>
+<title>google.golang.org/grpc/internal/mem.(*BinaryTieredBufferPool).Get  cum=0.01s (0.0%)</title>
+<rect x="2380.7" y="190.0" width="0.5" height="16.0" fill="rgb(48,135,166)"/>
+<title>google.golang.org/grpc/internal/mem.(*SimpleBufferPool).Get  cum=0.01s (0.0%)</title>
+<rect x="2380.7" y="208.0" width="0.5" height="16.0" fill="rgb(48,166,131)"/>
+<title>runtime.memclrNoHeapPointers  cum=0.01s (0.0%)</title>
+<rect x="2381.4" y="64.0" width="6.4" height="16.0" fill="rgb(95,48,166)"/>
+<title>golang.org/x/net/http2.(*serverConn).writeFrameAsync  cum=0.10s (0.3%)</title>
+<rect x="2381.4" y="82.0" width="6.4" height="16.0" fill="rgb(166,48,91)"/>
+<title>golang.org/x/net/http2.(*Framer).endWrite  cum=0.10s (0.3%)</title>
+<rect x="2381.4" y="100.0" width="6.4" height="16.0" fill="rgb(166,48,139)"/>
+<title>golang.org/x/net/http2.(*bufferedWriter).Write  cum=0.10s (0.3%)</title>
+<rect x="2381.4" y="118.0" width="6.4" height="16.0" fill="rgb(48,166,93)"/>
+<title>bufio.(*Writer).Write  cum=0.10s (0.3%)</title>
+<rect x="2381.4" y="136.0" width="6.4" height="16.0" fill="rgb(54,166,48)"/>
+<title>golang.org/x/net/http2.(*bufferedWriterTimeoutWriter).Write  cum=0.10s (0.3%)</title>
+<rect x="2381.4" y="154.0" width="6.4" height="16.0" fill="rgb(48,166,60)"/>
+<title>golang.org/x/net/http2.writeWithByteTimeout  cum=0.10s (0.3%)</title>
+<rect x="2381.4" y="172.0" width="6.4" height="16.0" fill="rgb(166,156,48)"/>
+<title>net.(*conn).Write  cum=0.10s (0.3%)</title>
+<rect x="2381.4" y="190.0" width="6.4" height="16.0" fill="rgb(48,139,166)"/>
+<title>net.(*netFD).Write  cum=0.10s (0.3%)</title>
+<rect x="2381.4" y="208.0" width="6.4" height="16.0" fill="rgb(48,113,166)"/>
+<title>internal/poll.(*FD).Write  cum=0.10s (0.3%)</title>
+<rect x="2381.4" y="226.0" width="6.4" height="16.0" fill="rgb(48,166,115)"/>
+<title>internal/poll.ignoringEINTRIO (inline)  cum=0.10s (0.3%)</title>
+<rect x="2381.4" y="244.0" width="5.7" height="16.0" fill="rgb(164,166,48)"/>
+<title>syscall.Write (inline)  cum=0.09s (0.3%)</title>
+<rect x="2381.4" y="262.0" width="5.7" height="16.0" fill="rgb(166,48,142)"/>
+<title>syscall.write  cum=0.09s (0.3%)</title>
+<rect x="2381.4" y="280.0" width="5.7" height="16.0" fill="rgb(48,158,166)"/>
+<title>syscall.Syscall  cum=0.09s (0.3%)</title>
+<rect x="2381.4" y="298.0" width="5.7" height="16.0" fill="rgb(166,48,58)"/>
+<title>syscall.RawSyscall6  cum=0.09s (0.3%)</title>
+<rect x="2381.4" y="316.0" width="5.7" height="16.0" fill="rgb(52,166,48)"/>
+<title>internal/runtime/syscall/linux.Syscall6  cum=0.09s (0.3%)</title>
+<rect x="2387.7" y="244.0" width="0.5" height="16.0" fill="rgb(48,129,166)"/>
+<title>runtime.ifaceeq  cum=0.01s (0.0%)</title>
+<rect x="2388.4" y="64.0" width="3.0" height="16.0" fill="rgb(166,48,91)"/>
+<title>net/http.(*conn).serve  cum=0.05s (0.1%)</title>
+<rect x="2388.4" y="82.0" width="3.0" height="16.0" fill="rgb(48,66,166)"/>
+<title>net/http.serverHandler.ServeHTTP  cum=0.05s (0.1%)</title>
+<rect x="2388.4" y="100.0" width="3.0" height="16.0" fill="rgb(146,48,166)"/>
+<title>golang.org/x/net/http2/h2c.h2cHandler.ServeHTTP  cum=0.05s (0.1%)</title>
+<rect x="2388.4" y="118.0" width="3.0" height="16.0" fill="rgb(48,166,115)"/>
+<title>golang.org/x/net/http2.(*Server).ServeConn (inline)  cum=0.05s (0.1%)</title>
+<rect x="2388.4" y="136.0" width="3.0" height="16.0" fill="rgb(166,48,97)"/>
+<title>golang.org/x/net/http2.(*Server).serveConn  cum=0.05s (0.1%)</title>
+<rect x="2388.4" y="154.0" width="3.0" height="16.0" fill="rgb(166,48,86)"/>
+<title>golang.org/x/net/http2.(*serverConn).serve  cum=0.05s (0.1%)</title>
+<rect x="2388.4" y="172.0" width="2.3" height="16.0" fill="rgb(123,166,48)"/>
+<title>golang.org/x/net/http2.(*serverConn).writeFrame  cum=0.04s (0.1%)</title>
+<rect x="2388.4" y="190.0" width="2.3" height="16.0" fill="rgb(60,166,48)"/>
+<title>golang.org/x/net/http2.(*serverConn).scheduleFrameWrite  cum=0.04s (0.1%)</title>
+<rect x="2388.4" y="208.0" width="2.3" height="16.0" fill="rgb(48,127,166)"/>
+<title>golang.org/x/net/http2.(*serverConn).startFrameWrite  cum=0.04s (0.1%)</title>
+<rect x="2388.4" y="226.0" width="2.3" height="16.0" fill="rgb(48,166,78)"/>
+<title>golang.org/x/net/http2.(*Framer).startWriteDataPadded  cum=0.04s (0.1%)</title>
+<rect x="2388.4" y="244.0" width="2.3" height="16.0" fill="rgb(166,121,48)"/>
+<title>runtime.memmove  cum=0.04s (0.1%)</title>
+<rect x="2391.1" y="172.0" width="0.5" height="16.0" fill="rgb(166,48,111)"/>
+<title>golang.org/x/net/http2.(*serverConn).wroteFrame  cum=0.01s (0.0%)</title>
+<rect x="2391.1" y="190.0" width="0.5" height="16.0" fill="rgb(60,166,48)"/>
+<title>golang.org/x/net/http2.(*serverConn).scheduleFrameWrite  cum=0.01s (0.0%)</title>
+<rect x="2391.1" y="208.0" width="0.5" height="16.0" fill="rgb(48,127,166)"/>
+<title>golang.org/x/net/http2.(*serverConn).startFrameWrite  cum=0.01s (0.0%)</title>
+<rect x="2391.1" y="226.0" width="0.5" height="16.0" fill="rgb(48,166,78)"/>
+<title>golang.org/x/net/http2.(*Framer).startWriteDataPadded  cum=0.01s (0.0%)</title>
+<rect x="2391.1" y="244.0" width="0.5" height="16.0" fill="rgb(166,121,48)"/>
+<title>runtime.memmove  cum=0.01s (0.0%)</title>
+<rect x="2391.8" y="64.0" width="0.9" height="16.0" fill="rgb(48,166,109)"/>
+<title>github.com/milvus-io/milvus/pkg/v3/config.(*refresher).refreshPeriodically  cum=0.02s (0.1%)</title>
+<rect x="2391.8" y="82.0" width="0.5" height="16.0" fill="rgb(166,76,48)"/>
+<title>github.com/milvus-io/milvus/pkg/v3/config.(*EtcdSource).refreshConfigurations  cum=0.01s (0.0%)</title>
+<rect x="2391.8" y="100.0" width="0.5" height="16.0" fill="rgb(48,140,166)"/>
+<title>github.com/milvus-io/milvus/pkg/v3/config.(*EtcdSource).refreshConfigurationsWithOpts  cum=0.01s (0.0%)</title>
+<rect x="2391.8" y="118.0" width="0.5" height="16.0" fill="rgb(78,48,166)"/>
+<title>go.etcd.io/etcd/client/v3.(*kv).Get  cum=0.01s (0.0%)</title>
+<rect x="2391.8" y="136.0" width="0.5" height="16.0" fill="rgb(89,48,166)"/>
+<title>go.etcd.io/etcd/client/v3.(*kv).Do  cum=0.01s (0.0%)</title>
+<rect x="2391.8" y="154.0" width="0.5" height="16.0" fill="rgb(166,87,48)"/>
+<title>go.etcd.io/etcd/client/v3.(*retryKVClient).Range  cum=0.01s (0.0%)</title>
+<rect x="2391.8" y="172.0" width="0.5" height="16.0" fill="rgb(48,166,146)"/>
+<title>go.etcd.io/etcd/api/v3/etcdserverpb.(*kVClient).Range  cum=0.01s (0.0%)</title>
+<rect x="2391.8" y="190.0" width="0.5" height="16.0" fill="rgb(166,48,113)"/>
+<title>google.golang.org/grpc.(*ClientConn).Invoke  cum=0.01s (0.0%)</title>
+<rect x="2391.8" y="208.0" width="0.5" height="16.0" fill="rgb(58,166,48)"/>
+<title>go.etcd.io/etcd/client/v3.(*Client).unaryClientInterceptor.func1  cum=0.01s (0.0%)</title>
+<rect x="2391.8" y="226.0" width="0.5" height="16.0" fill="rgb(166,105,48)"/>
+<title>google.golang.org/grpc.invoke  cum=0.01s (0.0%)</title>
+<rect x="2391.8" y="244.0" width="0.5" height="16.0" fill="rgb(148,48,166)"/>
+<title>google.golang.org/grpc.newClientStream  cum=0.01s (0.0%)</title>
+<rect x="2391.8" y="262.0" width="0.5" height="16.0" fill="rgb(107,48,166)"/>
+<title>google.golang.org/grpc.newClientStream.func3  cum=0.01s (0.0%)</title>
+<rect x="2391.8" y="280.0" width="0.5" height="16.0" fill="rgb(48,166,148)"/>
+<title>google.golang.org/grpc.newClientStreamWithParams  cum=0.01s (0.0%)</title>
+<rect x="2391.8" y="298.0" width="0.5" height="16.0" fill="rgb(48,140,166)"/>
+<title>google.golang.org/grpc.(*clientStream).withRetry  cum=0.01s (0.0%)</title>
+<rect x="2391.8" y="316.0" width="0.5" height="16.0" fill="rgb(166,48,142)"/>
+<title>google.golang.org/grpc.newClientStreamWithParams.func2  cum=0.01s (0.0%)</title>
+<rect x="2391.8" y="334.0" width="0.5" height="16.0" fill="rgb(48,107,166)"/>
+<title>google.golang.org/grpc.(*csAttempt).newStream  cum=0.01s (0.0%)</title>
+<rect x="2391.8" y="352.0" width="0.5" height="16.0" fill="rgb(48,166,103)"/>
+<title>google.golang.org/grpc/internal/transport.(*http2Client).NewStream  cum=0.01s (0.0%)</title>
+<rect x="2391.8" y="370.0" width="0.5" height="16.0" fill="rgb(48,166,82)"/>
+<title>google.golang.org/grpc/internal/transport.(*http2Client).createHeaderFields  cum=0.01s (0.0%)</title>
+<rect x="2391.8" y="388.0" width="0.5" height="16.0" fill="rgb(166,68,48)"/>
+<title>google.golang.org/grpc/internal/transport.(*http2Client).createAudience  cum=0.01s (0.0%)</title>
+<rect x="2391.8" y="406.0" width="0.5" height="16.0" fill="rgb(113,166,48)"/>
+<title>runtime.newstack  cum=0.01s (0.0%)</title>
+<rect x="2391.8" y="424.0" width="0.5" height="16.0" fill="rgb(48,166,82)"/>
+<title>runtime.copystack  cum=0.01s (0.0%)</title>
+<rect x="2391.8" y="442.0" width="0.5" height="16.0" fill="rgb(139,166,48)"/>
+<title>runtime.adjustframe  cum=0.01s (0.0%)</title>
+<rect x="2391.8" y="460.0" width="0.5" height="16.0" fill="rgb(164,48,166)"/>
+<title>runtime.(*stkframe).getStackMap  cum=0.01s (0.0%)</title>
+<rect x="2391.8" y="478.0" width="0.5" height="16.0" fill="rgb(48,166,158)"/>
+<title>runtime.pcdatavalue  cum=0.01s (0.0%)</title>
+<rect x="2391.8" y="496.0" width="0.5" height="16.0" fill="rgb(48,166,84)"/>
+<title>runtime.pcvalue  cum=0.01s (0.0%)</title>
+<rect x="2391.8" y="514.0" width="0.5" height="16.0" fill="rgb(158,48,166)"/>
+<title>runtime.step  cum=0.01s (0.0%)</title>
+<rect x="2392.5" y="82.0" width="0.5" height="16.0" fill="rgb(162,166,48)"/>
+<title>github.com/milvus-io/milvus/pkg/v3/config.(*FileSource).loadFromFile  cum=0.01s (0.0%)</title>
+<rect x="2392.5" y="100.0" width="0.5" height="16.0" fill="rgb(86,48,166)"/>
+<title>gopkg.in/yaml%2ev2.Unmarshal (inline)  cum=0.01s (0.0%)</title>
+<rect x="2392.5" y="118.0" width="0.5" height="16.0" fill="rgb(166,48,144)"/>
+<title>gopkg.in/yaml%2ev2.unmarshal  cum=0.01s (0.0%)</title>
+<rect x="2392.5" y="136.0" width="0.5" height="16.0" fill="rgb(48,66,166)"/>
+<title>gopkg.in/yaml%2ev2.(*parser).parse  cum=0.01s (0.0%)</title>
+<rect x="2392.5" y="154.0" width="0.5" height="16.0" fill="rgb(48,158,166)"/>
+<title>gopkg.in/yaml%2ev2.(*parser).document  cum=0.01s (0.0%)</title>
+<rect x="2392.5" y="172.0" width="0.5" height="16.0" fill="rgb(48,66,166)"/>
+<title>gopkg.in/yaml%2ev2.(*parser).parse  cum=0.01s (0.0%)</title>
+<rect x="2392.5" y="190.0" width="0.5" height="16.0" fill="rgb(48,48,166)"/>
+<title>gopkg.in/yaml%2ev2.(*parser).mapping  cum=0.01s (0.0%)</title>
+<rect x="2392.5" y="208.0" width="0.5" height="16.0" fill="rgb(48,66,166)"/>
+<title>gopkg.in/yaml%2ev2.(*parser).parse  cum=0.01s (0.0%)</title>
+<rect x="2392.5" y="226.0" width="0.5" height="16.0" fill="rgb(48,48,166)"/>
+<title>gopkg.in/yaml%2ev2.(*parser).mapping  cum=0.01s (0.0%)</title>
+<rect x="2392.5" y="244.0" width="0.5" height="16.0" fill="rgb(48,66,166)"/>
+<title>gopkg.in/yaml%2ev2.(*parser).parse  cum=0.01s (0.0%)</title>
+<rect x="2392.5" y="262.0" width="0.5" height="16.0" fill="rgb(48,48,166)"/>
+<title>gopkg.in/yaml%2ev2.(*parser).mapping  cum=0.01s (0.0%)</title>
+<rect x="2392.5" y="280.0" width="0.5" height="16.0" fill="rgb(52,48,166)"/>
+<title>gopkg.in/yaml%2ev2.(*parser).peek  cum=0.01s (0.0%)</title>
+<rect x="2392.5" y="298.0" width="0.5" height="16.0" fill="rgb(95,48,166)"/>
+<title>gopkg.in/yaml%2ev2.yaml_parser_parse  cum=0.01s (0.0%)</title>
+<rect x="2392.5" y="316.0" width="0.5" height="16.0" fill="rgb(48,166,54)"/>
+<title>gopkg.in/yaml%2ev2.yaml_parser_state_machine  cum=0.01s (0.0%)</title>
+<rect x="2392.5" y="334.0" width="0.5" height="16.0" fill="rgb(139,166,48)"/>
+<title>gopkg.in/yaml%2ev2.yaml_parser_parse_block_mapping_key  cum=0.01s (0.0%)</title>
+<rect x="2392.5" y="352.0" width="0.5" height="16.0" fill="rgb(121,166,48)"/>
+<title>gopkg.in/yaml%2ev2.peek_token (inline)  cum=0.01s (0.0%)</title>
+<rect x="2392.5" y="370.0" width="0.5" height="16.0" fill="rgb(48,150,166)"/>
+<title>gopkg.in/yaml%2ev2.yaml_parser_fetch_more_tokens  cum=0.01s (0.0%)</title>
+<rect x="2393.2" y="64.0" width="0.9" height="16.0" fill="rgb(166,48,105)"/>
+<title>runtime.nanotime1  cum=0.02s (0.1%)</title>
+<rect x="2394.6" y="64.0" width="0.5" height="16.0" fill="rgb(115,48,166)"/>
+<title>runtime._System  cum=0.01s (0.0%)</title>
+<rect x="2394.6" y="82.0" width="0.5" height="16.0" fill="rgb(48,166,74)"/>
+<title>runtime._ExternalCode  cum=0.01s (0.0%)</title>
+<rect x="2395.3" y="64.0" width="0.5" height="16.0" fill="rgb(166,70,48)"/>
+<title>runtime.systemstack  cum=0.01s (0.0%)</title>
+<ellipse cx="1349.5" cy="234.0" rx="403.2" ry="17.0" fill="none" stroke="#e00000" stroke-width="4"/>
+<ellipse cx="1156.3" cy="252.0" rx="210.0" ry="17.0" fill="none" stroke="#e00000" stroke-width="4"/>
+<ellipse cx="315.7" cy="810.0" rx="323.7" ry="17.0" fill="none" stroke="#e00000" stroke-width="4"/>
+</svg>
