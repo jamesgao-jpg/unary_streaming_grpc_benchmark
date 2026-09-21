@@ -1,0 +1,55 @@
+go version go1.26.4 linux/arm64
+Linux ip-10-15-9-42 6.8.0-1063-aws #66~22.04.1-Ubuntu SMP Fri Aug  7 17:19:42 UTC 2026 aarch64 aarch64 aarch64 GNU/Linux
+16
+MemTotal:       129545956 kB
+MemFree:        81312328 kB
+MemAvailable:   126527784 kB
+Buffers:         2174160 kB
+Cached:         38033476 kB
+SwapCached:            0 kB
+Active:          5058948 kB
+Inactive:       35371216 kB
+Active(anon):     231272 kB
+Inactive(anon):       44 kB
+Active(file):    4827676 kB
+Inactive(file): 35371172 kB
+Unevictable:       26380 kB
+Mlocked:           26380 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Zswap:                 0 kB
+Zswapped:              0 kB
+Dirty:              2028 kB
+Writeback:             0 kB
+AnonPages:        249120 kB
+Mapped:           258828 kB
+Shmem:              1304 kB
+KReclaimable:    6480904 kB
+Slab:            7090688 kB
+SReclaimable:    6480904 kB
+SUnreclaim:       609784 kB
+KernelStack:        7312 kB
+ShadowCallStack:    1844 kB
+PageTables:         5452 kB
+SecPageTables:         0 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:    64772976 kB
+Committed_AS:    1503980 kB
+VmallocTotal:   133141626880 kB
+VmallocUsed:       25472 kB
+VmallocChunk:          0 kB
+Percpu:            48704 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+FileHugePages:         0 kB
+FilePmdMapped:         0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB

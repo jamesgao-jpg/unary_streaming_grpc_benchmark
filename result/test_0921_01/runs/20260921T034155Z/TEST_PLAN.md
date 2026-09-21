@@ -1,7 +1,6 @@
 # Small-Payload Stream-Creation Overhead Premise Test 0921-01
 
-Status: Completed. Run `runs/20260921T034155Z/manifest.tsv` records 40 passing
-executions (10 cases, four repetitions each); see `report.md` for findings.
+Status: Proposed.
 
 ## Objective
 
