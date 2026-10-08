@@ -2,13 +2,13 @@
 
 ## Run
 
-- Evidence: `runs/20261008T043348Z-89735`
+- Evidence: `runs/20261008T061006Z-96286`
 - Milvus commit: `75e7392ebe2c61f6d3043431984a44582078a161`
-- Test repository commit used by the run: `216d2f6815c2d53b2d74cee2b2c28aff2b6cf4c4`
+- Test repository commit used by the run: `91a83c971212f901998e530f8a044dd49f77b718`
 - Topology: one QueryNode, 63 sealed segments, 1,000,000 rows, no selected StreamingNode
 - Workload: Search iterator and Plain Query, each requesting 8,192 results
 
-The run executed every planned Search and Query case and both final recovery requests. It exited during final validation because the validator required one accepted request for `Search/EOF-AFTER`. Commit `527c5d71d70ac44b7851011933797bb581084c0b` corrected that classification, and the preserved run then passed validation.
+The run executed every planned Search and Query case and both final recovery requests. Final validation passed, the runner exited with status zero, and the evidence contains `COMPLETED: PASS` with no `FAILED` marker.
 
 ## Results
 
