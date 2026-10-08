@@ -308,6 +308,16 @@ def load(collection, args):
     return {"status": "success", "progress": utility.loading_progress(args.collection)}
 
 
+def release(collection, args):
+    collection.release(timeout=1800)
+    deadline = time.monotonic() + 1800
+    while utility.get_query_segment_info(args.collection, timeout=30):
+        if time.monotonic() >= deadline:
+            raise TimeoutError("segment placement remained after release")
+        time.sleep(5)
+    return {"status": "success"}
+
+
 def request(collection, args):
     started = time.monotonic_ns()
     try:
@@ -336,7 +346,7 @@ def request(collection, args):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("action", choices=["load", "request"])
+    parser.add_argument("action", choices=["load", "release", "request"])
     parser.add_argument("--host", default="10.15.9.42")
     parser.add_argument("--port", default="19532")
     parser.add_argument("--collection", default="cohere_1m_qn_fanin")
@@ -350,7 +360,12 @@ def main():
     connect(args)
     try:
         collection = Collection(args.collection)
-        result = load(collection, args) if args.action == "load" else request(collection, args)
+        if args.action == "load":
+            result = load(collection, args)
+        elif args.action == "release":
+            result = release(collection, args)
+        else:
+            result = request(collection, args)
         with open(args.output, "w", encoding="utf-8") as output:
             json.dump(result, output, indent=2, sort_keys=True)
         print(json.dumps(result, sort_keys=True))
@@ -376,6 +391,11 @@ run_load() {
 
 restart_querynode() {
     local fault=$1 label=$2
+    client "cd '$CLIENT_REPO' && PYTHONPATH='$CLIENT_REPO' \
+        .venv/bin/python '$CLIENT_DRIVER' release \
+        --collection '$COLLECTION_NAME' \
+        --output '$CLIENT_RUN_DIR/$label-release.json'" \
+        >"$RUN_DIR/$label-release.log" 2>&1
     stop_querynodes
     QUERYNODE_FAULT=$fault
     start_querynodes 1
