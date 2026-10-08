@@ -68,11 +68,12 @@ start_role() {
     local log_level=${5:-info}
     local fault=""
     [[ "$role" == querynode ]] && fault=$QUERYNODE_FAULT
+    local fault_arg=${fault:-unused}
 
     log "Starting $name, fault=${fault:-none}"
     server_bash \
         "$name" "$role" "$metrics_port" "$rpc_port" "$log_level" \
-        "$fault" "$SERVER_RUN_DIR" "$SERVER_REPO" "$SERVER_ENV" <<'REMOTE'
+        "$fault_arg" "$SERVER_RUN_DIR" "$SERVER_REPO" "$SERVER_ENV" <<'REMOTE'
 set -Eeuo pipefail
 name=$1
 role=$2
@@ -83,6 +84,7 @@ fault=$6
 run_dir=$7
 repo=$8
 env_file=$9
+[[ "$fault" == unused ]] && fault=""
 
 mkdir -p "$run_dir/logs" "$run_dir/pids" "$run_dir/local/$name"
 (
