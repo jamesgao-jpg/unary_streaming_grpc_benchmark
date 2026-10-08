@@ -568,7 +568,9 @@ for operation in ("Search", "Query"):
 
         if case in {"ERROR-BEFORE", "TCPRESET-BEFORE"} and attempts < 2:
             raise SystemExit(f"{operation}/{case} did not expose a retry: attempts={attempts}")
-        if case not in {"BASELINE", "ERROR-BEFORE", "TCPRESET-BEFORE"} and attempts != 1:
+        if case == "EOF-AFTER" and attempts < 1:
+            raise SystemExit(f"{operation}/{case} accepted no request")
+        if case not in {"BASELINE", "ERROR-BEFORE", "TCPRESET-BEFORE", "EOF-AFTER"} and attempts != 1:
             raise SystemExit(f"{operation}/{case} accepted attempts={attempts}, expected 1")
         if case not in {"BASELINE"} and checkpoints != 1:
             raise SystemExit(f"{operation}/{case} checkpoints={checkpoints}, expected 1")
