@@ -333,13 +333,16 @@ def request(collection, args):
             "elapsedNs": time.monotonic_ns() - started,
         }
     except Exception as error:
+        error_code = getattr(error, "code", None)
+        if callable(error_code):
+            error_code = error_code()
         return {
             "status": "error",
             "operation": args.operation,
             "count": 0,
             "errorType": type(error).__name__,
             "error": str(error),
-            "errorCode": getattr(error, "code", None),
+            "errorCode": str(error_code) if error_code is not None else None,
             "elapsedNs": time.monotonic_ns() - started,
         }
 
