@@ -1,0 +1,113 @@
+{
+  "status": "unavailable",
+  "unit": "bytes",
+  "endpoint": "<redacted>",
+  "baseline": null,
+  "sampled_average_bytes": null,
+  "sampled_peak_bytes": null,
+  "sample_count": 0,
+  "after": null,
+  "samples": [],
+  "errors": [
+    {
+      "error": "URLError",
+      "timestamp": 1793311635.4468176
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793311637.4477246
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793311639.4491117
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793311641.4504893
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793311643.4519093
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793311645.4532776
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793311647.4546585
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793311649.4560325
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793311651.4574094
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793311653.4588075
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793311655.4601843
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793311657.4615574
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793311659.4629228
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793311661.4642901
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793311663.4656646
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793311665.4667153
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793311667.4680717
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793311669.4694302
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793311671.4707952
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793311673.4721656
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793311675.4726858
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793311677.4740963
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793311679.4754875
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793311681.4767356
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793311683.4780672
+    }
+  ]
+}

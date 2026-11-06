@@ -1,0 +1,28 @@
+{
+  "head": "139f8a3d38fee6d3e8bd62ffbd8ea652b6172108",
+  "sdk": "3.1.0rc69+reducestream2",
+  "sdk_wheel_sha256": "f20e5b177637186fd06ceb86710f6a237d70867e82522a7075434fcaf7d2a87f",
+  "files_sha256": {
+    "VectorDBBench/scripts/pymilvus_streaming_override.patch": "8387eee4642c8a6c3128974bbd787e72033768ac823569bdbcdd97c0bea7bbd2",
+    "VectorDBBench/tests/test_milvus_functional.py": "7540e6ec359c87d16442f0f97d64c86472d9b0e0fa1d273dd39aeb3b3d321aba",
+    "VectorDBBench/vectordb_bench/backend/clients/milvus/functional.py": "db5069a5fbe1fd9569245c54c14f4f17af59317806ece55761b9aec281a61b3a",
+    "VectorDBBench/.gitignore": "e11af44f7345740080231f089e2ab3d5ad8368b6caabd4ec62c53a2e2a931d22",
+    "VectorDBBench/pyproject.toml": "390c0d99970f2566e20ec9211dc3990022c3a8d90d695cf01e6b12d454883438",
+    "VectorDBBench/vectordb_bench/backend/cases.py": "9aea85f80e5e40fa76f2e3737b1a432df283cdce600f61c016b3985bbe36e461",
+    "VectorDBBench/vectordb_bench/backend/clients/api.py": "212a927c107e56a3a3e789b338509e916553053cb6a7fed298b1aa8136e56a09",
+    "VectorDBBench/vectordb_bench/backend/clients/milvus/cli.py": "b12d5e0b7510d36e3a468781ecc09dd1d623e7013c42e83513ebbde755aa8823",
+    "VectorDBBench/vectordb_bench/backend/runner/mp_runner.py": "ed490d94868734186fc2f9a93ec69609f8cd52f83581d7f21121887fd50aae43",
+    "VectorDBBench/vectordb_bench/backend/runner/serial_runner.py": "cce52f06d949705e3a49cbb91f543ae4e947f11efb3885329e65e07916c8fd17",
+    "VectorDBBench/vectordb_bench/backend/task_runner.py": "2e0ce3bf68d9117b3c7aac21852037deb0f846b029b93d5d9b1672ec262bccae",
+    "VectorDBBench/vectordb_bench/cli/cli.py": "1076ffea2ea430f5929a971cc76e768e3e35413179d4c346ef03607bb1d28a51",
+    "driver/proxy_rss.py": "90d6b37e06af8b0bce60e5ca720996f061011845d593747d672c1c81d9292a13",
+    "driver/performance.py": "516896dae23297e7a4f82498d2c2f8f5e04095fc350188ae0a323d17e4db963b",
+    "driver/benchmark_plan.py": "01450a20727729a937052408c01d457cd000e2324af9e27852265dcb6dcb3628",
+    "driver/matrix.py": "1515eb8705ba0958eb7a796c9025ae6baed4a4f8b38f742e52351737aea06000",
+    "driver/run_test.sh": "cf7498cadf426d702f16fbe5cf244c3b78ae53bd81a6748d600536ba57b880ee",
+    "driver/cases.py": "fc1aba2cd98d3dd1197691ba5a2d63bf345df81dbc755c328c35b2a5d6318a85",
+    "driver/test_performance.py": "7839a5d10c7d89439a0830db8e2355ffd219ea6161f5e73a3811894296dd73e7",
+    "driver/s01.py": "c64b64087c63979b42912d401846bed972ff834ac0a7b196ba4901b4e80ec32c",
+    "driver/runner.py": "dc29c08d35b057a9e00a99d988762316797dfa30aa98b46ebd6d14cc119d70ae"
+  }
+}

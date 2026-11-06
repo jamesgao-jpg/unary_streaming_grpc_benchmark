@@ -1,0 +1,113 @@
+{
+  "status": "unavailable",
+  "unit": "bytes",
+  "endpoint": "<redacted>",
+  "baseline": null,
+  "sampled_average_bytes": null,
+  "sampled_peak_bytes": null,
+  "sample_count": 0,
+  "after": null,
+  "samples": [],
+  "errors": [
+    {
+      "error": "URLError",
+      "timestamp": 1793305680.9431357
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793305682.9445634
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793305684.9459536
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793305686.947313
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793305688.9487104
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793305690.9500957
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793305692.9514668
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793305694.9528496
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793305696.9542315
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793305698.9555988
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793305700.9569857
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793305702.9583657
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793305704.9597714
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793305706.9611647
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793305708.9625373
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793305710.9639094
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793305712.965292
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793305714.966687
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793305716.968062
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793305718.9694319
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793305720.9708111
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793305722.9721594
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793305724.9735007
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793305726.9758718
+    },
+    {
+      "error": "URLError",
+      "timestamp": 1793305728.9772193
+    }
+  ]
+}

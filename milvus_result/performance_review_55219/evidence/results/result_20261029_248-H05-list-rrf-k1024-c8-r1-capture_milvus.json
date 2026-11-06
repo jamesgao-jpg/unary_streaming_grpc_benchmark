@@ -1,0 +1,267 @@
+{
+  "run_id": "032fc1a234b044858026a3c048755f74",
+  "task_label": "248-H05-list-rrf-k1024-c8-r1-capture",
+  "results": [
+    {
+      "metrics": {
+        "max_load_count": 0,
+        "insert_duration": 0.0,
+        "optimize_duration": 0.0,
+        "load_duration": 0.0,
+        "qps": 159.0588,
+        "serial_latency_p99": 0.0,
+        "serial_latency_p95": 0.0,
+        "serial_latency_p50": 0.0,
+        "recall": 0.0,
+        "recall_at": {},
+        "ndcg": 0.0,
+        "mrr": 0.0,
+        "conc_num_list": [
+          8
+        ],
+        "conc_qps_list": [
+          159.0588
+        ],
+        "conc_latency_p99_list": [
+          0.07271247743628918
+        ],
+        "conc_latency_p95_list": [
+          0.06731015026452951
+        ],
+        "conc_latency_p50_list": [
+          0.049410863022785634
+        ],
+        "conc_latency_avg_list": [
+          0.05021054189357043
+        ],
+        "payload_profile": "request_fields",
+        "payload_estimated_bytes_per_query": 0,
+        "inserted_count": 0,
+        "insert_rows_per_second": 0.0,
+        "insert_completion_seconds": 0.0,
+        "searchable_after_insert_seconds": 0.0,
+        "indexed_after_searchable_seconds": 0.0,
+        "additional_parameters": {
+          "functional": {
+            "family": "H05",
+            "operation": "hybrid_search",
+            "phase": "capture",
+            "reference_file": "<redacted>",
+            "server_setup": {
+              "setup_id": "reducestream-16402-widetable10m-full-semantic-matrix",
+              "milvus_revision": "9b6b87c8716ce24bf7e1d79b58c7bd8e3a8a58ff",
+              "snapshot_id": "58398b9957214f7f4e2b24157ff8593cb5bbd761e842c4f803f42f55c05a0793",
+              "fan_in": 24,
+              "chunk_bytes": 262144
+            },
+            "route_evidence": "<redacted>",
+            "request": {
+              "output_fields": [
+                "i64_timestamp"
+              ],
+              "reduceStreamChunkBytes": 262144,
+              "consistency_level": "Strong"
+            },
+            "sub_searches": [
+              {
+                "anns_field": "chunks_a[list_vec]",
+                "param": {
+                  "metric_type": "MAX_SIM_COSINE",
+                  "params": {
+                    "ef": 8192
+                  }
+                },
+                "embedding_list_size": 2
+              },
+              {
+                "anns_field": "emb_768",
+                "param": {
+                  "metric_type": "COSINE",
+                  "params": {
+                    "ef": 8192
+                  }
+                }
+              }
+            ],
+            "ranker": {
+              "strategy": "rrf",
+              "k": 60
+            },
+            "aggregation": null,
+            "query_count": 1,
+            "batch_size": 128,
+            "embedding_list_size": 0,
+            "primary_field": "i64_timestamp",
+            "unordered": false,
+            "expected_count": 1024,
+            "expected_page_sizes": null,
+            "expected_result": null,
+            "expected_error_code": null,
+            "validate_during_timing": false,
+            "recall_measured": false,
+            "qps_unit": "query vectors/s; divide by nq for logical operations/s",
+            "reference_sha256": "d391a15021d41a5b89ba7cea159c5ba49506980f1407fb1efd6a63b99217dff7",
+            "route_evidence_sha256": "0a00f94861e32d7743e1a462a1acdccec50ad8405b33e0ec9e91505f3e800735",
+            "enableReduceStream": false
+          }
+        },
+        "st_ideal_insert_duration": 0,
+        "st_search_stage_list": [],
+        "st_search_time_list": [],
+        "st_max_qps_list_list": [],
+        "st_recall_list": [],
+        "st_ndcg_list": [],
+        "st_serial_latency_p99_list": [],
+        "st_serial_latency_p95_list": [],
+        "st_conc_failed_rate_list": [],
+        "st_conc_num_list_list": [],
+        "st_conc_qps_list_list": [],
+        "st_conc_latency_p99_list_list": [],
+        "st_conc_latency_p95_list_list": [],
+        "st_conc_latency_avg_list_list": []
+      },
+      "task_config": {
+        "db": "Milvus",
+        "db_config": {
+          "db_label": "",
+          "version": "unknown-20261028-9b6b87c8",
+          "note": "<redacted>",
+          "uri": "<redacted>",
+          "user": "<redacted>",
+          "password": "<redacted>",
+          "num_shards": 3,
+          "replica_number": 1,
+          "collection_name": "rs_q01_widetable10m_768d_vch3"
+        },
+        "db_case_config": {
+          "index": "HNSW",
+          "metric_type": null,
+          "use_partition_key": false,
+          "force_merge_enabled": true,
+          "force_merge_target_size_mb": null,
+          "M": 16,
+          "efConstruction": 200,
+          "ef": 8192
+        },
+        "case_config": {
+          "case_id": 900,
+          "custom_case": {
+            "request_spec": {
+              "family": "H05",
+              "operation": "hybrid_search",
+              "phase": "capture",
+              "request": {
+                "output_fields": [
+                  "i64_timestamp"
+                ],
+                "reduceStreamChunkBytes": 262144,
+                "consistency_level": "Strong"
+              },
+              "reference_file": "<redacted>",
+              "route_evidence": "<redacted>",
+              "primary_field": "i64_timestamp",
+              "query_count": 1,
+              "validate_during_timing": false,
+              "server_setup": {
+                "setup_id": "reducestream-16402-widetable10m-full-semantic-matrix",
+                "milvus_revision": "9b6b87c8716ce24bf7e1d79b58c7bd8e3a8a58ff",
+                "snapshot_id": "58398b9957214f7f4e2b24157ff8593cb5bbd761e842c4f803f42f55c05a0793",
+                "fan_in": 24,
+                "chunk_bytes": 262144
+              },
+              "sub_searches": [
+                {
+                  "anns_field": "chunks_a[list_vec]",
+                  "param": {
+                    "metric_type": "MAX_SIM_COSINE",
+                    "params": {
+                      "ef": 8192
+                    }
+                  },
+                  "embedding_list_size": 2
+                },
+                {
+                  "anns_field": "emb_768",
+                  "param": {
+                    "metric_type": "COSINE",
+                    "params": {
+                      "ef": 8192
+                    }
+                  }
+                }
+              ],
+              "ranker": {
+                "strategy": "rrf",
+                "k": 60
+              },
+              "expected_count": 1024
+            },
+            "dataset_config": {
+              "name": "widetable",
+              "size": 10000000,
+              "dim": 768,
+              "metric_type": "COSINE",
+              "use_shuffled": false,
+              "with_gt": false,
+              "is_custom": true,
+              "with_remote_resource": false,
+              "with_scalar_labels": false,
+              "scalar_labels_file_separated": true,
+              "scalar_labels_file": "scalar_labels.parquet",
+              "scalar_label_percentages": [],
+              "scalar_int_rates": [],
+              "train_id_field": "id",
+              "train_vector_field": "emb",
+              "test_file": "test.parquet",
+              "test_id_field": "id",
+              "test_vector_field": "emb",
+              "gt_id_field": "id",
+              "gt_neighbors_field": "neighbors_id",
+              "source": null,
+              "source_dataset": null,
+              "source_revision": null,
+              "dataset_metadata": null,
+              "dir": "<redacted>",
+              "file_num": 20,
+              "train_file": "train",
+              "gt_file": "neighbors.parquet",
+              "label_percentages": []
+            }
+          },
+          "payload_profile": null,
+          "k": 1024,
+          "nq": 1,
+          "concurrency_search_config": {
+            "num_concurrency": [
+              8
+            ],
+            "concurrency_duration": 45,
+            "concurrency_timeout": 3600,
+            "serial_cooldown": 0.0
+          }
+        },
+        "stages": [
+          "search_concurrent"
+        ],
+        "load_concurrency": 0,
+        "insert_batch_size": 100
+      },
+      "label": ":)",
+      "dataset_metadata": {
+        "name": "widetable",
+        "distribution": null,
+        "source": "S3",
+        "repository": null,
+        "filename": null,
+        "revision": null,
+        "source_distance": null,
+        "metric_type": "COSINE",
+        "point_type": null,
+        "size": 10000000,
+        "dim": 768
+      }
+    }
+  ],
+  "file_fmt": "result_{}_{}_{}.json",
+  "timestamp": 1793232000.0
+}
